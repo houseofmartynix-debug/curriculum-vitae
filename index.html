@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marco Selva Oknam — ꦗꦸꦫꦸ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ</title>
+<meta name="description" content="Marco Selva Oknam — Penetration Tester &amp; bug bounty hunter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Noto+Sans+Javanese:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -162,12 +163,24 @@
     .exp,.cert,.edu-card,.section{break-inside:avoid}
     a{color:inherit;text-decoration:none}
   }
+
+  /* LANGUAGE SWITCH */
+  .langsw{position:absolute;top:14px;right:28px;display:flex;border:1px solid var(--border);
+    border-radius:4px;overflow:hidden;z-index:5}
+  .langsw a{padding:5px 12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;
+    color:var(--sub);text-decoration:none;background:var(--panel);transition:all .2s}
+  .langsw a:hover{color:var(--green)}
+  .langsw a.on{background:var(--green-dim);color:var(--green)}
+  .langsw a.jvlbl{font-family:var(--jv);font-size:12px;letter-spacing:0;line-height:1.9}
+  @media print{.langsw{display:none!important}}
 </style>
+
 </head>
 <body>
 <div class="bg-grid"></div>
 <div class="scanline"></div>
 <div class="cv">
+  <div class="langsw"><a class="on jvlbl" href="./">ꦗꦮ</a><a href="./en/">EN</a></div>
 
   <header class="header">
     <div>
@@ -198,22 +211,22 @@
       <div class="section">
         <div class="sec-head"><span class="sec-label">ꦥꦼꦔꦭꦩꦤ꧀</span><div class="sec-line"></div><span class="sec-num">01</span></div>
         <div class="exp">
-          <div class="exp-meta"><div class="exp-role jv">ꦥꦤꦭꦶꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦩꦤ꧀ꦝꦶꦫꦶ</div><div class="exp-period">ꦗꦤꦸꦮꦫꦶ ꧇꧒꧐꧒꧖꧇ – ꦱꦲꦶꦏꦶ</div></div>
+          <div class="exp-meta"><div class="exp-role jv">ꦥꦤꦭꦶꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦩꦤ꧀ꦝꦶꦫꦶ</div><div class="exp-period jv">ꦗꦤꦸꦮꦫꦶ ꧇꧒꧐꧒꧖꧇ – ꦱꦲꦶꦏꦶ</div></div>
           <div class="exp-company">Bugcrowd · HackerOne · YesWeHack · Gerobug</div>
           <p class="exp-desc jv">ꦔꦸꦗꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀꧈ API, ꦭꦤ꧀ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center ꦏꦁꦒꦺꦴ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦱꦪꦼꦩ꧀ꦧꦫ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀꧈ ꦏꦭꦼꦧꦸ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ꧉ ꦤꦶꦤ꧀ꦢꦏꦏꦼ ꦥꦼꦩꦼꦠꦲꦤ꧀ ꦥꦼꦂꦩꦸꦏꦲꦤ꧀ ꦱꦼꦫꦔꦤ꧀꧈ ꦩꦕ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦱꦏ ꦄꦱꦶꦭ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ JAR, ꦱꦂꦠ ꦔ꧀ꦒꦮꦼ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ꧉ ꦤꦸꦭꦶꦱ꧀ ꦭꦥꦸꦫꦤ꧀ ꦩꦤꦸꦠ꧀ ꦱ꧀ꦠꦤ꧀ꦢꦂ VRT ꦭꦤ꧀ CVSS, ꦧꦤ꧀ꦗꦸꦂ ꦔꦸꦫꦸꦱ꧀ ꦏꦺꦴꦩꦸꦤꦶꦏꦱꦶ ꦏꦫꦺꦴ ꦠꦶꦩ꧀ ꦠꦿꦶꦪꦱꦼ ꦔꦤ꧀ꦠꦶ ꦠꦼꦩꦸꦮꦤ꧀ ꦢꦶꦠꦩ꧀ꦥ꧉ ꦈꦒ ꦩ꧀ꦧꦔꦸꦤ꧀ ꦥꦶꦫꦤ꧀ꦠꦶ ꦎꦠꦺꦴꦩꦱꦶ ꦝꦺꦮꦺ ꦏꦁꦒꦺꦴ ꦩꦤ꧀ꦠꦲꦸ ꦎꦮꦃ-ꦎꦮꦲꦤ꧀ ꦭꦶꦁꦏꦸꦥ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀꧉</p>
         </div>
         <div class="exp">
-          <div class="exp-meta"><div class="exp-role jv">ꦄꦃꦭꦶ ꦥꦼꦤ꧀ꦗꦸꦮꦭꦤ꧀</div><div class="exp-period">ꦩꦺꦪꦶ ꧇꧒꧐꧒꧔꧇ – ꦄꦒꦸꦱ꧀ꦠꦸꦱ꧀ ꧇꧒꧐꧒꧕꧇</div></div>
-          <div class="exp-company">PT Aspirasi Hidup Indonesia Tbk (ACE Hardware) · Kontrak</div>
+          <div class="exp-meta"><div class="exp-role jv">ꦄꦃꦭꦶ ꦥꦼꦤ꧀ꦗꦸꦮꦭꦤ꧀</div><div class="exp-period jv">ꦩꦺꦪꦶ ꧇꧒꧐꧒꧔꧇ – ꦄꦒꦸꦱ꧀ꦠꦸꦱ꧀ ꧇꧒꧐꧒꧕꧇</div></div>
+          <div class="exp-company">PT Aspirasi Hidup Indonesia Tbk (ACE Hardware) · ꦏꦺꦴꦤ꧀ꦠꦿꦏ꧀</div>
           <p class="exp-desc jv">ꦩꦺꦤꦺꦲꦶ ꦫꦺꦏꦺꦴꦩꦼꦤ꧀ꦢꦱꦶ ꦥꦿꦺꦴꦢꦸꦏ꧀ ꦄꦝꦼꦝꦱꦂ ꦫꦶꦱꦶꦏꦺꦴ ꦭꦤ꧀ ꦏꦧꦸꦠꦸꦲꦤ꧀ ꦥꦼꦭꦁꦒꦤ꧀꧈ ꦱꦂꦠ ꦔꦤ꧀ꦝꦫꦏꦼ ꦥ꦳ꦶꦠꦸꦂ ꦠꦼꦏ꧀ꦤꦶꦱ꧀ ꦩꦫꦁ ꦮꦺꦴꦁ ꦱꦶꦁ ꦎꦫ ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉ ꦏꦥꦿꦶꦒꦼꦭꦤ꧀ ꦆꦏꦶ ꦏꦼꦥꦏꦺ ꦤꦭꦶꦏ ꦤꦼꦫꦔꦏꦼ ꦢꦩ꧀ꦥꦏ꧀ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ ꦩꦫꦁ ꦠꦶꦩ꧀ ꦤꦺꦴꦤ꧀-ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉</p>
         </div>
         <div class="exp">
-          <div class="exp-meta"><div class="exp-role jv">ꦱ꧀ꦠꦥ꦳꧀ ꦥꦼꦩꦱꦫꦤ꧀ ꦭꦤ꧀ ꦥꦼꦤ꧀ꦗꦸꦮꦭꦤ꧀</div><div class="exp-period">ꦱꦺꦥ꧀ꦠꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧑꧇ – ꦤꦺꦴꦥꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧒꧇</div></div>
-          <div class="exp-company">FIFGROUP · Kontrak</div>
+          <div class="exp-meta"><div class="exp-role jv">ꦱ꧀ꦠꦥ꦳꧀ ꦥꦼꦩꦱꦫꦤ꧀ ꦭꦤ꧀ ꦥꦼꦤ꧀ꦗꦸꦮꦭꦤ꧀</div><div class="exp-period jv">ꦱꦺꦥ꧀ꦠꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧑꧇ – ꦤꦺꦴꦥꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧒꧇</div></div>
+          <div class="exp-company">FIFGROUP · ꦏꦺꦴꦤ꧀ꦠꦿꦏ꧀</div>
           <p class="exp-desc jv">ꦚꦸꦱꦸꦤ꧀ ꦭꦤ꧀ ꦔ꧀ꦭꦏꦺꦴꦏꦏꦼ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦼꦩꦱꦫꦤ꧀ ꦄꦝꦼꦝꦱꦂ ꦄꦤꦭꦶꦱꦶꦱ꧀ ꦢꦠ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦥꦱꦂ꧈ ꦔꦸꦫꦸꦱ꧀ ꦥꦿꦺꦴꦩꦺꦴꦱꦶ ꦢꦶꦒꦶꦠꦭ꧀ ꦱꦂꦠ ꦭꦥꦔꦤ꧀꧉ ꦔ꧀ꦭꦠꦶꦃ ꦩꦕ ꦢꦠ ꦭꦤ꧀ ꦤꦼꦩꦺꦴꦏꦏꦼ ꦥꦺꦴꦭ ꦱꦶꦁ ꦎꦫ ꦭꦸꦩꦿꦃ꧉</p>
         </div>
         <div class="exp">
-          <div class="exp-meta"><div class="exp-role jv">ꦏꦿꦸ ꦠꦺꦴꦏꦺꦴ</div><div class="exp-period">꧇꧒꧐꧑꧙꧇ – ꧇꧒꧐꧒꧑꧇</div></div>
+          <div class="exp-meta"><div class="exp-role jv">ꦏꦿꦸ ꦠꦺꦴꦏꦺꦴ</div><div class="exp-period jv">꧇꧒꧐꧑꧙꧇ – ꧇꧒꧐꧒꧑꧇</div></div>
           <div class="exp-company">PT Indomarco Prismatama Tbk (Indomaret)</div>
           <p class="exp-desc jv">ꦔ꧀ꦭꦢꦺꦤꦶ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦔꦸꦫꦸꦱ꧀ ꦎꦥꦼꦫꦱꦶ ꦠꦺꦴꦏꦺꦴ ꦱꦧꦼꦤ꧀ ꦢꦶꦤ ꦏꦤ꧀ꦛꦶ ꦠ꧀ꦭꦶꦠꦶ꧉ ꦔꦸꦮꦠꦏꦼ ꦏꦠ꧀ꦭꦶꦠꦼꦤ꧀꧈ ꦢꦶꦱꦶꦥ꧀ꦭꦶꦤ꧀꧈ ꦭꦤ꧀ ꦠꦸꦤ꧀ꦝꦸꦏ꧀ ꦩꦫꦁ ꦥꦿꦺꦴꦱꦼꦢꦸꦂ — ꦱꦶꦁ ꦢꦢꦶ ꦝꦱꦂ ꦆꦁ ꦥꦏꦂꦪꦤ꧀ ꦏꦲꦩꦤꦤ꧀꧉</p>
         </div>
@@ -301,12 +314,12 @@
     <div>
       <div class="section">
         <div class="sec-head"><span class="sec-label">ꦏꦥꦿꦶꦒꦼꦭꦤ꧀ ꦠꦼꦏ꧀ꦤꦶꦱ꧀</span><div class="sec-line"></div></div>
-        <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦭꦤ꧀</span><span class="sk-tool">API</span></div></div>
+        <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦭꦤ꧀ API</span><span class="sk-tool">OWASP Top 10 · REST · GraphQL</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦚꦼꦒꦠ꧀ ꦭꦤ꧀ ꦔꦺꦴꦮꦲꦶ ꦥꦤ꧀ꦗꦭꦸꦏ꧀</span><span class="sk-tool">Burp Suite · Caido</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦄꦲꦸꦢꦶꦠ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦭꦤ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ</span><span class="sk-tool">JADX · Procyon · javap</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦥꦼꦩꦼꦠꦲꦤ꧀ ꦥꦼꦂꦩꦸꦏꦲꦤ꧀ ꦱꦼꦫꦔꦤ꧀</span><span class="sk-tool">subfinder · httpx · nuclei · katana</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦤꦿꦧꦱ꧀ ꦮꦠꦼꦱ꧀ ꦮꦼꦮꦼꦤꦁ</span><span class="sk-tool">IDOR · BOLA · authz</span></div></div>
-        <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦆꦤ꧀ꦗꦼꦏ꧀ꦱꦶ꧈ ꦢꦺꦱꦼꦫꦶꦪꦭꦶꦱꦱꦶ꧈ ꦭꦤ꧀</span><span class="sk-tool">SSRF · XXE · RCE</span></div></div>
+        <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦆꦤ꧀ꦗꦼꦏ꧀ꦱꦶ ꦭꦤ꧀ ꦢꦺꦱꦼꦫꦶꦪꦭꦶꦱꦱꦶ</span><span class="sk-tool">SSRF · XXE · RCE</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦈꦗꦶ ꦠꦺꦴꦏꦼꦤ꧀ ꦭꦤ꧀ ꦱꦼꦱꦶ</span><span class="sk-tool">JWT · OAuth · SAML</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">ꦈꦗꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ Android</span><span class="sk-tool">apktool · frida · objection</span></div></div>
         <div class="skill"><div class="sk-dot"></div><div><span class="jv">Linux ꦭꦤ꧀ ꦱ꧀ꦏꦿꦶꦥ꧀ ꦎꦠꦺꦴꦩꦱꦶ</span><span class="sk-tool">Kali · Bash · Python</span></div></div>
@@ -343,6 +356,7 @@
         <div class="repo-list">
           <span class="repo">marco-scanner</span>
           <span class="repo">soc-home-lab</span>
+          <span class="repo">appsec-payload-notes</span>
           <span class="repo">sinik-pro</span>
           <span class="repo">bugcrowd-scope-monitor</span>
           <span class="repo">god-recon-bot</span>
