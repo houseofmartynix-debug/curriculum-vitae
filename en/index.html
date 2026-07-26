@@ -84,6 +84,8 @@
     line-height:1.9;padding-bottom:9px}
   .sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
   .sec-num{font-family:var(--mono);font-size:9px;color:var(--dim)}
+  .sec-note{font-size:12.5px;color:var(--dim);margin:-6px 0 18px;max-width:640px;
+    border-left:2px solid var(--border2);padding-left:12px;line-height:2.05}
 
   /* EXPERIENCE */
   .exp{padding:0 0 26px 22px;position:relative}
@@ -184,6 +186,7 @@
   .exp-period{font-size:10px;line-height:1.6;padding:2px 8px}
   .c-pill .lbl,.repo-lbl{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;line-height:1.6}
   .find .cert-id{font-size:9.5px;line-height:1.6}
+  .sec-note{font-size:12px;line-height:1.7}
   .edu-school,.edu-year{font-family:var(--mono)}
   .bio{line-height:1.85}
   .langsw a.jvlbl{font-family:'Noto Sans Javanese',sans-serif}
@@ -247,26 +250,7 @@
 
       <div class="section">
         <div class="sec-head"><span class="sec-label">selected findings</span><div class="sec-line"></div><span class="sec-num">02</span></div>
-        <div class="cert find">
-          <div class="cert-name">Privilege escalation through a predictable Switch User token</div>
-          <div class="cert-issuer">Plugin People · Switch User for Jira &amp; Confluence · P2</div>
-          <div class="cert-id">validated on a live instance — reached SYSTEM_ADMIN</div>
-        </div>
-        <div class="cert find">
-          <div class="cert-name">Database password sent in cleartext despite ssl:true</div>
-          <div class="cert-issuer">MariaDB Connector/Node.js · CVE</div>
-          <div class="cert-id">triaged — report #3777370</div>
-        </div>
-        <div class="cert find">
-          <div class="cert-name">SSRF in Atlassian Data Center plugins</div>
-          <div class="cert-issuer">Balsamiq Wireframes (P3) · Gliffy (blind SSRF)</div>
-          <div class="cert-id">both triaged</div>
-        </div>
-        <div class="cert find">
-          <div class="cert-name">MCP service exposed over HTTP without authentication</div>
-          <div class="cert-issuer">Brave · CVSS 7.3</div>
-          <div class="cert-id">reported through the official programme</div>
-        </div>
+        <p class="sec-note">Targets still in triage are not named on this public page: platform disclosure terms require the programme’s written consent first. Full detail available on request.</p>
         <div class="cert find">
           <div class="cert-name">User enumeration via national ID (NIK) in a government service</div>
           <div class="cert-issuer">Diskominfo Kota Tangerang Selatan · Gerobug · Medium</div>
@@ -278,14 +262,29 @@
           <div class="cert-id">certificate of appreciation 7C0B36916030</div>
         </div>
         <div class="cert find">
-          <div class="cert-name">OPA authorization policy bypass</div>
-          <div class="cert-issuer">Block · cachew (open source)</div>
-          <div class="cert-id">proven by live testing</div>
+          <div class="cert-name">Privilege escalation to administrator via a predictable impersonation token</div>
+          <div class="cert-issuer">Enterprise Jira/Confluence plugin · P2</div>
+          <div class="cert-id">validated on a live instance — reached SYSTEM_ADMIN</div>
+        </div>
+        <div class="cert find">
+          <div class="cert-name">Database credential sent in cleartext despite TLS being enabled</div>
+          <div class="cert-issuer">Widely used Node.js database connector</div>
+          <div class="cert-id">triaged — CVE assigned, advisory pending</div>
+        </div>
+        <div class="cert find">
+          <div class="cert-name">SSRF, including blind SSRF, in Atlassian Data Center plugins</div>
+          <div class="cert-issuer">Two separate plugin vendors</div>
+          <div class="cert-id">both triaged</div>
+        </div>
+        <div class="cert find">
+          <div class="cert-name">MCP service exposed over HTTP without authentication</div>
+          <div class="cert-issuer">Desktop application · CVSS 7.3</div>
+          <div class="cert-id">reported through the official programme</div>
         </div>
         <div class="cert find">
           <div class="cert-name">Approval-flow bypass and open OAuth client registration</div>
-          <div class="cert-issuer">izymes · MercadoLibre</div>
-          <div class="cert-id">two separate programmes</div>
+          <div class="cert-issuer">Two separate programmes</div>
+          <div class="cert-id">reported, in triage</div>
         </div>
       </div>
 
