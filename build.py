@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build the CV in two languages from one source.
+"""Build the developer-centric CV in two languages from one single source.
 
     index.html      aksara Jawa  (canonical)
     en/index.html   English
@@ -25,21 +25,17 @@ def J(latin):
     return aks
 
 
-# English build: drop the Javanese metrics and restore the original Latin styling.
 EN_OVERRIDE = """<style>
-  :root{--jv:'DM Sans',sans-serif}
-  .tag,.sec-label{letter-spacing:1.8px;text-transform:uppercase;font-size:11px;
-    line-height:1.5;padding-bottom:0}
-  .title-row{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;line-height:1.5}
-  .comp{font-size:11.5px;letter-spacing:.3px;line-height:1.5}
-  .lang-badge{font-size:10.5px;line-height:1.5}
-  .exp-period{font-size:11px;line-height:1.5;padding:3px 9px}
-  .c-pill .lbl{font-size:10px;letter-spacing:0.8px;text-transform:uppercase;line-height:1.5}
-  .find .cert-id{font-size:11.5px;line-height:1.5}
-  .sec-note{font-size:12.5px;line-height:1.65}
-  .edu-school,.edu-year{font-family:var(--mono)}
-  .bio{line-height:1.75}
-  .langsw a.jvlbl{font-family:'Noto Sans Javanese',sans-serif}
+  :root{--jv:'Plus Jakarta Sans',sans-serif}
+  .sec-title{letter-spacing:1px;font-size:12px;line-height:1.5}
+  .comp-badge{font-size:11px;line-height:1.5}
+  .lang-tag{font-size:10px;line-height:1.5}
+  .t-period{font-size:10.5px;line-height:1.5}
+  .cmd-pill .lbl{font-size:10.5px;line-height:1.5}
+  .f-proof{font-size:11px;line-height:1.5}
+  .sec-callout{font-size:12.5px;line-height:1.65}
+  .hero-bio{line-height:1.75}
+  .lang-switch a.jvlbl{font-family:'Noto Sans Javanese',sans-serif}
 </style>"""
 
 MONTHS = {
@@ -53,26 +49,37 @@ MONTHS = {
 
 def render(lang):
     jv = lang == 'jv'
-    C = ' jv' if jv else ''                      # class hook, Javanese only
+    C = ' jv' if jv else ''
 
     def T(jw, en):
         return J(jw) if jv else en
 
-    def Y(n):                                    # year / numeral
+    def Y(n):
         return jawa.num(n) if jv else n
 
     def M(key):
         return T(*MONTHS[key])
 
-    # ------------------------------------------------------------- top bar ---
-    status_txt = T('Siyaga nampa pakaryan kaamanan', 'Available for AppSec & Pentest Roles')
-    print_lbl  = T('Cithak / Simpen ~PDF', 'Print / Export PDF')
+    # ----------------------------------------------------------- telemetry ---
+    t_dom_k  = T('lingkup inti', 'CORE DOMAIN')
+    t_dom_v  = 'Web AppSec · REST/GraphQL API · Code Audit'
+    
+    t_meth_k = T('métodhologi', 'METHODOLOGY')
+    t_meth_v = 'White-Box · Logic Audit · Zero-Day Hunt'
+    
+    t_plat_k = T('platform', 'PLATFORMS')
+    t_plat_v = 'Bugcrowd · HackerOne · YesWeHack · Gerobug'
+    
+    t_stat_k = T('status', 'STATUS')
+    t_stat_v = T('Siyaga nampa pakaryan', 'Available for Hire / PenTest')
+    
+    btn_print  = T('Cithak / Simpen ~PDF', 'Print / Export PDF')
     copied_txt = T('Tersalin!', 'Copied!')
 
     # ------------------------------------------------------------- header ---
-    tag   = T('serat riwayat gesang', 'curriculum vitae')
+    tag   = T('serat riwayat gesang', 'security engineer & pen-tester')
     role  = T('juru uji penétrasi', 'Penetration Tester')
-    role2 = T('pamburu celah kaamanan', 'Bug Bounty Hunter')
+    role2 = T('pamburu celah kaamanan', 'AppSec Researcher & Bug Hunter')
     bio = T(
         'Panaliti kaamanan sing nggarap uji penétrasi aplikasi web, ~API, lan '
         'plugin perusahaan. Nemokake sarta nglaporake celah kaamanan ing program '
@@ -90,16 +97,16 @@ def render(lang):
     l_papan = T('papan', 'location')
     papan   = T('Malang, Jawa Wétan, Indonésia', 'Malang, East Java, Indonesia')
 
-    s_exp   = T('pengalaman', 'experience')
-    s_find  = T('asil panemu pinilih', 'selected findings')
-    s_cert  = T('sertifikat', 'certifications')
-    s_edu   = T('pendhidhikan', 'education')
-    s_skill = T('kaprigelan teknis', 'technical skills')
-    s_comp  = T('kabisan inti', 'core competencies')
-    s_lang  = T('basa', 'languages')
-    s_port  = T('portofolio', 'portfolio')
+    s_exp   = T('pengalaman', 'EXPERIENCE')
+    s_find  = T('asil panemu pinilih', 'SELECTED FINDINGS & CVEs')
+    s_cert  = T('sertifikat', 'CERTIFICATIONS')
+    s_edu   = T('pendhidhikan', 'EDUCATION')
+    s_skill = T('kaprigelan lan piranti', 'TECHNICAL SKILLS & STACK')
+    s_comp  = T('kabisan inti', 'CORE COMPETENCIES')
+    s_lang  = T('basa', 'LANGUAGES')
+    s_port  = T('proyèk mbukak', 'OPEN-SOURCE PORTFOLIO')
 
-    now = T('saiki', 'present')
+    now = T('saiki', 'Present')
 
     # --------------------------------------------------------- experience ---
     EXP = [
@@ -164,49 +171,48 @@ def render(lang):
 
     FIND = [
         (T('Enumerasi pangguna liwat ~NIK ing layanan pamaréntah',
-           'User enumeration via national ID (NIK) in a government service'),
+           'User enumeration via national ID (NIK) in government service'),
          'Diskominfo Kota Tangerang Selatan · Gerobug',
          'Medium',
          T('piagam panghargaan', 'certificate of appreciation') + ' 7C0B38027836'),
 
         (T('Bocoran kodhe sumber ing layanan pamaréntah',
-           'Source code disclosure in a government service'),
+           'Source code disclosure in government service'),
          'Diskominfo Kota Tangerang Selatan · Gerobug',
          'Medium',
          T('piagam panghargaan', 'certificate of appreciation') + ' 7C0B36916030'),
 
         (T('Munggah drajat wewenang tekan administrator liwat token '
            'panyamaran sing kena ditebak',
-           'Privilege escalation to administrator via a predictable '
-           'impersonation token'),
+           'Privilege escalation to administrator via predictable impersonation token'),
          T('Plugin Jira/Confluence perusahaan', 'Enterprise Jira/Confluence plugin'),
-         'P2',
+         'P2 High',
          T('kauji langsung ing lingkungan urip — tekan',
-           'validated on a live instance — reached') + ' SYSTEM_ADMIN'),
+           'validated live — escalated to') + ' SYSTEM_ADMIN'),
 
         (T('Sandhi database kekirim tanpa enkripsi senajan ~TLS diuripake',
            'Database credential sent in cleartext despite TLS being enabled'),
          T('Konektor database ~Node.js sing akèh dienggo',
-           'Widely used Node.js database connector'),
+           'Popular Node.js database connector'),
          'CVE Pending',
          T('lolos triase — ~CVE wis ditetepake, advisory durung metu',
            'triaged — CVE assigned, advisory pending')),
 
         (T('~SSRF, kalebu ~SSRF buta, ing plugin ~Atlassian ~Data ~Center',
            'SSRF, including blind SSRF, in Atlassian Data Center plugins'),
-         T('Rong vendor plugin kapisah', 'Two separate plugin vendors'),
+         T('Rong vendor plugin kapisah', 'Two separate enterprise plugin vendors'),
          'P2 / P3',
-         T('loro-loroné lolos triase', 'both triaged')),
+         T('loro-loroné lolos triase', 'both triaged & accepted')),
 
         (T('Layanan ~MCP mbukak liwat ~HTTP tanpa autentikasi',
-           'MCP service exposed over HTTP without authentication'),
-         T('Aplikasi desktop', 'Desktop application'),
+           'Model Context Protocol (MCP) exposed over HTTP without auth'),
+         T('Aplikasi desktop', 'Desktop AI/Dev application'),
          'CVSS 7.3',
-         T('dilapurake liwat program resmi', 'reported through official programme')),
+         T('dilapurake liwat program resmi', 'reported via official security programme')),
 
         (T('Nrabas alur persetujuan lan registrasi klien ~OAuth sing mbukak',
            'Approval-flow bypass and open OAuth client registration'),
-         T('Rong program kapisah', 'Two separate programmes'),
+         T('Rong program kapisah', 'Two separate production programmes'),
          'In Triage',
          T('dilapurake, isih ing triase', 'reported, currently in triage')),
     ]
@@ -227,7 +233,7 @@ def render(lang):
                 'High School Diploma — Social Studies')
     edu_sch = (J('SMAN') + ' ' + jawa.num('1') + ' ' + J('Sumberpucung')) if jv \
         else 'SMAN 1 Sumberpucung'
-    edu_yr = T('lulus', 'graduated') + ' ' + Y('2017')
+    edu_yr = T('lulus', 'Graduated') + ' ' + Y('2017')
 
     SKILLS = [
         (T('Uji penétrasi aplikasi web lan ~API',
@@ -235,105 +241,116 @@ def render(lang):
         (T('Nyegat lan ngowahi panjaluk', 'Request interception & tampering'),
          'Burp Suite · Caido'),
         (T('Audit kodhe sumber lan dékompilasi', 'Source code audit & decompilation'),
-         'JADX · Procyon · javap'),
+         'JADX · Procyon · javap · Java/JS'),
         (T('Pemetaan permukaan serangan', 'Attack surface mapping'),
          'subfinder · httpx · nuclei · katana'),
-        (T('Nrabas wates wewenang', 'Authorization bypass'), 'IDOR · BOLA · authz'),
-        (T('Injeksi lan déserialisasi', 'Injection & deserialization'),
-         'SSRF · XXE · RCE'),
-        (T('Uji token lan sesi', 'Token & session testing'), 'JWT · OAuth · SAML'),
-        (T('Uji aplikasi ~Android', 'Android application testing'),
+        (T('Nrabas wates wewenang', 'Authorization & Access control bypass'), 'IDOR · BOLA · Multi-tenant authz'),
+        (T('Injeksi lan déserialisasi', 'Injection & deserialization vulnerabilities'),
+         'SSRF · XXE · RCE · SSTI'),
+        (T('Uji token lan sesi', 'Token, auth & session analysis'), 'JWT · OAuth 2.0 · SAML · Session Fixation'),
+        (T('Uji aplikasi ~Android', 'Mobile & Android application testing'),
          'apktool · frida · objection'),
-        (T('~Linux lan skrip otomasi', 'Linux & automation scripting'),
-         'Kali · Bash · Python'),
-        (T('Analisis lalu lintas jaringan', 'Network traffic analysis'),
+        (T('~Linux lan skrip otomasi', 'Linux & security automation'),
+         'Kali Linux · Bash · Python'),
+        (T('Analisis lalu lintas jaringan', 'Network traffic & packet inspection'),
          'Wireshark · tcpdump'),
-        (T('Nulis lapuran lan mbiji risiko', 'Report writing & risk scoring'),
-         'CVSS · VRT'),
+        (T('Nulis lapuran lan mbiji risiko', 'Vulnerability scoring & documentation'),
+         'CVSS v3.1 · Bugcrowd VRT'),
     ]
 
-    COMP = [T('pamikiran analitis', 'Analytical thinking'),
-            T('tliti marang prakara cilik', 'Attention to detail'),
-            T('ngudi kanthi mempeng', 'Persistence'),
-            T('mbukak temuan kanthi tanggung jawab', 'Responsible disclosure'),
-            T('komunikasi lapuran', 'Report communication'),
-            T('sinau mandhiri', 'Self-directed learning')]
+    COMP = [T('pamikiran analitis', 'Analytical Thinking'),
+            T('tliti marang prakara cilik', 'Attention to Detail'),
+            T('ngudi kanthi mempeng', 'Methodological Persistence'),
+            T('mbukak temuan kanthi tanggung jawab', 'Responsible Disclosure'),
+            T('komunikasi lapuran', 'Executive & Technical Reporting'),
+            T('sinau mandhiri', 'Self-Directed Research')]
 
     LANGS = [(T('Jawa', 'Javanese'), T('lair', 'Native'), 'native'),
              (T('Indonésia', 'Indonesian'), T('lair', 'Native'), 'native'),
-             (T('Inggris', 'English'), T('lantih', 'Advanced'), 'advanced'),
-             (T('Rusia', 'Russian'), T('sedhengan', 'Intermediate'), 'inter')]
+             (T('Inggris', 'English'), T('lantih', 'Advanced Professional'), 'advanced'),
+             (T('Rusia', 'Russian'), T('sedhengan', 'Intermediate Technical'), 'inter')]
 
     REPOS = [
         ('appsec-payload-notes', 'https://github.com/houseofmartynix-debug/appsec-payload-notes',
          T('Cathetan ~payload lan métodhologi ing ~30 kelas celah',
-           'Payload and methodology notes across 30 vulnerability classes')),
+           'Offensive security payload repository & attack methodology for 30 vuln classes')),
         ('marco-scanner', 'https://github.com/houseofmartynix-debug/marco-scanner',
          T('Piranti pamindhai celah aplikasi web proyèk portofolio',
-           'Web vulnerability scanner portfolio project')),
+           'Modular web vulnerability scanner built as an AppSec research tool')),
         ('soc-home-lab', 'https://github.com/houseofmartynix-debug/soc-home-lab',
          T('Lab ~SOC ~Wazuh — detéksi ancaman manut ~MITRE ~ATT&CK',
-           'Wazuh SOC lab — detection engineering & IR playbooks')),
+           'Wazuh SIEM/SOC lab — detection engineering & incident response playbooks')),
         ('sinik-pro', 'https://github.com/houseofmartynix-debug/sinik-pro',
          T('Pamariksa lan pangudhar ~NIK Indonésia tanpa server',
-           'Client-side Indonesian NIK validator and decoder')),
+           'Zero-dependency client-side Indonesian NIK validator and decoder tool')),
         ('bugcrowd-scope-monitor', 'https://github.com/houseofmartynix-debug/bugcrowd-scope-monitor',
          T('Otomasi ~Telegram kanggo owah-owahan lingkup ~Bugcrowd',
-           'Telegram alerts on Bugcrowd scope updates via CI/CD cron')),
+           'Automated Telegram notifications for Bugcrowd scope updates via GitHub Actions')),
         ('god-recon-bot', 'https://github.com/houseofmartynix-debug/god-recon-bot',
          T('Bot ~Telegram kanggo narik lingkup program lintas platform',
-           'Telegram bot pulling programme scopes across platforms')),
+           'Telegram bot orchestrator aggregating target scope across bounty platforms')),
     ]
 
     # ---------------------------------------------------------------- html ---
     nl = chr(10)
     exp_html = ''.join(
-        f'''        <div class="exp">
-          <div class="exp-meta"><div class="exp-role{C}">{r}</div><div class="exp-period{C}">{p}</div></div>
-          <div class="exp-company">{co}</div>
-          <p class="exp-desc{C}">{d}</p>
-        </div>
+        f'''          <div class="timeline-item">
+            <div class="t-meta">
+              <div class="t-role{C}">{r}</div>
+              <div class="t-period{C}">{p}</div>
+            </div>
+            <div class="t-company">{co}</div>
+            <p class="t-desc{C}">{d}</p>
+          </div>
 ''' for r, p, co, d in EXP)
 
-    def sev_badge(sev):
+    def sev_chip(sev):
         if not sev:
             return ''
-        s_cls = 'badge-p2'
-        if 'P1' in sev:
-            s_cls = 'badge-p1'
-        elif 'P2' in sev or 'CVSS 7' in sev:
-            s_cls = 'badge-p2'
+        s_cls = 'sev-p2'
+        if 'P1' in sev or 'Critical' in sev:
+            s_cls = 'sev-p1'
+        elif 'P2' in sev or 'CVSS 7' in sev or 'High' in sev:
+            s_cls = 'sev-p2'
         elif 'P3' in sev or 'Medium' in sev:
-            s_cls = 'badge-p3'
+            s_cls = 'sev-p3'
         elif 'P4' in sev or 'Triage' in sev or 'CVE' in sev:
-            s_cls = 'badge-p4'
-        return f'<span class="badge-pill {s_cls}">{sev}</span>'
+            s_cls = 'sev-p4'
+        return f'<span class="sev-chip {s_cls}">{sev}</span>'
 
     find_html = ''.join(
-        f'''        <div class="cert find">
-          <div class="cert-name{C}">{n} {sev_badge(sev)}</div>
-          <div class="cert-issuer">{o}</div>
-          <div class="cert-id{C}">{note}</div>
+        f'''        <div class="finding-card">
+          <div class="f-head">
+            <div class="f-title{C}">{n}</div>
+            {sev_chip(sev)}
+          </div>
+          <div class="f-target">{o}</div>
+          <div class="f-proof{C}">{note}</div>
         </div>
 ''' for n, o, sev, note in FIND)
 
     cert_html = ''.join(
-        f'''        <div class="cert">
-          <div class="cert-name{C}">{n}</div>
-          <div class="cert-issuer">{i} &nbsp;·&nbsp; <span class="{C.strip()}">{w}</span></div>
-          {f'<div class="cert-id">Credential ID: {cid}</div>' if cid else ''}
+        f'''        <div class="cert-item">
+          <div class="c-name{C}">{n}</div>
+          <div class="c-issuer">{i} &nbsp;·&nbsp; <span class="{C.strip()}">{w}</span></div>
+          {f'<div class="c-id">CREDENTIAL: <span>{cid}</span></div>' if cid else ''}
         </div>
 ''' for n, i, w, cid in CERT)
 
     skill_html = ''.join(
-        f'        <div class="skill"><div class="sk-dot"></div><div>'
-        f'<span class="{C.strip()}">{s}</span><span class="sk-tool">{t}</span></div></div>{nl}'
-        for s, t in SKILLS)
+        f'''          <div class="skill-row">
+            <div class="skill-label{C}">{s}</div>
+            <div class="skill-tags">{t}</div>
+          </div>
+''' for s, t in SKILLS)
 
-    comp_html = ''.join(f'          <span class="comp">{k}</span>{nl}' for k in COMP)
+    comp_html = ''.join(f'          <span class="comp-badge">{k}</span>{nl}' for k in COMP)
     lang_html = ''.join(
-        f'        <div class="lang"><span class="lang-name{C}">{n}</span>'
-        f'<span class="lang-badge {cls}">{lv}</span></div>{nl}' for n, lv, cls in LANGS)
+        f'''        <div class="lang-row">
+          <span class="lang-name{C}">{n}</span>
+          <span class="lang-tag {cls}">{lv}</span>
+        </div>
+''' for n, lv, cls in LANGS)
 
     repo_html = ''.join(
         f'''        <a class="repo-card" href="{url}" target="_blank" rel="noopener">
@@ -342,9 +359,9 @@ def render(lang):
         </a>{nl}''' for name, url, desc in REPOS)
 
     jw_label = J('Jawa') if jv else 'ꦗꦮ'
-    switch = (f'<div class="langsw"><a class="on jvlbl" href="./">{jw_label}</a>'
+    switch = (f'<div class="lang-switch"><a class="on jvlbl" href="./">{jw_label}</a>'
               f'<a href="./en/">EN</a></div>') if jv else \
-             (f'<div class="langsw"><a class="jvlbl" href="../">{jw_label}</a>'
+             (f'<div class="lang-switch"><a class="jvlbl" href="../">{jw_label}</a>'
               f'<a class="on" href="./">EN</a></div>')
 
     return f'''<!DOCTYPE html>
@@ -356,113 +373,202 @@ def render(lang):
 <meta name="description" content="Marco Selva Oknam — Penetration Tester, Application Security Researcher &amp; Bug Bounty Hunter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300&family=Noto+Sans+Javanese:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Javanese:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 {EN_OVERRIDE if not jv else ''}
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="cv">
 
-  <div class="top-bar">
-    <div class="status-badge">
-      <span class="status-dot"></span>
-      <span class="{C.strip()}">{status_txt}</span>
-    </div>
-    <div class="action-tools">
-      <button class="btn-tool" onclick="window.print()" title="Print CV or Save as PDF">
-        <span>🖨️</span>
-        <span class="{C.strip()}">{print_lbl}</span>
-      </button>
-      {switch}
-    </div>
-  </div>
+<div class="cv-container">
+  <div class="terminal-shell">
 
-  <header class="header">
-    <div>
-      <div class="tag">{tag}</div>
-      <h1 class="name"><em>Marco</em>SELVA OKNAM</h1>
-      <div class="title-row">{role} <span class="sep">·</span> {role2} <span class="cursor"></span></div>
-      <p class="bio{C}">{bio}</p>
-    </div>
-    <div class="photo-wrap">
-      <div class="photo-frame">
-        <img src="data:image/jpeg;base64,{PHOTO}" alt="Marco Selva Oknam">
+    <!-- SHELL HEADER BAR -->
+    <div class="shell-bar">
+      <div class="shell-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
       </div>
-      <div class="pc tl"></div><div class="pc tr"></div><div class="pc bl"></div><div class="pc br"></div>
+      <div class="shell-path">
+        <span class="user">marco@secops</span>:<span class="path">~/curriculum-vitae</span>
+        <span class="branch">⎇ main⚡</span>
+      </div>
+      <div class="shell-actions">
+        <button class="action-btn" onclick="window.print()" title="Print CV or Save as PDF">
+          <span>🖨️</span>
+          <span class="{C.strip()}">{btn_print}</span>
+        </button>
+        {switch}
+      </div>
     </div>
-  </header>
 
-  <div class="contact-strip">
-    <div class="c-pill" onclick="copyText(this, '+6281231602472', '{copied_txt}')" title="Click to copy phone number">
-      <span class="icon">📱</span><span class="lbl">{l_telp}</span>+62 812-3160-2472
-      <span class="copy-toast">{copied_txt}</span>
+    <!-- TELEMETRY / FAST FACTS -->
+    <div class="telemetry-strip">
+      <div class="telem-cell">
+        <span class="telem-key">{t_dom_k}</span>
+        <span class="telem-val">{t_dom_v}</span>
+      </div>
+      <div class="telem-cell">
+        <span class="telem-key">{t_meth_k}</span>
+        <span class="telem-val">{t_meth_v}</span>
+      </div>
+      <div class="telem-cell">
+        <span class="telem-key">{t_plat_k}</span>
+        <span class="telem-val">{t_plat_v}</span>
+      </div>
+      <div class="telem-cell">
+        <span class="telem-key">{t_stat_k}</span>
+        <span class="telem-val"><span class="live-pulse"></span> <span class="{C.strip()}">{t_stat_v}</span></span>
+      </div>
     </div>
-    <div class="c-pill" onclick="copyText(this, 'houseofmartynix@gmail.com', '{copied_txt}')" title="Click to copy email address">
-      <span class="icon">✉️</span><span class="lbl">{l_surel}</span>houseofmartynix@gmail.com
-      <span class="copy-toast">{copied_txt}</span>
-    </div>
-    <span class="c-pill"><span class="icon">📍</span><span class="lbl">{l_papan}</span><span class="{C.strip()}">{papan}</span></span>
-    <a class="c-pill" href="https://linkedin.com/in/mrcslvknm" target="_blank" rel="noopener"><span class="icon">💼</span>linkedin.com/in/mrcslvknm</a>
-    <a class="c-pill" href="https://github.com/houseofmartynix-debug" target="_blank" rel="noopener"><span class="icon">🐙</span>github.com/houseofmartynix-debug</a>
-  </div>
 
-  <div class="main">
-    <div>
+    <!-- SHELL BODY -->
+    <div class="shell-content">
 
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_exp}</span><div class="sec-line"></div><span class="sec-num">01</span></div>
-{exp_html}      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_find}</span><div class="sec-line"></div><span class="sec-num">02</span></div>
-        <p class="sec-note{C}">{find_note}</p>
-{find_html}      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_cert}</span><div class="sec-line"></div><span class="sec-num">03</span></div>
-{cert_html}      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_edu}</span><div class="sec-line"></div><span class="sec-num">04</span></div>
-        <div class="edu-card">
-          <div class="edu-degree{C}">{edu_deg}</div>
-          <div class="edu-school{C}">{edu_sch}</div>
-          <div class="edu-year{C}">{edu_yr}</div>
+      <!-- HERO HEADER -->
+      <header class="hero-header">
+        <div>
+          <div class="hero-tag">{tag}</div>
+          <h1 class="hero-name"><span class="given">Marco</span>SELVA OKNAM</h1>
+          <div class="role-banner">{role} <span class="sep">/</span> {role2} <span class="cursor"></span></div>
+          <p class="hero-bio{C}">{bio}</p>
         </div>
-      </div>
+        <div class="avatar-wrapper">
+          <div class="avatar-frame">
+            <img src="data:image/jpeg;base64,{PHOTO}" alt="Marco Selva Oknam">
+            <div class="avatar-tag">MRCSLVKNM</div>
+          </div>
+        </div>
+      </header>
 
-    </div>
-
-    <div>
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_skill}</span><div class="sec-line"></div></div>
-        <div class="skill-group">
-{skill_html}        </div>
-      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_comp}</span><div class="sec-line"></div></div>
-        <div class="comp-grid">
-{comp_html}        </div>
-      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_lang}</span><div class="sec-line"></div></div>
-{lang_html}      </div>
-
-      <div class="section">
-        <div class="sec-head"><span class="sec-label">{s_port}</span><div class="sec-line"></div></div>
-        <a class="portfolio-header" href="https://github.com/houseofmartynix-debug" target="_blank" rel="noopener">
-          <span><span class="gh-icon">🐙</span> houseofmartynix-debug</span>
-          <span>↗</span>
+      <!-- CLI CONTACT -->
+      <div class="cli-contact">
+        <div class="cmd-pill" onclick="copyText(this, '+6281231602472', '{copied_txt}')" title="Click to copy phone number">
+          <span class="prefix">$</span>
+          <span class="lbl">{l_telp}:</span>
+          <span>+62 812-3160-2472</span>
+          <span class="toast">{copied_txt}</span>
+        </div>
+        <div class="cmd-pill" onclick="copyText(this, 'houseofmartynix@gmail.com', '{copied_txt}')" title="Click to copy email address">
+          <span class="prefix">$</span>
+          <span class="lbl">{l_surel}:</span>
+          <span>houseofmartynix@gmail.com</span>
+          <span class="toast">{copied_txt}</span>
+        </div>
+        <div class="cmd-pill">
+          <span class="prefix">$</span>
+          <span class="lbl">{l_papan}:</span>
+          <span class="{C.strip()}">{papan}</span>
+        </div>
+        <a class="cmd-pill" href="https://linkedin.com/in/mrcslvknm" target="_blank" rel="noopener">
+          <span class="prefix">↗</span>
+          <span>linkedin.com/in/mrcslvknm</span>
         </a>
-        <div class="repo-list">
-{repo_html}        </div>
+        <a class="cmd-pill" href="https://github.com/houseofmartynix-debug" target="_blank" rel="noopener">
+          <span class="prefix">↗</span>
+          <span>github.com/houseofmartynix-debug</span>
+        </a>
       </div>
+
+      <!-- MAIN DUAL-COLUMN GRID -->
+      <div class="main-grid">
+        
+        <!-- LEFT MAIN COLUMN -->
+        <div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">01</span>
+              <span class="sec-title{C}">{s_exp}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <div class="timeline-list">
+{exp_html}            </div>
+          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">02</span>
+              <span class="sec-title{C}">{s_find}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <p class="sec-callout{C}">{find_note}</p>
+{find_html}          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">03</span>
+              <span class="sec-title{C}">{s_cert}</span>
+              <div class="sec-divider"></div>
+            </div>
+{cert_html}          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">04</span>
+              <span class="sec-title{C}">{s_edu}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <div class="edu-box">
+              <div class="edu-title{C}">{edu_deg}</div>
+              <div class="edu-inst{C}">{edu_sch}</div>
+              <div class="edu-grad{C}">{edu_yr}</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN -->
+        <div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">05</span>
+              <span class="sec-title{C}">{s_skill}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <div class="skill-box">
+{skill_html}            </div>
+          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">06</span>
+              <span class="sec-title{C}">{s_comp}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <div class="comp-cloud">
+{comp_html}            </div>
+          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">07</span>
+              <span class="sec-title{C}">{s_lang}</span>
+              <div class="sec-divider"></div>
+            </div>
+{lang_html}          </div>
+
+          <div class="section">
+            <div class="sec-header">
+              <span class="sec-num">08</span>
+              <span class="sec-title{C}">{s_port}</span>
+              <div class="sec-divider"></div>
+            </div>
+            <a class="repo-btn-head" href="https://github.com/houseofmartynix-debug" target="_blank" rel="noopener">
+              <span>🐙 houseofmartynix-debug</span>
+              <span>↗</span>
+            </a>
+            <div class="repo-group">
+{repo_html}            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   </div>
-
 </div>
 
 <script>
@@ -490,7 +596,7 @@ function fallbackCopy(text) {{
   document.body.removeChild(ta);
 }}
 function showToast(el, msg) {{
-  var toast = el.querySelector('.copy-toast');
+  var toast = el.querySelector('.toast');
   if (toast) {{
     toast.textContent = msg || 'Copied!';
     toast.classList.add('show');
