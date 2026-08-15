@@ -4,55 +4,183 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marco Selva Oknam — ꦗꦸꦫꦸ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ · ꦥꦩ꧀ꦧꦸꦫꦸ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀</title>
-<meta name="description" content="Marco Selva Oknam — Penetration Tester, Application Security Researcher &amp; Bug Bounty Hunter.">
+<meta name="description" content="Marco Selva Oknam — Application Security Researcher, Penetration Tester &amp; Bug Bounty Hunter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Javanese:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+<style>/* ==========================================================================
+   MARCO SELVA OKNAM — ELITE CYBERSECURITY & DEV TERMINAL DESIGN SYSTEM
+   ========================================================================== */
 
-:root{
-  --bg:#070a0f;
-  --shell:#0c1017;
-  --panel:#111722;
-  --panel-hover:#161f2e;
-  --panel-active:#1b273a;
-  --border:#1a2332;
-  --border-focus:#293950;
-  --border-subtle:#141b27;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root, [data-theme="emerald"]{
+  --bg:#06080d;
+  --bg-pattern:radial-gradient(circle at 50% 0%, rgba(0,220,130,0.06) 0%, transparent 50%);
+  --shell:#0b0f17;
+  --panel:#0f1622;
+  --panel-hover:#151e2e;
+  --panel-active:#1b283d;
+  --border:#182333;
+  --border-focus:#253852;
+  --border-subtle:#121a26;
   
-  --emerald:#00dc82;
-  --emerald-dim:rgba(0,220,130,0.08);
-  --emerald-glow:rgba(0,220,130,0.25);
+  --accent:#00dc82;
+  --accent-dim:rgba(0,220,130,0.09);
+  --accent-glow:rgba(0,220,130,0.28);
+  --accent-text:#000000;
   
   --cyan:#38bdf8;
-  --cyan-dim:rgba(56,189,248,0.08);
+  --cyan-dim:rgba(56,189,248,0.09);
   
   --purple:#a855f7;
-  --purple-dim:rgba(168,85,247,0.08);
+  --purple-dim:rgba(168,85,247,0.09);
   
   --amber:#f59e0b;
-  --amber-dim:rgba(245,158,11,0.08);
+  --amber-dim:rgba(245,158,11,0.09);
   
   --rose:#f43f5e;
-  --rose-dim:rgba(244,63,94,0.08);
+  --rose-dim:rgba(244,63,94,0.09);
   
-  --text:#f0f6fc;
-  --text-muted:#8b949e;
-  --text-dim:#57606a;
-  --code-text:#e6edf3;
+  --text:#f1f5f9;
+  --text-muted:#94a3b8;
+  --text-dim:#64748b;
+  --code-text:#e2e8f0;
   
   --mono:'JetBrains Mono','Space Mono','Noto Sans Javanese',SFMono-Regular,Consolas,monospace;
   --sans:'Plus Jakarta Sans','DM Sans','Noto Sans Javanese',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --jv:'Noto Sans Javanese','Plus Jakarta Sans',sans-serif;
   
-  --radius-lg:12px;
-  --radius-md:8px;
+  --radius-lg:14px;
+  --radius-md:9px;
   --radius-sm:6px;
-  --shadow-shell:0 20px 50px -10px rgba(0,0,0,0.7),0 0 0 1px var(--border);
-  --transition:all 0.2s cubic-bezier(0.16,1,0.3,1);
+  --shadow-shell:0 24px 64px -12px rgba(0,0,0,0.85),0 0 0 1px var(--border);
+  --transition:all 0.22s cubic-bezier(0.16,1,0.3,1);
 }
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+[data-theme="cyberpunk"]{
+  --bg:#070710;
+  --bg-pattern:radial-gradient(circle at 50% 0%, rgba(0,240,255,0.07) 0%, transparent 50%);
+  --shell:#0d0d1a;
+  --panel:#131326;
+  --panel-hover:#1c1c38;
+  --panel-active:#25254a;
+  --border:#242447;
+  --border-focus:#41417a;
+  --border-subtle:#181830;
+  
+  --accent:#00f0ff;
+  --accent-dim:rgba(0,240,255,0.12);
+  --accent-glow:rgba(0,240,255,0.35);
+  --accent-text:#070710;
+  
+  --cyan:#f43f5e;
+  --cyan-dim:rgba(244,63,94,0.12);
+  --purple:#c084fc;
+  --purple-dim:rgba(192,132,252,0.12);
+  --amber:#fbbf24;
+  --amber-dim:rgba(251,191,36,0.12);
+  --rose:#ff0055;
+  --rose-dim:rgba(255,0,85,0.12);
+  
+  --text:#f8fafc;
+  --text-muted:#a5b4fc;
+  --text-dim:#6366f1;
+}
+
+[data-theme="stealth"]{
+  --bg:#080b11;
+  --bg-pattern:radial-gradient(circle at 50% 0%, rgba(96,165,250,0.06) 0%, transparent 50%);
+  --shell:#0e131d;
+  --panel:#141b27;
+  --panel-hover:#1c2536;
+  --panel-active:#243046;
+  --border:#1f293d;
+  --border-focus:#334464;
+  --border-subtle:#161f2e;
+  
+  --accent:#60a5fa;
+  --accent-dim:rgba(96,165,250,0.1);
+  --accent-glow:rgba(96,165,250,0.3);
+  --accent-text:#080b11;
+  
+  --cyan:#38bdf8;
+  --cyan-dim:rgba(56,189,248,0.1);
+  --purple:#818cf8;
+  --purple-dim:rgba(129,140,248,0.1);
+  --amber:#fbbf24;
+  --amber-dim:rgba(251,191,36,0.1);
+  --rose:#f87171;
+  --rose-dim:rgba(248,113,113,0.1);
+  
+  --text:#f1f5f9;
+  --text-muted:#94a3b8;
+  --text-dim:#475569;
+}
+
+[data-theme="amber"]{
+  --bg:#0a0804;
+  --bg-pattern:radial-gradient(circle at 50% 0%, rgba(245,158,11,0.08) 0%, transparent 50%);
+  --shell:#120e06;
+  --panel:#1a1409;
+  --panel-hover:#261e0f;
+  --panel-active:#332814;
+  --border:#2b200e;
+  --border-focus:#4a3818;
+  --border-subtle:#1e170a;
+  
+  --accent:#fbbf24;
+  --accent-dim:rgba(251,191,36,0.12);
+  --accent-glow:rgba(251,191,36,0.35);
+  --accent-text:#0a0804;
+  
+  --cyan:#fcd34d;
+  --cyan-dim:rgba(252,211,77,0.12);
+  --purple:#f59e0b;
+  --purple-dim:rgba(245,158,11,0.12);
+  --amber:#d97706;
+  --amber-dim:rgba(217,119,6,0.12);
+  --rose:#ef4444;
+  --rose-dim:rgba(239,68,68,0.12);
+  
+  --text:#fef3c7;
+  --text-muted:#d97706;
+  --text-dim:#92400e;
+}
+
+[data-theme="paper"]{
+  --bg:#f8fafc;
+  --bg-pattern:none;
+  --shell:#ffffff;
+  --panel:#f1f5f9;
+  --panel-hover:#e2e8f0;
+  --panel-active:#cbd5e1;
+  --border:#cbd5e1;
+  --border-focus:#94a3b8;
+  --border-subtle:#e2e8f0;
+  
+  --accent:#047857;
+  --accent-dim:rgba(4,120,87,0.1);
+  --accent-glow:rgba(4,120,87,0.25);
+  --accent-text:#ffffff;
+  
+  --cyan:#0284c7;
+  --cyan-dim:rgba(2,132,199,0.1);
+  --purple:#7c3aed;
+  --purple-dim:rgba(124,58,237,0.1);
+  --amber:#d97706;
+  --amber-dim:rgba(217,119,6,0.1);
+  --rose:#e11d48;
+  --rose-dim:rgba(225,29,72,0.1);
+  
+  --text:#0f172a;
+  --text-muted:#334155;
+  --text-dim:#64748b;
+  --shadow-shell:0 20px 40px -10px rgba(0,0,0,0.1),0 0 0 1px var(--border);
+}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes pulseLive{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(0.85)}}
 
@@ -67,11 +195,26 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(0,220,130,0.04) 0%, transparent 45%),
+    var(--bg-pattern),
     linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size:100% 100%, 32px 32px, 32px 32px;
+  background-size:100% 100%, 36px 36px, 36px 36px;
+  position:relative;
 }
+
+/* Background Matrix Canvas */
+#matrixCanvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.25;
+  display:none;
+}
+body.matrix-active #matrixCanvas{display:block}
 
 /* Javanese Typography */
 .jv{
@@ -83,33 +226,44 @@ body{
 }
 
 .cv-container{
-  max-width:1080px;
+  max-width:1120px;
   margin:0 auto;
-  padding:32px 20px 60px;
+  padding:32px 20px 80px;
+  position:relative;
+  z-index:1;
   animation:fadeIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
 }
 
-/* SHELL WINDOW (IT/Developer Terminal Chassis) */
+/* SHELL WINDOW CHASSIS */
 .terminal-shell{
   background:var(--shell);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-shell);
   border:1px solid var(--border);
   overflow:hidden;
+  position:relative;
 }
 
-/* SHELL TITLE BAR */
+/* TOP SHELL BAR */
 .shell-bar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px 18px;
-  background:#090d13;
+  padding:12px 20px;
+  background:#080c13;
   border-bottom:1px solid var(--border);
   font-family:var(--mono);
   font-size:11.5px;
   color:var(--text-muted);
   user-select:none;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.shell-bar-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
 .shell-dots{
@@ -121,6 +275,7 @@ body{
   width:11px;
   height:11px;
   border-radius:50%;
+  transition:var(--transition);
 }
 .dot-red{background:#ff5f56;box-shadow:0 0 6px rgba(255,95,86,0.4)}
 .dot-yellow{background:#ffbd2e;box-shadow:0 0 6px rgba(255,189,46,0.4)}
@@ -133,13 +288,23 @@ body{
   font-size:11px;
   color:var(--text-dim);
 }
-.shell-path .user{color:var(--emerald);font-weight:600}
+.shell-path .user{color:var(--accent);font-weight:600}
 .shell-path .branch{color:var(--cyan);display:inline-flex;align-items:center;gap:4px}
+.shell-clock{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text-dim);
+  background:var(--panel);
+  padding:2px 7px;
+  border-radius:4px;
+  border:1px solid var(--border-subtle);
+}
 
 .shell-actions{
   display:flex;
   align-items:center;
   gap:8px;
+  flex-wrap:wrap;
 }
 
 .action-btn{
@@ -149,7 +314,7 @@ body{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
-  padding:4px 10px;
+  padding:5px 10px;
   font-family:var(--mono);
   font-size:11px;
   color:var(--text-muted);
@@ -157,10 +322,29 @@ body{
   text-decoration:none;
   transition:var(--transition);
 }
-.action-btn:hover{
+.action-btn:hover, .action-btn.active{
   background:var(--panel-hover);
-  border-color:var(--emerald);
-  color:var(--emerald);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+.action-btn .btn-icon{font-size:12px}
+
+/* Theme Dropdown / Selector */
+.theme-select{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:4px 8px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--text-muted);
+  cursor:pointer;
+  outline:none;
+  transition:var(--transition);
+}
+.theme-select:hover, .theme-select:focus{
+  border-color:var(--accent);
+  color:var(--accent);
 }
 
 .lang-switch{
@@ -171,32 +355,34 @@ body{
   background:var(--panel);
 }
 .lang-switch a{
-  padding:4px 9px;
+  padding:4px 10px;
   font-family:var(--mono);
   font-size:11px;
   color:var(--text-muted);
   text-decoration:none;
   transition:var(--transition);
 }
-.lang-switch a:hover{color:var(--emerald)}
-.lang-switch a.on{background:var(--emerald-dim);color:var(--emerald);font-weight:700}
+.lang-switch a:hover{color:var(--accent)}
+.lang-switch a.on{background:var(--accent-dim);color:var(--accent);font-weight:700}
 .lang-switch a.jvlbl{font-family:var(--jv);font-size:11.5px;letter-spacing:0;line-height:1.6}
 
-/* TELEMETRY / FAST FACTS BANNER */
+/* TELEMETRY HUD STRIP */
 .telemetry-strip{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:1px;
   background:var(--border);
   border-bottom:1px solid var(--border);
 }
 .telem-cell{
-  background:#0a0e15;
-  padding:10px 18px;
+  background:#090d14;
+  padding:12px 18px;
   display:flex;
   flex-direction:column;
-  gap:2px;
+  gap:3px;
+  transition:var(--transition);
 }
+.telem-cell:hover{background:var(--panel)}
 .telem-key{
   font-family:var(--mono);
   font-size:9.5px;
@@ -214,20 +400,67 @@ body{
   gap:6px;
 }
 .live-pulse{
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
   border-radius:50%;
-  background:var(--emerald);
-  box-shadow:0 0 8px var(--emerald);
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
   animation:pulseLive 2s infinite ease-in-out;
 }
 
-/* SHELL CONTENT */
-.shell-content{
-  padding:32px 36px 44px;
+/* STATS COUNTER STRIP */
+.stats-banner{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+  padding:16px 36px;
+  background:rgba(0,0,0,0.2);
+  border-bottom:1px dashed var(--border);
+}
+.stat-card{
+  background:var(--panel);
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-sm);
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:var(--transition);
+}
+.stat-card:hover{
+  border-color:var(--border-focus);
+  transform:translateY(-2px);
+}
+.stat-num{
+  font-family:var(--mono);
+  font-size:22px;
+  font-weight:800;
+  color:var(--accent);
+  line-height:1;
+}
+.stat-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.stat-title{
+  font-size:11px;
+  font-weight:600;
+  color:var(--text);
+  line-height:1.2;
+}
+.stat-sub{
+  font-family:var(--mono);
+  font-size:9px;
+  color:var(--text-dim);
 }
 
-/* HEADER HERO */
+/* SHELL CONTENT BODY */
+.shell-content{
+  padding:32px 36px 48px;
+}
+
+/* HERO HEADER */
 .hero-header{
   display:grid;
   grid-template-columns:1fr auto;
@@ -244,30 +477,31 @@ body{
   gap:6px;
   font-family:var(--mono);
   font-size:11px;
-  color:var(--emerald);
-  background:var(--emerald-dim);
-  border:1px solid rgba(0,220,130,0.2);
-  padding:3px 9px;
+  color:var(--accent);
+  background:var(--accent-dim);
+  border:1px solid var(--accent-glow);
+  padding:4px 10px;
   border-radius:var(--radius-sm);
   margin-bottom:12px;
   font-weight:600;
+  letter-spacing:0.5px;
 }
-.hero-tag::before{content:'❯ ';opacity:0.8}
+.hero-tag::before{content:'❯ ';opacity:0.85}
 
 .hero-name{
   font-family:var(--sans);
-  font-size:clamp(28px,4.5vw,46px);
+  font-size:clamp(30px,4.5vw,48px);
   font-weight:800;
-  letter-spacing:-1px;
-  line-height:1.08;
+  letter-spacing:-1.2px;
+  line-height:1.06;
   color:var(--text);
 }
 .hero-name span.given{
-  color:var(--emerald);
+  color:var(--accent);
   font-weight:400;
-  font-size:0.55em;
+  font-size:0.52em;
   display:block;
-  letter-spacing:1px;
+  letter-spacing:1.5px;
   text-transform:uppercase;
   font-family:var(--mono);
   margin-bottom:2px;
@@ -280,16 +514,16 @@ body{
   gap:10px;
   flex-wrap:wrap;
   font-family:var(--mono);
-  font-size:13.5px;
+  font-size:14px;
   color:var(--cyan);
-  font-weight:500;
+  font-weight:600;
 }
 .role-banner .sep{color:var(--text-dim)}
 .cursor{
   display:inline-block;
-  width:7px;
-  height:14px;
-  background:var(--emerald);
+  width:8px;
+  height:15px;
+  background:var(--accent);
   animation:blink 1.1s step-end infinite;
   vertical-align:middle;
 }
@@ -297,9 +531,9 @@ body{
 .hero-bio{
   margin-top:14px;
   font-size:13.5px;
-  line-height:1.75;
+  line-height:1.8;
   color:var(--text-muted);
-  max-width:640px;
+  max-width:680px;
 }
 
 /* AVATAR FRAME */
@@ -308,14 +542,14 @@ body{
   flex-shrink:0;
 }
 .avatar-frame{
-  width:136px;
-  height:152px;
+  width:142px;
+  height:158px;
   border-radius:var(--radius-md);
   overflow:hidden;
   position:relative;
   border:1px solid var(--border-focus);
   background:var(--panel);
-  box-shadow:0 8px 24px rgba(0,0,0,0.5);
+  box-shadow:0 12px 32px rgba(0,0,0,0.6);
 }
 .avatar-frame img{
   width:100%;
@@ -323,24 +557,25 @@ body{
   object-fit:cover;
   object-position:center top;
   display:block;
-  filter:grayscale(10%) contrast(1.05);
+  filter:grayscale(12%) contrast(1.06);
   transition:var(--transition);
 }
-.avatar-frame:hover img{filter:grayscale(0%) contrast(1.08)}
+.avatar-frame:hover img{filter:grayscale(0%) contrast(1.1);transform:scale(1.02)}
 .avatar-tag{
   position:absolute;
   bottom:6px;
   right:6px;
   background:#090d13;
   border:1px solid var(--border-focus);
-  padding:2px 6px;
+  padding:2px 7px;
   border-radius:4px;
   font-family:var(--mono);
   font-size:9px;
-  color:var(--emerald);
+  font-weight:700;
+  color:var(--accent);
 }
 
-/* CLI CONTACT STRIP */
+/* CLI CONTACT BAR */
 .cli-contact{
   display:flex;
   flex-wrap:wrap;
@@ -365,8 +600,8 @@ body{
 }
 .cmd-pill:hover{
   background:var(--panel-hover);
-  border-color:var(--emerald);
-  color:var(--emerald);
+  border-color:var(--accent);
+  color:var(--accent);
   transform:translateY(-1px);
 }
 .cmd-pill .prefix{color:var(--text-dim);font-weight:700}
@@ -374,35 +609,127 @@ body{
 
 .toast{
   position:absolute;
-  top:-26px;
+  top:-28px;
   left:50%;
   transform:translateX(-50%);
-  background:var(--emerald);
-  color:#000;
+  background:var(--accent);
+  color:var(--accent-text);
   font-family:var(--mono);
-  font-size:9.5px;
+  font-size:10px;
   font-weight:700;
-  padding:2px 7px;
+  padding:3px 8px;
   border-radius:4px;
   opacity:0;
   pointer-events:none;
   transition:opacity 0.2s ease, transform 0.2s ease;
   white-space:nowrap;
+  box-shadow:0 4px 12px rgba(0,0,0,0.5);
 }
 .toast.show{
   opacity:1;
   transform:translateX(-50%) translateY(-2px);
 }
 
-/* MAIN DUAL COLUMN */
+/* INTERACTIVE TOOLBOX DRAWER */
+.cyber-toolbox{
+  background:var(--panel);
+  border:1px solid var(--border-focus);
+  border-radius:var(--radius-md);
+  margin-bottom:32px;
+  overflow:hidden;
+  display:none;
+  animation:fadeIn 0.3s ease;
+}
+.cyber-toolbox.open{display:block}
+
+.toolbox-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  background:#090d14;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+  gap:8px;
+}
+.toolbox-title{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:700;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.toolbox-tabs{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.tb-tab-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:4px 10px;
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:var(--transition);
+}
+.tb-tab-btn:hover, .tb-tab-btn.active{
+  background:var(--accent-dim);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+.toolbox-body{
+  padding:18px;
+}
+.tool-pane{display:none}
+.tool-pane.active{display:block}
+.tool-input{
+  width:100%;
+  background:#080c12;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:10px 12px;
+  font-family:var(--mono);
+  font-size:11.5px;
+  color:var(--text);
+  margin-bottom:10px;
+  outline:none;
+  resize:vertical;
+}
+.tool-input:focus{border-color:var(--accent)}
+.tool-output{
+  background:#05080c;
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-sm);
+  padding:12px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--cyan);
+  white-space:pre-wrap;
+  word-break:break-all;
+  max-height:220px;
+  overflow-y:auto;
+}
+.tool-actions-row{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+/* MAIN DUAL COLUMN GRID */
 .main-grid{
   display:grid;
-  grid-template-columns:1fr 315px;
-  gap:32px;
+  grid-template-columns:1fr 325px;
+  gap:36px;
 }
 
 /* SECTION STRUCTURE */
-.section{margin-bottom:34px}
+.section{margin-bottom:38px}
 .sec-header{
   display:flex;
   align-items:center;
@@ -412,15 +739,15 @@ body{
 .sec-num{
   font-family:var(--mono);
   font-size:10px;
-  color:var(--emerald);
-  background:var(--emerald-dim);
-  padding:2px 6px;
+  color:var(--accent);
+  background:var(--accent-dim);
+  padding:2px 7px;
   border-radius:4px;
-  border:1px solid rgba(0,220,130,0.2);
+  border:1px solid var(--accent-glow);
 }
 .sec-title{
   font-family:var(--mono);
-  font-size:12.5px;
+  font-size:13px;
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:1px;
@@ -441,10 +768,34 @@ body{
   line-height:1.75;
 }
 
+/* FILTER CHIPS */
+.filter-bar{
+  display:flex;
+  gap:6px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.filter-chip{
+  font-family:var(--mono);
+  font-size:10.5px;
+  padding:3px 9px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:var(--transition);
+}
+.filter-chip:hover, .filter-chip.active{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:var(--accent-dim);
+}
+
 /* TIMELINE: EXPERIENCE */
 .timeline-list{
   position:relative;
-  padding-left:16px;
+  padding-left:18px;
 }
 .timeline-list::before{
   content:'';
@@ -453,23 +804,23 @@ body{
   top:8px;
   bottom:8px;
   width:1px;
-  background:linear-gradient(180deg,var(--emerald),rgba(0,220,130,0.05));
+  background:linear-gradient(180deg,var(--accent),rgba(0,220,130,0.05));
 }
 .timeline-item{
   position:relative;
-  padding-bottom:22px;
+  padding-bottom:24px;
 }
 .timeline-item:last-child{padding-bottom:4px}
 .timeline-item::after{
   content:'';
   position:absolute;
-  left:-19px;
+  left:-21px;
   top:6px;
   width:7px;
   height:7px;
   border-radius:50%;
-  background:var(--emerald);
-  box-shadow:0 0 8px var(--emerald);
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
 }
 
 .t-meta{
@@ -504,23 +855,25 @@ body{
 .t-desc{
   font-size:13px;
   color:var(--text-muted);
-  line-height:1.7;
+  line-height:1.75;
 }
 
-/* FINDINGS & HALL OF FAME */
+/* FINDINGS & HALL OF FAME CARDS */
 .finding-card{
   background:var(--panel);
   border:1px solid var(--border);
   border-left:3px solid var(--purple);
   border-radius:0 var(--radius-md) var(--radius-md) 0;
-  padding:12px 16px;
-  margin-bottom:10px;
+  padding:13px 16px;
+  margin-bottom:11px;
   transition:var(--transition);
+  cursor:pointer;
+  position:relative;
 }
 .finding-card:hover{
   background:var(--panel-hover);
   border-color:var(--border-focus);
-  border-left-color:var(--emerald);
+  border-left-color:var(--accent);
   transform:translateX(3px);
 }
 .f-head{
@@ -528,30 +881,42 @@ body{
   justify-content:space-between;
   align-items:flex-start;
   gap:8px;
-  margin-bottom:3px;
+  margin-bottom:4px;
 }
 .f-title{
   font-size:13.5px;
-  font-weight:600;
+  font-weight:700;
   color:var(--text);
 }
 .f-target{
   font-family:var(--mono);
   font-size:10.5px;
   color:var(--cyan);
-  margin-bottom:3px;
+  margin-bottom:4px;
 }
 .f-proof{
   font-family:var(--mono);
   font-size:10.5px;
   color:var(--text-muted);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:4px;
+}
+.f-proof-left{
   display:inline-flex;
   align-items:center;
   gap:4px;
 }
-.f-proof::before{content:'↳ ';color:var(--emerald)}
+.f-proof-left::before{content:'↳ ';color:var(--accent)}
+.f-poc-link{
+  font-size:9.5px;
+  color:var(--accent);
+  opacity:0.85;
+}
+.finding-card:hover .f-poc-link{opacity:1;text-decoration:underline}
 
-/* SEVERITY TAGS */
+/* SEVERITY CHIPS */
 .sev-chip{
   font-family:var(--mono);
   font-size:9.5px;
@@ -562,19 +927,19 @@ body{
   letter-spacing:0.5px;
   white-space:nowrap;
 }
-.sev-p1{background:var(--rose-dim);color:var(--rose);border:1px solid rgba(244,63,94,0.3)}
-.sev-p2{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,0.3)}
-.sev-p3{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(56,189,248,0.3)}
-.sev-p4{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(168,85,247,0.3)}
+.sev-p1{background:var(--rose-dim);color:var(--rose);border:1px solid rgba(244,63,94,0.35)}
+.sev-p2{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,0.35)}
+.sev-p3{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(56,189,248,0.35)}
+.sev-p4{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(168,85,247,0.35)}
 
 /* CERTIFICATIONS */
 .cert-item{
   background:var(--panel);
   border:1px solid var(--border);
-  border-left:3px solid var(--emerald);
+  border-left:3px solid var(--accent);
   border-radius:0 var(--radius-md) var(--radius-md) 0;
   padding:12px 16px;
-  margin-bottom:9px;
+  margin-bottom:10px;
   transition:var(--transition);
 }
 .cert-item:hover{
@@ -582,10 +947,10 @@ body{
   border-left-color:var(--cyan);
   transform:translateX(3px);
 }
-.c-name{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:2px}
+.c-name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
 .c-issuer{font-family:var(--mono);font-size:10.5px;color:var(--cyan);margin-bottom:3px}
 .c-id{font-family:var(--mono);font-size:9.5px;color:var(--text-dim)}
-.c-id span{color:var(--emerald)}
+.c-id span{color:var(--accent);font-weight:600}
 
 /* EDUCATION */
 .edu-box{
@@ -609,29 +974,30 @@ body{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-md);
-  padding:12px 14px;
+  padding:14px 16px;
   margin-bottom:14px;
 }
 .skill-row{
-  padding:8px 0;
+  padding:9px 0;
   border-bottom:1px solid var(--border-subtle);
 }
 .skill-row:last-child{border-bottom:none;padding-bottom:2px}
 .skill-label{
   font-size:12.5px;
-  font-weight:600;
+  font-weight:700;
   color:var(--text);
   margin-bottom:2px;
   display:flex;
   align-items:center;
   gap:6px;
 }
-.skill-label::before{content:'▹';color:var(--emerald);font-size:10px}
+.skill-label::before{content:'▹';color:var(--accent);font-size:10px}
 .skill-tags{
   font-family:var(--mono);
   font-size:10px;
   color:var(--text-dim);
   letter-spacing:0.2px;
+  line-height:1.5;
 }
 
 /* COMPETENCY PILLS */
@@ -639,7 +1005,7 @@ body{
 .comp-badge{
   font-family:var(--mono);
   font-size:11px;
-  padding:4px 9px;
+  padding:4px 10px;
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
@@ -648,9 +1014,9 @@ body{
   cursor:default;
 }
 .comp-badge:hover{
-  border-color:var(--emerald);
-  color:var(--emerald);
-  background:var(--emerald-dim);
+  border-color:var(--accent);
+  color:var(--accent);
+  background:var(--accent-dim);
 }
 
 /* LANGUAGES */
@@ -662,19 +1028,19 @@ body{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 .lang-name{font-size:12.5px;font-weight:600;color:var(--text)}
 .lang-tag{
   font-family:var(--mono);
   font-size:10px;
-  padding:2px 7px;
+  padding:2px 8px;
   border-radius:12px;
   border:1px solid;
 }
-.lang-tag.native{color:var(--emerald);border-color:rgba(0,220,130,0.3);background:var(--emerald-dim)}
-.lang-tag.advanced{color:var(--cyan);border-color:rgba(56,189,248,0.3);background:var(--cyan-dim)}
-.lang-tag.inter{color:var(--purple);border-color:rgba(168,85,247,0.3);background:var(--purple-dim)}
+.lang-tag.native{color:var(--accent);border-color:rgba(0,220,130,0.35);background:var(--accent-dim)}
+.lang-tag.advanced{color:var(--cyan);border-color:rgba(56,189,248,0.35);background:var(--cyan-dim)}
+.lang-tag.inter{color:var(--purple);border-color:rgba(168,85,247,0.35);background:var(--purple-dim)}
 
 /* PORTFOLIO REPOS */
 .repo-btn-head{
@@ -684,17 +1050,17 @@ body{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
-  padding:9px 12px;
+  padding:9px 14px;
   font-family:var(--mono);
-  font-size:11px;
+  font-size:11.5px;
   color:var(--text-muted);
   text-decoration:none;
   transition:var(--transition);
   margin-bottom:10px;
 }
 .repo-btn-head:hover{
-  border-color:var(--emerald);
-  color:var(--emerald);
+  border-color:var(--accent);
+  color:var(--accent);
   background:var(--panel-hover);
 }
 
@@ -703,14 +1069,14 @@ body{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
-  padding:9px 12px;
-  margin-bottom:7px;
+  padding:10px 14px;
+  margin-bottom:8px;
   text-decoration:none;
   transition:var(--transition);
 }
 .repo-card:hover{
   background:var(--panel-hover);
-  border-color:var(--emerald);
+  border-color:var(--accent);
   transform:translateX(3px);
 }
 .repo-name{
@@ -721,37 +1087,199 @@ body{
   font-size:11.5px;
   font-weight:700;
   color:var(--text);
-  margin-bottom:2px;
+  margin-bottom:3px;
 }
-.repo-card:hover .repo-name{color:var(--emerald)}
-.repo-arrow{font-size:10px;color:var(--text-dim);transition:transform 0.2s}
-.repo-card:hover .repo-arrow{color:var(--emerald);transform:translateX(2px)}
+.repo-card:hover .repo-name{color:var(--accent)}
+.repo-arrow{font-size:11px;color:var(--text-dim);transition:transform 0.2s}
+.repo-card:hover .repo-arrow{color:var(--accent);transform:translateX(2px)}
 .repo-desc{
   font-size:11px;
   color:var(--text-dim);
-  line-height:1.45;
+  line-height:1.5;
 }
+
+/* INTERACTIVE MODAL (PoC & Vulnerability Dossier) */
+.cyber-modal-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.82);
+  backdrop-filter:blur(5px);
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:fadeIn 0.2s ease;
+}
+.cyber-modal-overlay.open{display:flex}
+.cyber-modal{
+  background:var(--shell);
+  border:1px solid var(--border-focus);
+  border-radius:var(--radius-lg);
+  max-width:760px;
+  width:100%;
+  max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 30px 80px rgba(0,0,0,0.9);
+  position:relative;
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+  background:#090d14;
+  border-bottom:1px solid var(--border);
+}
+.modal-title-box{display:flex;align-items:center;gap:10px}
+.modal-close{
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  width:28px;
+  height:28px;
+  border-radius:4px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:14px;
+  transition:var(--transition);
+}
+.modal-close:hover{border-color:var(--rose);color:var(--rose)}
+.modal-body{
+  padding:24px;
+}
+.modal-field{
+  margin-bottom:18px;
+}
+.modal-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--text-dim);
+  margin-bottom:4px;
+}
+.modal-val{
+  font-size:13px;
+  color:var(--text);
+  line-height:1.7;
+}
+.modal-code{
+  background:#05080c;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:12px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--code-text);
+  white-space:pre-wrap;
+  word-break:break-all;
+}
+
+/* FLOATING CLI TERMINAL CONSOLE DRAWER */
+.cli-drawer{
+  position:fixed;
+  bottom:0;
+  right:20px;
+  width:580px;
+  max-width:calc(100vw - 40px);
+  background:var(--shell);
+  border:1px solid var(--border-focus);
+  border-bottom:none;
+  border-radius:var(--radius-md) var(--radius-md) 0 0;
+  box-shadow:0 -10px 40px rgba(0,0,0,0.8);
+  z-index:999;
+  display:none;
+  animation:fadeIn 0.2s ease;
+}
+.cli-drawer.open{display:block}
+.cli-drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 16px;
+  background:#090d14;
+  border-bottom:1px solid var(--border);
+  font-family:var(--mono);
+  font-size:11px;
+}
+.cli-drawer-body{
+  padding:14px;
+  max-height:360px;
+  overflow-y:auto;
+  font-family:var(--mono);
+  font-size:11.5px;
+  line-height:1.6;
+}
+.cli-log-line{margin-bottom:4px;word-break:break-word}
+.cli-prompt-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  background:#070b10;
+  border-top:1px solid var(--border);
+}
+.cli-prompt-symbol{color:var(--accent);font-family:var(--mono);font-size:12px;font-weight:700}
+.cli-input{
+  flex:1;
+  background:transparent;
+  border:none;
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:12px;
+  outline:none;
+}
+.cli-quick-chips{
+  display:flex;
+  gap:6px;
+  padding:6px 14px 10px;
+  background:#070b10;
+  overflow-x:auto;
+}
+.cli-chip{
+  font-family:var(--mono);
+  font-size:10px;
+  padding:2px 7px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:4px;
+  color:var(--cyan);
+  cursor:pointer;
+  white-space:nowrap;
+}
+.cli-chip:hover{border-color:var(--accent);color:var(--accent)}
 
 /* RESPONSIVE BREAKPOINTS */
-@media(max-width:860px){
+@media(max-width:900px){
   .main-grid{grid-template-columns:1fr}
   .hero-header{grid-template-columns:1fr auto;gap:20px}
-  .avatar-frame{width:100px;height:115px}
+  .avatar-frame{width:110px;height:125px}
   .shell-content{padding:24px 20px 36px}
+  .stats-banner{padding:14px 20px}
 }
-@media(max-width:600px){
-  .cv-container{padding:12px 10px 40px}
+@media(max-width:640px){
+  .cv-container{padding:12px 8px 40px}
   .shell-bar{flex-direction:column;align-items:flex-start;gap:8px}
-  .shell-actions{width:100%;justify-content:space-between}
+  .shell-bar-left{width:100%;justify-content:space-between}
+  .shell-actions{width:100%;justify-content:flex-start}
   .hero-header{grid-template-columns:1fr;gap:16px}
   .avatar-wrapper{display:flex;justify-content:flex-start}
-  .avatar-frame{width:80px;height:90px}
+  .avatar-frame{width:85px;height:95px}
   .cli-contact{flex-direction:column}
   .cmd-pill{width:100%}
-  .shell-content{padding:18px 14px 28px}
+  .shell-content{padding:18px 12px 28px}
+  .stats-banner{padding:12px}
+  .cli-drawer{right:0;width:100vw;max-width:100vw;border-radius:0}
 }
 
-/* PRINT OPTIMIZATION (Recruiter / Physical CV Output) */
+/* PRINT & RECRUITER PDF STYLESHEET */
 @media print{
   :root{
     --bg:#ffffff;
@@ -759,7 +1287,7 @@ body{
     --panel:#ffffff;
     --border:#cbd5e1;
     --border-focus:#94a3b8;
-    --emerald:#047857;
+    --accent:#047857;
     --cyan:#0369a1;
     --purple:#6b21a8;
     --text:#0f172a;
@@ -772,7 +1300,7 @@ body{
     font-size:9.5pt;
     line-height:1.45;
   }
-  .shell-bar,.telemetry-strip,.toast,.repo-arrow,.cursor,.hero-tag::before{display:none!important}
+  .shell-bar,.telemetry-strip,.stats-banner,.toast,.repo-arrow,.cursor,.hero-tag::before,#matrixCanvas,.cyber-toolbox,.filter-bar,.f-poc-link,.cli-drawer,.cyber-modal-overlay{display:none!important}
   .cv-container{padding:0;max-width:none}
   .terminal-shell{box-shadow:none;border:none}
   .shell-content{padding:0}
@@ -796,40 +1324,70 @@ body{
 </style>
 
 </head>
-<body>
+<body data-theme="emerald">
+
+<!-- Background Digital Rain Canvas -->
+<canvas id="matrixCanvas"></canvas>
 
 <div class="cv-container">
   <div class="terminal-shell">
 
     <!-- SHELL HEADER BAR -->
     <div class="shell-bar">
-      <div class="shell-dots">
-        <span class="dot dot-red"></span>
-        <span class="dot dot-yellow"></span>
-        <span class="dot dot-green"></span>
+      <div class="shell-bar-left">
+        <div class="shell-dots">
+          <span class="dot dot-red" title="Close"></span>
+          <span class="dot dot-yellow" title="Minimize"></span>
+          <span class="dot dot-green" title="Expand"></span>
+        </div>
+        <div class="shell-path">
+          <span class="user">marco@secops</span>:<span class="path">~/curriculum-vitae</span>
+          <span class="branch">⎇ main⚡</span>
+        </div>
+        <div class="shell-clock" id="cyberClock">UTC 00:00:00</div>
       </div>
-      <div class="shell-path">
-        <span class="user">marco@secops</span>:<span class="path">~/curriculum-vitae</span>
-        <span class="branch">⎇ main⚡</span>
-      </div>
+
       <div class="shell-actions">
+        <button class="action-btn" id="cliBtn" onclick="toggleCLI()" title="Open Interactive Terminal Shell">
+          <span class="btn-icon">📟</span>
+          <span class="jv">ꦧꦸꦏꦏ꧀ ꦠꦼꦂꦩꦶꦤꦭ꧀</span>
+        </button>
+        <button class="action-btn" id="toolboxBtn" onclick="toggleToolbox()" title="Open Interactive Security Sandbox">
+          <span class="btn-icon">🧰</span>
+          <span class="jv">ꦥꦶꦫꦤ꧀ꦠꦶ ꦏꦲꦩꦤꦤ꧀</span>
+        </button>
+        <button class="action-btn" id="matrixBtn" onclick="toggleMatrix()" title="Toggle Digital Rain Effect">
+          <span class="btn-icon">🌧️</span>
+          <span class="jv">Matrix</span>
+        </button>
+        <button class="action-btn" id="soundBtn" onclick="toggleSound()" title="Toggle Audio FX">
+          <span class="btn-icon" id="soundIcon">🔇</span>
+          <span class="jv">ꦱ꧀ꦮꦫ</span>
+        </button>
+        <select class="theme-select" id="themeSelect" onchange="changeTheme(this.value)" title="Choose Theme">
+          <option value="emerald">⚡ Cyber Emerald</option>
+          <option value="cyberpunk">🌌 Neon Synth</option>
+          <option value="stealth">🛡️ Midnight Stealth</option>
+          <option value="amber">🖥️ Amber CRT</option>
+          <option value="paper">📄 Clean Paper</option>
+        </select>
         <button class="action-btn" onclick="window.print()" title="Print CV or Save as PDF">
-          <span>🖨️</span>
+          <span class="btn-icon">🖨️</span>
           <span class="jv">ꦕꦶꦛꦏ꧀ / ꦱꦶꦩ꧀ꦥꦼꦤ꧀ PDF</span>
         </button>
         <div class="lang-switch"><a class="on jvlbl" href="./">ꦗꦮ</a><a href="./en/">EN</a></div>
       </div>
     </div>
 
-    <!-- TELEMETRY / FAST FACTS -->
+    <!-- TELEMETRY / FAST FACTS STRIP -->
     <div class="telemetry-strip">
       <div class="telem-cell">
         <span class="telem-key">ꦭꦶꦁꦏꦸꦥ꧀ ꦆꦤ꧀ꦠꦶ</span>
-        <span class="telem-val">Web AppSec · REST/GraphQL API · Code Audit</span>
+        <span class="telem-val">Web AppSec · REST/GraphQL API · Code Audit · Cloud</span>
       </div>
       <div class="telem-cell">
         <span class="telem-key">ꦩꦺꦠꦺꦴꦝꦺꦴꦭꦺꦴꦒꦶ</span>
-        <span class="telem-val">White-Box · Logic Audit · Zero-Day Hunt</span>
+        <span class="telem-val">White-Box · Bytecode Audit · Logic Flow · PoC Proof</span>
       </div>
       <div class="telem-cell">
         <span class="telem-key">ꦥ꧀ꦭꦠ꧀ꦥ꦳ꦺꦴꦂꦩ꧀</span>
@@ -841,8 +1399,80 @@ body{
       </div>
     </div>
 
-    <!-- SHELL BODY -->
+    <!-- STATS COUNTER STRIP -->
+    <div class="stats-banner">
+      <div class="stat-card">
+        <div class="stat-num">50+</div>
+        <div class="stat-info">
+          <div class="stat-title jv">ꦠꦼꦩꦸꦮꦤ꧀ ꦏꦲꦩꦤꦤ꧀</div>
+          <div class="stat-sub jv">ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ & ꦢꦶꦠꦩ꧀ꦥ</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-info">
+          <div class="stat-title jv">ꦏꦼꦥꦠꦸꦲꦤ꧀ ꦭꦥꦸꦫꦤ꧀</div>
+          <div class="stat-sub jv">ꦩꦤꦸꦠ꧀ ꦥꦿꦤꦠꦤ꧀ ISO/IEC 29147</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4+</div>
+        <div class="stat-info">
+          <div class="stat-title jv">ꦥ꧀ꦭꦠ꧀ꦥ꦳ꦺꦴꦂꦩ꧀ ꦏꦲꦩꦤꦤ꧀</div>
+          <div class="stat-sub jv">Bugcrowd · HackerOne · YesWeHack · Gerobug</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30+</div>
+        <div class="stat-info">
+          <div class="stat-title jv">ꦏꦼꦭꦱ꧀ ꦱꦼꦫꦔꦤ꧀</div>
+          <div class="stat-sub jv">ꦕꦛꦼꦠꦤ꧀ ꦥꦿꦺꦴꦪꦺꦏ꧀ ꦫꦶꦱꦼꦠ꧀</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHELL CONTENT -->
     <div class="shell-content">
+
+      <!-- INTERACTIVE SECURITY TOOLBOX (Collapsible) -->
+      <div class="cyber-toolbox" id="cyberToolbox">
+        <div class="toolbox-head">
+          <div class="toolbox-title">
+            <span>⚙️</span>
+            <span class="jv">ꦥꦶꦫꦤ꧀ꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦆꦤ꧀ꦠꦼꦫꦏ꧀ꦠꦶꦥ꦳꧀ (ꦏꦺꦴꦛꦏ꧀ ꦮꦼꦝꦶ)</span>
+          </div>
+          <div class="toolbox-tabs">
+            <button class="tb-tab-btn active" onclick="switchToolTab('jwt')">JWT Inspector</button>
+            <button class="tb-tab-btn" onclick="switchToolTab('hash')">Crypto &amp; Hash</button>
+            <button class="tb-tab-btn" onclick="switchToolTab('nik')">Sinik-Pro NIK</button>
+          </div>
+        </div>
+        <div class="toolbox-body">
+          
+          <!-- TAB 1: JWT -->
+          <div class="tool-pane active" id="pane-jwt">
+            <div class="tool-actions-row">
+              <button class="action-btn" onclick="loadSampleJWT('admin')">Load Sample Admin Token</button>
+              <button class="action-btn" onclick="loadSampleJWT('vuln')">Load Insecure 'none' Token</button>
+            </div>
+            <textarea class="tool-input" id="jwtInput" rows="2" placeholder="Paste JWT token (header.payload.signature) here..." oninput="decodeJWT()"></textarea>
+            <div class="tool-output" id="jwtOutput">// Decoded JWT header and claims will render here...</div>
+          </div>
+
+          <!-- TAB 2: CRYPTO & HASH -->
+          <div class="tool-pane" id="pane-hash">
+            <textarea class="tool-input" id="hashInput" rows="2" placeholder="Type text to encode / hash..." oninput="calcCrypto()"></textarea>
+            <div class="tool-output" id="hashOutput">// Base64, Hex, URL-encoded, ROT13 and SHA-256 will appear here...</div>
+          </div>
+
+          <!-- TAB 3: NIK INSPECTOR -->
+          <div class="tool-pane" id="pane-nik">
+            <input type="text" class="tool-input" id="nikInput" placeholder="Enter 16-digit Indonesian NIK to inspect (e.g. 3507...)" maxlength="16" oninput="inspectNIK()">
+            <div class="tool-output" id="nikOutput">// Client-side sanitized Indonesian NIK breakdown (Province, Regency, Gender, DOB)...</div>
+          </div>
+
+        </div>
+      </div>
 
       <!-- HERO HEADER -->
       <header class="hero-header">
@@ -850,7 +1480,7 @@ body{
           <div class="hero-tag">ꦱꦼꦫꦠ꧀ ꦫꦶꦮꦪꦠ꧀ ꦒꦼꦱꦁ</div>
           <h1 class="hero-name"><span class="given">Marco</span>SELVA OKNAM</h1>
           <div class="role-banner">ꦗꦸꦫꦸ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ <span class="sep">/</span> ꦥꦩ꧀ꦧꦸꦫꦸ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ <span class="cursor"></span></div>
-          <p class="hero-bio jv">ꦥꦤꦭꦶꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦱꦶꦁ ꦔ꧀ꦒꦫꦥ꧀ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀꧈ API, ꦭꦤ꧀ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧉ ꦤꦼꦩꦺꦴꦏꦏꦼ ꦱꦂꦠ ꦔ꧀ꦭꦥꦺꦴꦫꦏꦼ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ ꦆꦁ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦱꦪꦼꦩ꧀ꦧꦫ ꦈꦩꦸꦩ꧀꧇ ꦩꦸꦁꦒꦃ ꦢꦿꦗꦠ꧀ ꦮꦼꦮꦼꦤꦁ꧈ SSRF, ꦤꦿꦧꦱ꧀ ꦮꦠꦼꦱ꧀ ꦮꦼꦮꦼꦤꦁ꧈ ꦭꦤ꧀ ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦽꦢꦼꦤ꧀ꦱꦶꦪꦭ꧀꧉ ꦏꦸꦭꦶꦤ ꦩꦕ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦱꦏ ꦄꦱꦶꦭ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ꧈ ꦧꦤ꧀ꦗꦸꦂ ꦩ꧀ꦧꦸꦏ꧀ꦠꦺꦏꦏꦼ ꦠꦼꦩꦸꦮꦤ꧀ ꦔꦁꦒꦺꦴ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ꧉</p>
+          <p class="hero-bio jv">ꦥꦤꦭꦶꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦱꦶꦁ ꦔ꧀ꦒꦫꦥ꧀ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧈ ꦄꦂꦱꦶꦠꦺꦏ꧀ꦠꦸꦂ API (~ꦫꦼꦱ꧀ꦠ꧀ / GraphQL), ꦱꦂꦠ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center. ꦤꦼꦩꦺꦴꦏꦏꦼ ꦭꦤ꧀ ꦔ꧀ꦭꦥꦺꦴꦫꦏꦼ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ ꦏꦤ꧀ꦛꦶ ꦠꦁꦒꦸꦁ ꦗꦮꦧ꧀꧇ ꦩꦸꦁꦒꦃ ꦢꦿꦗꦠ꧀ ꦮꦼꦮꦼꦤꦁ ꦠꦼꦏꦤ꧀ ꦄꦢ꧀ꦩꦶꦤꦶꦱ꧀ꦠꦿꦠꦺꦴꦂ꧈ SSRF, ꦤꦿꦧꦱ꧀ ꦮꦠꦼꦱ꧀ ꦮꦼꦮꦼꦤꦁ (~ꦆꦢꦺꦴꦂ / BOLA), ꦭꦤ꧀ ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦽꦢꦼꦤ꧀ꦱꦶꦪꦭ꧀꧉ ꦏꦸꦭꦶꦤ ꦩꦕ ꦱꦂꦠ ꦤ꧀ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ Java / JAR, ꦧꦤ꧀ꦗꦸꦂ ꦩ꧀ꦧꦸꦏ꧀ꦠꦺꦏꦏꦼ ꦠꦼꦩꦸꦮꦤ꧀ ꦔꦁꦒꦺꦴ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀꧉</p>
         </div>
         <div class="avatar-wrapper">
           <div class="avatar-frame">
@@ -895,6 +1525,7 @@ body{
         <!-- LEFT MAIN COLUMN -->
         <div>
 
+          <!-- 01: EXPERIENCE -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">01</span>
@@ -908,7 +1539,7 @@ body{
               <div class="t-period jv">ꦗꦤꦸꦮꦫꦶ ꧇꧒꧐꧒꧖꧇ – ꦱꦲꦶꦏꦶ</div>
             </div>
             <div class="t-company">Bugcrowd · HackerOne · YesWeHack · Gerobug</div>
-            <p class="t-desc jv">ꦔꦸꦗꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀꧈ API, ꦭꦤ꧀ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center ꦏꦁꦒꦺꦴ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦱꦪꦼꦩ꧀ꦧꦫ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀꧈ ꦏꦭꦼꦧꦸ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ꧉ ꦤꦶꦤ꧀ꦢꦏꦏꦼ ꦥꦼꦩꦼꦠꦲꦤ꧀ ꦥꦼꦂꦩꦸꦏꦲꦤ꧀ ꦱꦼꦫꦔꦤ꧀꧈ ꦩꦕ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦱꦏ ꦄꦱꦶꦭ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ JAR, ꦱꦂꦠ ꦔ꧀ꦒꦮꦼ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ꧉ ꦤꦸꦭꦶꦱ꧀ ꦭꦥꦸꦫꦤ꧀ ꦩꦤꦸꦠ꧀ ꦱ꧀ꦠꦤ꧀ꦢꦂ VRT ꦭꦤ꧀ CVSS, ꦧꦤ꧀ꦗꦸꦂ ꦔꦸꦫꦸꦱ꧀ ꦏꦺꦴꦩꦸꦤꦶꦏꦱꦶ ꦏꦫꦺꦴ ꦠꦶꦩ꧀ ꦠꦿꦶꦪꦱꦼ ꦔꦤ꧀ꦠꦶ ꦠꦼꦩꦸꦮꦤ꧀ ꦢꦶꦠꦩ꧀ꦥ꧉ ꦈꦒ ꦩ꧀ꦧꦔꦸꦤ꧀ ꦥꦶꦫꦤ꧀ꦠꦶ ꦎꦠꦺꦴꦩꦱꦶ ꦝꦺꦮꦺ ꦏꦁꦒꦺꦴ ꦩꦤ꧀ꦠꦲꦸ ꦎꦮꦃ-ꦎꦮꦲꦤ꧀ ꦭꦶꦁꦏꦸꦥ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀꧉</p>
+            <p class="t-desc jv">ꦔꦸꦗꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧈ API, ꦭꦤ꧀ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center ꦏꦁꦒꦺꦴ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦱꦪꦼꦩ꧀ꦧꦫ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀꧈ ꦏꦭꦼꦧꦸ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ ꦭꦤ꧀ ꦱ꧀ꦮꦱ꧀ꦠ꧉ ꦤꦶꦤ꧀ꦢꦏꦏꦼ ꦥꦼꦩꦼꦠꦲꦤ꧀ ꦥꦼꦂꦩꦸꦏꦲꦤ꧀ ꦱꦼꦫꦔꦤ꧀꧈ ꦩꦕ ꦱꦂꦠ ꦤ꧀ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ JAR, ꦱꦂꦠ ꦔ꧀ꦒꦮꦼ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ (~ꦥꦺꦴꦕ꧀) ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀꧉ ꦤꦸꦭꦶꦱ꧀ ꦭꦥꦸꦫꦤ꧀ ꦩꦤꦸꦠ꧀ ꦱ꧀ꦠꦤ꧀ꦢꦂ Bugcrowd VRT ꦭꦤ꧀ CVSS ꦮ꦳꧀3.1꧈ ꦧꦤ꧀ꦗꦸꦂ ꦔꦸꦫꦸꦱ꧀ ꦏꦺꦴꦩꦸꦤꦶꦏꦱꦶ ꦠꦼꦏ꧀ꦤꦶꦱ꧀ ꦏꦫꦺꦴ ꦠꦶꦩ꧀ ꦠꦿꦶꦪꦱꦼ ꦔꦤ꧀ꦠꦶ ꦠꦼꦩꦸꦮꦤ꧀ ꦢꦶꦠꦩ꧀ꦥ ꦏꦤ꧀ꦛꦶ ꦄꦥꦶꦏ꧀꧉ ꦈꦒ ꦩ꧀ꦧꦔꦸꦤ꧀ ꦥꦶꦫꦤ꧀ꦠꦶ ꦎꦠꦺꦴꦩꦱꦶ ꦔꦁꦒꦺꦴ Python ꦭꦤ꧀ Bash ꦏꦁꦒꦺꦴ ꦩꦤ꧀ꦠꦲꦸ ꦎꦮꦃ-ꦎꦮꦲꦤ꧀ ꦭꦶꦁꦏꦸꦥ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀꧉</p>
           </div>
           <div class="timeline-item">
             <div class="t-meta">
@@ -916,7 +1547,7 @@ body{
               <div class="t-period jv">ꦩꦺꦪꦶ ꧇꧒꧐꧒꧔꧇ – ꦄꦒꦸꦱ꧀ꦠꦸꦱ꧀ ꧇꧒꧐꧒꧕꧇</div>
             </div>
             <div class="t-company">PT Aspirasi Hidup Indonesia Tbk (ACE Hardware) · ꦏꦺꦴꦤ꧀ꦠꦿꦏ꧀</div>
-            <p class="t-desc jv">ꦩꦺꦤꦺꦲꦶ ꦫꦺꦏꦺꦴꦩꦼꦤ꧀ꦢꦱꦶ ꦥꦿꦺꦴꦢꦸꦏ꧀ ꦄꦝꦼꦝꦱꦂ ꦫꦶꦱꦶꦏꦺꦴ ꦭꦤ꧀ ꦏꦧꦸꦠꦸꦲꦤ꧀ ꦥꦼꦭꦁꦒꦤ꧀꧈ ꦱꦂꦠ ꦔꦤ꧀ꦝꦫꦏꦼ ꦥ꦳ꦶꦠꦸꦂ ꦠꦼꦏ꧀ꦤꦶꦱ꧀ ꦩꦫꦁ ꦮꦺꦴꦁ ꦱꦶꦁ ꦎꦫ ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉ ꦏꦥꦿꦶꦒꦼꦭꦤ꧀ ꦆꦏꦶ ꦏꦼꦥꦏꦺ ꦤꦭꦶꦏ ꦤꦼꦫꦔꦏꦼ ꦢꦩ꧀ꦥꦏ꧀ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ ꦩꦫꦁ ꦠꦶꦩ꧀ ꦤꦺꦴꦤ꧀-ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉</p>
+            <p class="t-desc jv">ꦩꦺꦤꦺꦲꦶ ꦫꦺꦏꦺꦴꦩꦼꦤ꧀ꦢꦱꦶ ꦥꦿꦺꦴꦢꦸꦏ꧀ ꦄꦝꦼꦝꦱꦂ ꦄꦤꦭꦶꦱꦶꦱ꧀ ꦫꦶꦱꦶꦏꦺꦴ ꦭꦤ꧀ ꦏꦧꦸꦠꦸꦲꦤ꧀ ꦚꦠ ꦥꦼꦭꦁꦒꦤ꧀꧈ ꦱꦂꦠ ꦤꦼꦫꦔꦏꦼ ꦥ꦳ꦶꦠꦸꦂ ꦠꦼꦏ꧀ꦤꦶꦱ꧀ ꦩꦫꦁ ꦥꦫ ꦥꦶꦲꦏ꧀ ꦤꦺꦴꦤ꧀-ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉ ꦏꦥꦿꦶꦒꦼꦭꦤ꧀ ꦆꦏꦶ ꦏꦼꦥꦏꦺ ꦧꦔꦼꦠ꧀ ꦤꦭꦶꦏ ꦤꦼꦫꦔꦏꦼ ꦆꦩ꧀ꦥ꧀ꦭꦶꦏꦱꦶ ꦫꦶꦱꦶꦏꦺꦴ ꦏꦼꦲꦩꦤꦤ꧀ ꦱꦂꦠ ꦫꦺꦏꦺꦴꦩꦼꦤ꧀ꦢꦱꦶ ꦩꦫꦁ ꦥꦶꦩ꧀ꦥꦶꦤꦤ꧀ ꦤꦺꦴꦤ꧀-ꦠꦼꦏ꧀ꦤꦶꦱ꧀꧉</p>
           </div>
           <div class="timeline-item">
             <div class="t-meta">
@@ -924,7 +1555,7 @@ body{
               <div class="t-period jv">ꦱꦺꦥ꧀ꦠꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧑꧇ – ꦤꦺꦴꦥꦺꦩ꧀ꦧꦼꦂ ꧇꧒꧐꧒꧒꧇</div>
             </div>
             <div class="t-company">FIFGROUP · ꦏꦺꦴꦤ꧀ꦠꦿꦏ꧀</div>
-            <p class="t-desc jv">ꦚꦸꦱꦸꦤ꧀ ꦭꦤ꧀ ꦔ꧀ꦭꦏꦺꦴꦏꦏꦼ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦼꦩꦱꦫꦤ꧀ ꦄꦝꦼꦝꦱꦂ ꦄꦤꦭꦶꦱꦶꦱ꧀ ꦢꦠ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦥꦱꦂ꧈ ꦔꦸꦫꦸꦱ꧀ ꦥꦿꦺꦴꦩꦺꦴꦱꦶ ꦢꦶꦒꦶꦠꦭ꧀ ꦱꦂꦠ ꦭꦥꦔꦤ꧀꧉ ꦔ꧀ꦭꦠꦶꦃ ꦩꦕ ꦢꦠ ꦭꦤ꧀ ꦤꦼꦩꦺꦴꦏꦏꦼ ꦥꦺꦴꦭ ꦱꦶꦁ ꦎꦫ ꦭꦸꦩꦿꦃ꧉</p>
+            <p class="t-desc jv">ꦚꦸꦱꦸꦤ꧀ ꦭꦤ꧀ ꦔ꧀ꦭꦏꦺꦴꦏꦏꦼ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦿꦺꦴꦩꦺꦴꦱꦶ ꦄꦝꦼꦝꦱꦂ ꦄꦤꦭꦶꦱꦶꦱ꧀ ꦢꦠ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦠꦽꦤ꧀ ꦥꦱꦂ꧈ ꦔꦸꦫꦸꦱ꧀ ꦏꦩ꧀ꦥꦚꦼ ꦢꦶꦒꦶꦠꦭ꧀ ꦱꦂꦠ ꦭꦥꦔꦤ꧀꧉ ꦔ꧀ꦭꦠꦶꦃ ꦏꦠ꧀ꦭꦶꦠꦼꦤ꧀ ꦩꦕ ꦢꦠ ꦱꦂꦠ ꦤꦼꦩꦺꦴꦏꦏꦼ ꦄꦤꦺꦴꦩꦭꦶ ꦥꦺꦴꦭ꧉</p>
           </div>
           <div class="timeline-item">
             <div class="t-meta">
@@ -932,76 +1563,110 @@ body{
               <div class="t-period jv">꧇꧒꧐꧑꧙꧇ – ꧇꧒꧐꧒꧑꧇</div>
             </div>
             <div class="t-company">PT Indomarco Prismatama Tbk (Indomaret)</div>
-            <p class="t-desc jv">ꦔ꧀ꦭꦢꦺꦤꦶ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦔꦸꦫꦸꦱ꧀ ꦎꦥꦼꦫꦱꦶ ꦠꦺꦴꦏꦺꦴ ꦱꦧꦼꦤ꧀ ꦢꦶꦤ ꦏꦤ꧀ꦛꦶ ꦠ꧀ꦭꦶꦠꦶ꧉ ꦔꦸꦮꦠꦏꦼ ꦏꦠ꧀ꦭꦶꦠꦼꦤ꧀꧈ ꦢꦶꦱꦶꦥ꧀ꦭꦶꦤ꧀꧈ ꦭꦤ꧀ ꦠꦸꦤ꧀ꦝꦸꦏ꧀ ꦩꦫꦁ ꦥꦿꦺꦴꦱꦼꦢꦸꦂ — ꦱꦶꦁ ꦢꦢꦶ ꦝꦱꦂ ꦆꦁ ꦥꦏꦂꦪꦤ꧀ ꦏꦲꦩꦤꦤ꧀꧉</p>
+            <p class="t-desc jv">ꦔ꧀ꦭꦢꦺꦤꦶ ꦥꦼꦭꦁꦒꦤ꧀ ꦭꦤ꧀ ꦔꦸꦫꦸꦱ꧀ ꦎꦥꦼꦫꦱꦶ ꦠꦺꦴꦏꦺꦴ ꦱꦧꦼꦤ꧀ ꦢꦶꦤ ꦏꦤ꧀ꦛꦶ ꦠ꧀ꦭꦶꦠꦶ ꦝꦸꦮꦸꦂ꧉ ꦔꦸꦮꦠꦏꦼ ꦏꦠ꧀ꦭꦶꦠꦼꦤ꧀ ꦩꦫꦁ ꦥꦿꦏꦫ ꦕꦶꦭꦶꦏ꧀꧈ ꦢꦶꦱꦶꦥ꧀ꦭꦶꦤ꧀꧈ ꦭꦤ꧀ ꦠꦸꦤ꧀ꦝꦸꦏ꧀ ꦩꦫꦁ ꦱ꧀ꦠꦤ꧀ꦢꦂ ꦎꦥꦼꦫꦱꦶꦪꦺꦴꦤꦭ꧀ ꦥꦿꦺꦴꦱꦼꦢꦸꦂ (~ꦱꦺꦴꦥ꧀)꧉</p>
           </div>
             </div>
           </div>
 
+          <!-- 02: SELECTED FINDINGS -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">02</span>
               <span class="sec-title jv">ꦄꦱꦶꦭ꧀ ꦥꦤꦼꦩꦸ ꦥꦶꦤꦶꦭꦶꦃ</span>
               <div class="sec-divider"></div>
             </div>
-            <p class="sec-callout jv">ꦠꦂꦒꦼꦠ꧀ ꦭꦥꦸꦫꦤ꧀ ꦱꦶꦁ ꦆꦱꦶꦃ ꦆꦁ ꦠꦿꦶꦪꦱꦼ ꦎꦫ ꦢꦶꦱꦼꦧꦸꦠ꧀ ꦗꦼꦤꦼꦔꦺ ꦆꦁ ꦏꦕ ꦈꦩꦸꦩ꧀ ꦆꦏꦶ꧈ ꦄꦮꦶꦠ꧀ ꦄꦠꦸꦫꦤ꧀ ꦢꦶꦱ꧀ꦕ꧀ꦭꦺꦴꦱꦸꦫꦼ ꦥ꧀ꦭꦠ꧀ꦥ꦳ꦺꦴꦂꦩ꧀ ꦩ꧀ꦧꦸꦠꦸꦲꦏꦼ ꦆꦢꦶꦤ꧀ ꦠꦶꦤꦸꦭꦶꦱ꧀ ꦱꦏ ꦥꦿꦺꦴꦒꦿꦩ꧀꧉ ꦫꦶꦤ꧀ꦕꦶꦪꦤ꧀ ꦗꦁꦏꦼꦥ꧀ ꦏꦼꦤ ꦢꦶꦗꦭꦸꦏ꧀꧉</p>
-        <div class="finding-card">
-          <div class="f-head">
-            <div class="f-title jv">ꦄꦼꦤꦸꦩꦼꦫꦱꦶ ꦥꦁꦒꦸꦤ ꦭꦶꦮꦠ꧀ NIK ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ</div>
-            <span class="sev-chip sev-p3">Medium</span>
-          </div>
-          <div class="f-target">Diskominfo Kota Tangerang Selatan · Gerobug</div>
-          <div class="f-proof jv">ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ 7C0B38027836</div>
-        </div>
-        <div class="finding-card">
-          <div class="f-head">
-            <div class="f-title jv">ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ</div>
-            <span class="sev-chip sev-p3">Medium</span>
-          </div>
-          <div class="f-target">Diskominfo Kota Tangerang Selatan · Gerobug</div>
-          <div class="f-proof jv">ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ 7C0B36916030</div>
-        </div>
-        <div class="finding-card">
+            <p class="sec-callout jv">ꦠꦂꦒꦼꦠ꧀ ꦭꦥꦸꦫꦤ꧀ ꦱꦶꦁ ꦆꦱꦶꦃ ꦆꦁ ꦠꦿꦶꦪꦱꦼ ꦎꦫ ꦏꦱꦼꦧꦸꦠ꧀ ꦗꦼꦤꦼꦔꦺ ꦆꦁ ꦏꦕ ꦈꦩꦸꦩ꧀ ꦆꦏꦶ꧈ ꦄꦮꦶꦠ꧀ ꦄꦠꦸꦫꦤ꧀ ꦢꦶꦱ꧀ꦕ꧀ꦭꦺꦴꦱꦸꦫꦼ ꦥ꧀ꦭꦠ꧀ꦥ꦳ꦺꦴꦂꦩ꧀ ꦩ꧀ꦧꦸꦠꦸꦲꦏꦼ ꦆꦢꦶꦤ꧀ ꦠꦶꦤꦸꦭꦶꦱ꧀ ꦱꦏ ꦥꦿꦺꦴꦒꦿꦩ꧀꧉ ꦏ꧀ꦭꦶꦏ꧀ ꦱꦧꦼꦤ꧀ ꦏꦺꦴꦛꦏ꧀ ꦠꦼꦩꦸꦮꦤ꧀ ꦏꦁꦒꦺꦴ ꦩꦶꦂꦱꦤꦶ ꦫꦶꦤ꧀ꦕꦶꦪꦤ꧀ ꦄꦤꦭꦶꦱ ꦠꦼꦏ꧀ꦤꦶꦱ꧀ ꦱꦂꦠ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ (~ꦥꦺꦴꦕ꧀)꧉</p>
+            
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+              <button class="filter-chip active" onclick="filterFindings('all', this)">ꦏꦧꦼꦃ</button>
+              <button class="filter-chip" onclick="filterFindings('high', this)">ꦝꦸꦮꦸꦂ</button>
+              <button class="filter-chip" onclick="filterFindings('cve', this)">ꦫꦶꦱꦼꦠ꧀ CVE</button>
+              <button class="filter-chip" onclick="filterFindings('gov', this)">ꦥꦩꦫꦺꦤ꧀ꦠꦃ</button>
+            </div>
+
+            <div class="findings-list">
+        <div class="finding-card" data-cat="high" onclick="openPoCModal('FND-01')">
           <div class="f-head">
             <div class="f-title jv">ꦩꦸꦁꦒꦃ ꦢꦿꦗꦠ꧀ ꦮꦼꦮꦼꦤꦁ ꦠꦼꦏꦤ꧀ ꦄꦢ꧀ꦩꦶꦤꦶꦱ꧀ꦠꦿꦠꦺꦴꦂ ꦭꦶꦮꦠ꧀ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦩꦫꦤ꧀ ꦱꦶꦁ ꦏꦼꦤ ꦢꦶꦠꦼꦧꦏ꧀</div>
             <span class="sev-chip sev-p2">P2 High</span>
           </div>
           <div class="f-target">ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦗꦶꦫ/ꦕꦺꦴꦤ꧀ꦥ꦳꧀ꦭꦸꦮꦼꦤ꧀ꦕꦼ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀</div>
-          <div class="f-proof jv">ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀ — ꦠꦼꦏꦤ꧀ SYSTEM_ADMIN</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀ — ꦠꦼꦏꦤ꧀ SYSTEM_ADMIN</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-cat="cve" onclick="openPoCModal('FND-02')">
           <div class="f-head">
             <div class="f-title jv">ꦱꦤ꧀ꦝꦶ ꦢꦠꦧꦱꦼ ꦏꦼꦏꦶꦫꦶꦩ꧀ ꦠꦤ꧀ꦥ ꦄꦼꦤ꧀ꦏꦿꦶꦥ꧀ꦱꦶ ꦱꦼꦤꦗꦤ꧀ TLS ꦢꦶꦪꦸꦫꦶꦥꦏꦼ</div>
             <span class="sev-chip sev-p4">CVE Pending</span>
           </div>
           <div class="f-target">ꦏꦺꦴꦤꦼꦏ꧀ꦠꦺꦴꦂ ꦢꦠꦧꦱꦼ Node.js ꦱꦶꦁ ꦄꦏꦺꦃ ꦢꦶꦪꦼꦁꦒꦺꦴ</div>
-          <div class="f-proof jv">ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ — CVE ꦮꦶꦱ꧀ ꦢꦶꦠꦼꦠꦼꦥꦏꦼ꧈ ꦄꦢ꧀ꦮ꦳ꦶꦱꦺꦴꦂꦪ꧀ ꦢꦸꦫꦸꦁ ꦩꦼꦠꦸ</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ — CVE ꦮꦶꦱ꧀ ꦢꦶꦠꦼꦠꦼꦥꦏꦼ꧈ ꦄꦢ꧀ꦮ꦳ꦶꦱꦺꦴꦂꦪ꧀ ꦢꦶꦏꦺꦴꦲꦺꦴꦂꦢꦶꦤꦱꦶ</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-cat="gov" onclick="openPoCModal('FND-03')">
+          <div class="f-head">
+            <div class="f-title jv">ꦄꦼꦤꦸꦩꦼꦫꦱꦶ ꦥꦁꦒꦸꦤ ꦭꦶꦮꦠ꧀ NIK ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ</div>
+            <span class="sev-chip sev-p3">Medium</span>
+          </div>
+          <div class="f-target">Diskominfo Kota Tangerang Selatan · Gerobug</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ ꦫꦼꦱ꧀ꦩꦶ 7C0B38027836</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
+        </div>
+        <div class="finding-card" data-cat="gov" onclick="openPoCModal('FND-04')">
+          <div class="f-head">
+            <div class="f-title jv">ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ</div>
+            <span class="sev-chip sev-p3">Medium</span>
+          </div>
+          <div class="f-target">Diskominfo Kota Tangerang Selatan · Gerobug</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ ꦫꦼꦱ꧀ꦩꦶ 7C0B36916030</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
+        </div>
+        <div class="finding-card" data-cat="high" onclick="openPoCModal('FND-05')">
           <div class="f-head">
             <div class="f-title jv">SSRF, ꦏꦭꦼꦧꦸ SSRF ꦧꦸꦠ꧈ ꦆꦁ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center</div>
             <span class="sev-chip sev-p2">P2 / P3</span>
           </div>
-          <div class="f-target">ꦫꦺꦴꦁ ꦮ꦳ꦼꦤ꧀ꦢꦺꦴꦂ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦏꦥꦶꦱꦃ</div>
-          <div class="f-proof jv">ꦭꦺꦴꦫꦺꦴ-ꦭꦺꦴꦫꦺꦴꦤꦺ ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ</div>
+          <div class="f-target">ꦫꦺꦴꦁ ꦮ꦳ꦼꦤ꧀ꦢꦺꦴꦂ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀ ꦏꦥꦶꦱꦃ</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦭꦺꦴꦫꦺꦴ-ꦭꦺꦴꦫꦺꦴꦤꦺ ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ & ꦢꦶꦠꦩ꧀ꦥ</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-cat="high" onclick="openPoCModal('FND-06')">
           <div class="f-head">
             <div class="f-title jv">ꦭꦪꦤꦤ꧀ MCP ꦩ꧀ꦧꦸꦏꦏ꧀ ꦭꦶꦮꦠ꧀ HTTP ꦠꦤ꧀ꦥ ꦄꦲꦸꦠꦼꦤ꧀ꦠꦶꦏꦱꦶ</div>
             <span class="sev-chip sev-p2">CVSS 7.3</span>
           </div>
-          <div class="f-target">ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦢꦼꦱ꧀ꦏ꧀ꦠꦺꦴꦥ꧀</div>
-          <div class="f-proof jv">ꦢꦶꦭꦥꦸꦫꦏꦼ ꦭꦶꦮꦠ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦫꦼꦱ꧀ꦩꦶ</div>
+          <div class="f-target">ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦢꦼꦱ꧀ꦏ꧀ꦠꦺꦴꦥ꧀ AI / ꦥꦔꦼꦩ꧀ꦧꦁ</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦢꦶꦭꦥꦸꦫꦏꦼ ꦭꦶꦮꦠ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦫꦼꦱ꧀ꦩꦶ</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-cat="high" onclick="openPoCModal('FND-07')">
           <div class="f-head">
             <div class="f-title jv">ꦤꦿꦧꦱ꧀ ꦄꦭꦸꦂ ꦥꦼꦂꦱꦼꦠꦸꦗꦸꦮꦤ꧀ ꦭꦤ꧀ ꦫꦼꦒꦶꦱ꧀ꦠꦿꦱꦶ ꦏ꧀ꦭꦶꦪꦼꦤ꧀ OAuth ꦱꦶꦁ ꦩ꧀ꦧꦸꦏꦏ꧀</div>
             <span class="sev-chip sev-p4">In Triage</span>
           </div>
-          <div class="f-target">ꦫꦺꦴꦁ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦏꦥꦶꦱꦃ</div>
-          <div class="f-proof jv">ꦢꦶꦭꦥꦸꦫꦏꦼ꧈ ꦆꦱꦶꦃ ꦆꦁ ꦠꦿꦶꦪꦱꦼ</div>
+          <div class="f-target">ꦫꦺꦴꦁ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦿꦺꦴꦢꦸꦏ꧀ꦱꦶ ꦏꦥꦶꦱꦃ</div>
+          <div class="f-proof jv">
+            <span class="f-proof-left">ꦢꦶꦭꦥꦸꦫꦏꦼ꧈ ꦆꦱꦶꦃ ꦆꦁ ꦥꦿꦺꦴꦱꦼꦱ꧀ ꦠꦿꦶꦪꦱꦼ</span>
+            <span class="f-poc-link">🔍 View PoC &amp; Analysis ↗</span>
+          </div>
         </div>
+            </div>
           </div>
 
+          <!-- 03: CERTIFICATIONS -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">03</span>
@@ -1030,6 +1695,7 @@ body{
         </div>
           </div>
 
+          <!-- 04: EDUCATION -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">04</span>
@@ -1048,6 +1714,7 @@ body{
         <!-- RIGHT SIDEBAR COLUMN -->
         <div>
 
+          <!-- 05: SKILLS & STACK -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">05</span>
@@ -1056,52 +1723,33 @@ body{
             </div>
             <div class="skill-box">
           <div class="skill-row">
-            <div class="skill-label jv">ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦭꦤ꧀ API</div>
-            <div class="skill-tags">OWASP Top 10 · REST · GraphQL</div>
+            <div class="skill-label jv">ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦮꦼꦧ꧀ & API</div>
+            <div class="skill-tags">OWASP Top 10 · REST · GraphQL · WebSocket · OAuth 2.0 · JWT · SAML · IDOR · BOLA · SSRF · Race Conditions · SSTI · XXE</div>
           </div>
           <div class="skill-row">
-            <div class="skill-label jv">ꦚꦼꦒꦠ꧀ ꦭꦤ꧀ ꦔꦺꦴꦮꦲꦶ ꦥꦤ꧀ꦗꦭꦸꦏ꧀</div>
-            <div class="skill-tags">Burp Suite · Caido</div>
+            <div class="skill-label jv">ꦄꦲꦸꦢꦶꦠ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ & ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ</div>
+            <div class="skill-tags">Java JAR/Bytecode (JADX, Procyon, javap) · Node.js · Python AST · Android Dalvik (apktool, frida, objection)</div>
           </div>
           <div class="skill-row">
-            <div class="skill-label jv">ꦄꦲꦸꦢꦶꦠ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦭꦤ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ</div>
-            <div class="skill-tags">JADX · Procyon · javap · Java/JS</div>
+            <div class="skill-label jv">ꦚꦼꦒꦠ꧀ ꦭꦭꦸ ꦭꦶꦤ꧀ꦠꦱ꧀ & ꦩꦤꦶꦥꦸꦭꦱꦶ</div>
+            <div class="skill-tags">Burp Suite Professional · Caido · Postman · Ffuf · Turbo Intruder · Webhook Debugging</div>
           </div>
           <div class="skill-row">
-            <div class="skill-label jv">ꦥꦼꦩꦼꦠꦲꦤ꧀ ꦥꦼꦂꦩꦸꦏꦲꦤ꧀ ꦱꦼꦫꦔꦤ꧀</div>
-            <div class="skill-tags">subfinder · httpx · nuclei · katana</div>
+            <div class="skill-label jv">ꦎꦠꦺꦴꦩꦱꦶ ꦥꦔꦶꦤ꧀ꦠꦲꦶꦪꦤ꧀ & OSINT</div>
+            <div class="skill-tags">Subfinder · Httpx · Katana · Nuclei (Custom YAML Templates) · Amass · Nmap · Masscan</div>
           </div>
           <div class="skill-row">
-            <div class="skill-label jv">ꦤꦿꦧꦱ꧀ ꦮꦠꦼꦱ꧀ ꦮꦼꦮꦼꦤꦁ</div>
-            <div class="skill-tags">IDOR · BOLA · Multi-tenant authz</div>
+            <div class="skill-label jv">ꦥꦼꦂꦠꦲꦤꦤ꧀ & ꦭꦧ꧀ SOC</div>
+            <div class="skill-tags">Wazuh SIEM · Sysmon Telemetry · Kali Linux · Docker · Network Packet Analysis (Wireshark, tcpdump) · MITRE ATT&CK</div>
           </div>
           <div class="skill-row">
-            <div class="skill-label jv">ꦆꦤ꧀ꦗꦼꦏ꧀ꦱꦶ ꦭꦤ꧀ ꦢꦺꦱꦼꦫꦶꦪꦭꦶꦱꦱꦶ</div>
-            <div class="skill-tags">SSRF · XXE · RCE · SSTI</div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-label jv">ꦈꦗꦶ ꦠꦺꦴꦏꦼꦤ꧀ ꦭꦤ꧀ ꦱꦼꦱꦶ</div>
-            <div class="skill-tags">JWT · OAuth 2.0 · SAML · Session Fixation</div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-label jv">ꦈꦗꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ Android</div>
-            <div class="skill-tags">apktool · frida · objection</div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-label jv">Linux ꦭꦤ꧀ ꦱ꧀ꦏꦿꦶꦥ꧀ ꦎꦠꦺꦴꦩꦱꦶ</div>
-            <div class="skill-tags">Kali Linux · Bash · Python</div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-label jv">ꦄꦤꦭꦶꦱꦶꦱ꧀ ꦭꦭꦸ ꦭꦶꦤ꧀ꦠꦱ꧀ ꦗꦫꦶꦔꦤ꧀</div>
-            <div class="skill-tags">Wireshark · tcpdump</div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-label jv">ꦤꦸꦭꦶꦱ꧀ ꦭꦥꦸꦫꦤ꧀ ꦭꦤ꧀ ꦩ꧀ꦧꦶꦗꦶ ꦫꦶꦱꦶꦏꦺꦴ</div>
-            <div class="skill-tags">CVSS v3.1 · Bugcrowd VRT</div>
+            <div class="skill-label jv">ꦱ꧀ꦠꦤ꧀ꦢꦂ ꦥꦼꦤꦶꦭꦲꦶꦪꦤ꧀ & ꦥꦼꦭꦥꦺꦴꦫꦤ꧀</div>
+            <div class="skill-tags">CVSS v3.1 Scoring · Bugcrowd VRT · ISO/IEC 29147 Responsible Disclosure · Executive Technical Reporting</div>
           </div>
             </div>
           </div>
 
+          <!-- 06: CORE COMPETENCIES -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">06</span>
@@ -1118,6 +1766,7 @@ body{
             </div>
           </div>
 
+          <!-- 07: LANGUAGES -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">07</span>
@@ -1142,6 +1791,7 @@ body{
         </div>
           </div>
 
+          <!-- 08: OPEN-SOURCE PORTFOLIO -->
           <div class="section">
             <div class="sec-header">
               <span class="sec-num">08</span>
@@ -1155,7 +1805,7 @@ body{
             <div class="repo-group">
         <a class="repo-card" href="https://github.com/houseofmartynix-debug/appsec-payload-notes" target="_blank" rel="noopener">
           <div class="repo-name"><span>appsec-payload-notes</span><span class="repo-arrow">↗</span></div>
-          <div class="repo-desc jv">ꦕꦛꦼꦠꦤ꧀ payload ꦭꦤ꧀ ꦩꦺꦠꦺꦴꦝꦺꦴꦭꦺꦴꦒꦶ ꦆꦁ 30 ꦏꦼꦭꦱ꧀ ꦕꦼꦭꦃ</div>
+          <div class="repo-desc jv">ꦕꦛꦼꦠꦤ꧀ payload ꦭꦤ꧀ ꦩꦺꦠꦺꦴꦝꦺꦴꦭꦺꦴꦒꦶ ꦆꦁ 30 ꦏꦼꦭꦱ꧀ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀</div>
         </a>
         <a class="repo-card" href="https://github.com/houseofmartynix-debug/marco-scanner" target="_blank" rel="noopener">
           <div class="repo-name"><span>marco-scanner</span><span class="repo-arrow">↗</span></div>
@@ -1167,7 +1817,7 @@ body{
         </a>
         <a class="repo-card" href="https://github.com/houseofmartynix-debug/sinik-pro" target="_blank" rel="noopener">
           <div class="repo-name"><span>sinik-pro</span><span class="repo-arrow">↗</span></div>
-          <div class="repo-desc jv">ꦥꦩꦫꦶꦏ꧀ꦱ ꦭꦤ꧀ ꦥꦔꦸꦝꦂ NIK ꦆꦤ꧀ꦢꦺꦴꦤꦺꦱꦶꦪ ꦠꦤ꧀ꦥ ꦱꦼꦂꦮ꦳ꦼꦂ</div>
+          <div class="repo-desc jv">ꦥꦩꦫꦶꦏ꧀ꦱ ꦭꦤ꧀ ꦥꦔꦸꦝꦂ NIK ꦆꦤ꧀ꦢꦺꦴꦤꦺꦱꦶꦪ ꦠꦤ꧀ꦥ ꦱꦼꦂꦮ꦳ꦼꦂ ꦏꦤ꧀ꦛꦶ ꦥꦿꦶꦮ꦳ꦱꦶ</div>
         </a>
         <a class="repo-card" href="https://github.com/houseofmartynix-debug/bugcrowd-scope-monitor" target="_blank" rel="noopener">
           <div class="repo-name"><span>bugcrowd-scope-monitor</span><span class="repo-arrow">↗</span></div>
@@ -1188,8 +1838,238 @@ body{
   </div>
 </div>
 
+<!-- INTERACTIVE VULNERABILITY DOSSIER MODAL -->
+<div class="cyber-modal-overlay" id="pocModal" onclick="closeModalOnBg(event)">
+  <div class="cyber-modal">
+    <div class="modal-header">
+      <div class="modal-title-box">
+        <span class="sev-chip sev-p2" id="mSev">P2 HIGH</span>
+        <span style="font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--text);" id="mId">FND-01</span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <h3 style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;" id="mTitle">Vulnerability Title</h3>
+      <div style="font-family:var(--mono);font-size:11.5px;color:var(--cyan);margin-bottom:18px;" id="mTarget">Target System</div>
+      
+      <div class="modal-field">
+        <div class="modal-label">CVSS v3.1 Score &amp; Classification</div>
+        <div class="modal-val" id="mCvss">CVSS:3.1/AV:N/AC:L...</div>
+      </div>
+
+      <div class="modal-field">
+        <div class="modal-label">CWE Weakness Category</div>
+        <div class="modal-val" id="mCwe">CWE-287</div>
+      </div>
+
+      <div class="modal-field">
+        <div class="modal-label">Technical Root Cause &amp; Mechanism</div>
+        <div class="modal-val" id="mRootCause">Root cause analysis...</div>
+      </div>
+
+      <div class="modal-field">
+        <div class="modal-label">Sanitized Proof of Concept &amp; Reproduction</div>
+        <pre class="modal-code" id="mPoc">PoC walkthrough steps...</pre>
+      </div>
+
+      <div class="modal-field">
+        <div class="modal-label">Business &amp; Security Impact</div>
+        <div class="modal-val" id="mImpact">Impact assessment...</div>
+      </div>
+
+      <div class="modal-field">
+        <div class="modal-label">Remediation &amp; Defense-in-Depth</div>
+        <div class="modal-val" id="mFix">Remediation guidance...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERACTIVE FLOATING TERMINAL CONSOLE -->
+<div class="cli-drawer" id="cliDrawer">
+  <div class="cli-drawer-head">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="dot dot-green" style="width:8px;height:8px;"></span>
+      <span style="color:var(--accent);font-weight:700;">marco@secops-terminal</span>
+    </div>
+    <button class="modal-close" style="width:22px;height:22px;font-size:11px;" onclick="toggleCLI()">✕</button>
+  </div>
+  <div class="cli-drawer-body" id="cliLogs">
+    <div class="cli-log-line" style="color:var(--accent);">SecOps Interactive Shell v2.4 initialized. Type <span style="color:var(--cyan);font-weight:700;">help</span> for commands.</div>
+  </div>
+  <div class="cli-quick-chips">
+    <span class="cli-chip" onclick="runCLICommand('cat bio')">cat bio</span>
+    <span class="cli-chip" onclick="runCLICommand('skills')">skills</span>
+    <span class="cli-chip" onclick="runCLICommand('vulns')">vulns</span>
+    <span class="cli-chip" onclick="runCLICommand('cve')">cve</span>
+    <span class="cli-chip" onclick="runCLICommand('tools')">tools</span>
+    <span class="cli-chip" onclick="runCLICommand('matrix')">matrix</span>
+    <span class="cli-chip" onclick="runCLICommand('neofetch')">neofetch</span>
+    <span class="cli-chip" onclick="runCLICommand('clear')">clear</span>
+  </div>
+  <div class="cli-prompt-row">
+    <span class="cli-prompt-symbol">$</span>
+    <input type="text" class="cli-input" id="cliInput" placeholder="type a command (e.g. help, vulns, skills, theme cyberpunk)..." autocomplete="off" spellcheck="false" onkeydown="handleCLIKeyDown(event)">
+  </div>
+</div>
+
 <script>
+// Data Store for Modal & CLI
+var FINDINGS_DB = [{"id": "FND-01", "title": "ꦩꦸꦁꦒꦃ ꦢꦿꦗꦠ꧀ ꦮꦼꦮꦼꦤꦁ ꦠꦼꦏꦤ꧀ ꦄꦢ꧀ꦩꦶꦤꦶꦱ꧀ꦠꦿꦠꦺꦴꦂ ꦭꦶꦮꦠ꧀ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦩꦫꦤ꧀ ꦱꦶꦁ ꦏꦼꦤ ꦢꦶꦠꦼꦧꦏ꧀", "target": "ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦗꦶꦫ/ꦕꦺꦴꦤ꧀ꦥ꦳꧀ꦭꦸꦮꦼꦤ꧀ꦕꦼ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀", "sev": "P2 High", "sev_cat": "high", "proof": "ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀ — ꦠꦼꦏꦤ꧀ SYSTEM_ADMIN", "cvss": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H (8.8 High)", "cwe": "CWE-287 / CWE-330: Improper Authentication & Insufficiently Random Values", "root_cause": "ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ ꦤꦸꦢꦸꦲꦏꦼ ꦩꦼꦤꦮ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦩꦫꦤ꧀ ꦥꦁꦒꦸꦤ ꦢꦶꦒꦮꦺ ꦔꦁꦒꦺꦴ ꦮꦶꦗꦶ ꦮꦼꦏ꧀ꦠꦸ ꦱꦶꦁ ꦒꦩ꧀ꦥꦁ ꦢꦶꦠꦼꦧꦏ꧀ ꦠꦤ꧀ꦥ ꦄꦼꦤ꧀ꦠꦿꦺꦴꦥꦶ ꦄꦕꦏ꧀꧉", "poc": "1꧉ ꦏꦶꦫꦶꦩ꧀ ꦥꦤ꧀ꦗꦭꦸꦏ꧀ ꦔ꧀ꦒꦮꦺ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦩꦫꦤ꧀ ꦏꦤ꧀ꦛꦶ ꦄꦏꦸꦤ꧀ ꦠꦶꦁꦏꦠ꧀ ꦥꦁꦒꦸꦤ ꦭꦸꦩꦿꦃ.\n2꧉ ꦌꦤ꧀ꦠꦸꦏ꧀ ꦠꦺꦴꦏꦼꦤ꧀ ꦧꦤ꧀ꦗꦸꦂ ꦥꦼꦠꦸꦁ ꦥꦩ꧀ꦧꦭꦶꦏꦤ꧀ ꦮꦼꦏ꧀ꦠꦸ ꦱꦼꦂꦮ꦳ꦼꦂ.\n3꧉ ꦒꦸꦤꦏꦏꦼ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦩꦫꦤ꧀ ꦏꦁꦒꦺꦴ ꦔꦏ꧀ꦱꦼꦱ꧀ API ꦄꦢ꧀ꦩꦶꦤꦶꦱ꧀ꦠꦿꦠꦺꦴꦂ ꦩꦶꦤꦁꦏ SYSTEM_ADMIN.", "impact": "ꦥꦼꦚꦼꦫꦁ ꦧꦶꦱ ꦤ꧀ꦗꦸꦥꦸꦏ꧀ ꦏꦼꦤ꧀ꦝꦭꦶ ꦱꦏꦧꦺꦲꦺ ꦏꦺꦴꦤ꧀ꦥ꦳ꦶꦒꦸꦫꦱꦶ ꦥ꧀ꦭꦸꦒꦶꦤ꧀꧈ ꦩꦕ ꦝꦺꦴꦏꦸꦩꦺꦤ꧀ ꦫꦲꦱꦶꦪ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧈ ꦱꦂꦠ ꦔꦺꦴꦮꦲꦶ ꦱꦼꦠꦼꦭꦤ꧀ ꦏꦲꦩꦤꦤ꧀꧉", "fix": "ꦒꦤ꧀ꦠꦶ ꦒꦼꦤꦼꦫꦠꦺꦴꦂ ꦠꦺꦴꦏꦼꦤ꧀ ꦔꦁꦒꦺꦴ SecureRandom ꦱꦶꦁ ꦄꦩꦤ꧀ ꦭꦤ꧀ ꦮꦺꦤꦺꦲꦶ ꦮꦼꦏ꧀ꦠꦸ ꦏꦼꦢꦭꦸꦮꦂꦱ ꦕꦼꦏꦏ꧀꧉"}, {"id": "FND-02", "title": "ꦱꦤ꧀ꦝꦶ ꦢꦠꦧꦱꦼ ꦏꦼꦏꦶꦫꦶꦩ꧀ ꦠꦤ꧀ꦥ ꦄꦼꦤ꧀ꦏꦿꦶꦥ꧀ꦱꦶ ꦱꦼꦤꦗꦤ꧀ TLS ꦢꦶꦪꦸꦫꦶꦥꦏꦼ", "target": "ꦏꦺꦴꦤꦼꦏ꧀ꦠꦺꦴꦂ ꦢꦠꦧꦱꦼ Node.js ꦱꦶꦁ ꦄꦏꦺꦃ ꦢꦶꦪꦼꦁꦒꦺꦴ", "sev": "CVE Pending", "sev_cat": "cve", "proof": "ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ — CVE ꦮꦶꦱ꧀ ꦢꦶꦠꦼꦠꦼꦥꦏꦼ꧈ ꦄꦢ꧀ꦮ꦳ꦶꦱꦺꦴꦂꦪ꧀ ꦢꦶꦏꦺꦴꦲꦺꦴꦂꦢꦶꦤꦱꦶ", "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N (5.9 Medium)", "cwe": "CWE-319: Cleartext Transmission of Sensitive Information", "root_cause": "ꦄꦤ ꦏꦲꦤꦤ꧀ ꦧꦭꦥꦤ꧀ (~ꦫꦕꦼ condition) ꦆꦁ ꦮꦶꦮꦶꦠꦤ꧀ ꦱꦩ꧀ꦧꦸꦔꦤ꧀ ꦗꦫꦶꦔꦤ꧀ ꦆꦁ ꦔꦼꦤ꧀ꦢꦶ ꦥꦏꦼꦠ꧀ ꦄꦲꦸꦠꦼꦤ꧀ꦠꦶꦏꦱꦶ ꦏꦼꦏꦶꦫꦶꦩ꧀ ꦱꦢꦸꦫꦸꦔꦼ ꦱꦭꦩꦤ꧀ TLS ꦫꦩ꧀ꦥꦸꦁ꧉", "poc": "1꧉ ꦚꦼꦒꦠ꧀ ꦭꦭꦸ ꦭꦶꦤ꧀ꦠꦱ꧀ ꦗꦫꦶꦔꦤ꧀ ꦭꦺꦴꦏꦭ꧀ ꦔꦁꦒꦺꦴ Wireshark / tcpdump.\n2. ꦮꦶꦮꦶꦠꦶ ꦱꦩ꧀ꦧꦸꦔꦤ꧀ ꦩꦼꦚꦁ ꦱꦼꦂꦮ꦳ꦼꦂ ꦢꦠꦧꦱꦼ ꦔꦁꦒꦺꦴ ꦎꦥ꧀ꦱꦶ TLS ꦄꦏ꧀ꦠꦶꦥ꦳꧀.\n3꧉ ꦥꦏꦼꦠ꧀ ꦮꦶꦮꦶꦠꦤ꧀ ꦤꦸꦢꦸꦲꦏꦼ ꦱꦤ꧀ꦝꦶ ꦢꦠꦧꦱꦼ ꦕꦼꦛ ꦠꦤ꧀ꦥ ꦄꦼꦤ꧀ꦏꦿꦶꦥ꧀ꦱꦶ꧉", "impact": "ꦥꦼꦚꦼꦫꦁ ꦆꦁ ꦗꦫꦶꦔꦤ꧀ ꦱꦶꦁ ꦥꦝ (~ꦩꦶꦠ꧀ꦩ꧀) ꦧꦶꦱ ꦚꦺꦴꦭꦺꦴꦁ ꦱꦤ꧀ꦝꦶ ꦢꦠꦧꦱꦼ ꦈꦠꦩ ꦱꦂꦠ ꦩ꧀ꦧꦺꦴꦧꦺꦴꦭ꧀ ꦢꦠ꧉", "fix": "ꦠꦸꦤ꧀ꦝ ꦔꦶꦫꦶꦩ꧀ ꦥꦏꦼꦠ꧀ ꦄꦲꦸꦠꦼꦤ꧀ꦠꦶꦏꦱꦶ ꦔꦤ꧀ꦠꦶ ꦄꦕꦫ secureConnect TLS ꦮꦶꦱ꧀ ꦫꦩ꧀ꦥꦸꦁ ꦏꦤ꧀ꦛꦶ ꦱꦃ꧉"}, {"id": "FND-03", "title": "ꦄꦼꦤꦸꦩꦼꦫꦱꦶ ꦥꦁꦒꦸꦤ ꦭꦶꦮꦠ꧀ NIK ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ", "target": "Diskominfo Kota Tangerang Selatan · Gerobug", "sev": "Medium", "sev_cat": "gov", "proof": "ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ ꦫꦼꦱ꧀ꦩꦶ 7C0B38027836", "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N (5.3 Medium)", "cwe": "CWE-200 / CWE-359: Exposure of Private Personal Information (PII)", "root_cause": "ꦭꦪꦤꦤ꧀ ꦮ꦳ꦼꦫꦶꦥ꦳ꦶꦏꦱꦶ ꦥꦸꦧ꧀ꦭꦶꦏ꧀ ꦎꦫ ꦩ꧀ꦧꦠꦼꦱꦶ ꦥꦤ꧀ꦗꦭꦸꦏ꧀ (~ꦫꦠꦼ limiting) ꦭꦤ꧀ ꦩ꧀ꦧꦭꦺꦏꦏꦺ ꦥꦿꦧꦺꦢꦤ꧀ ꦫꦼꦱ꧀ꦥꦺꦴꦤ꧀ ꦱꦶꦁ ꦕꦼꦛ ꦏꦁꦒꦺꦴ NIK ꦱꦶꦁ ꦏꦝꦥ꧀ꦠꦂ꧉", "poc": "1꧉ ꦏꦶꦫꦶꦩ꧀ ꦥꦤ꧀ꦗꦭꦸꦏ꧀ ꦥꦤꦸꦝꦸꦲꦶꦁ NIK ꦏꦤ꧀ꦛꦶ ꦫꦸꦤ꧀ꦠꦸꦠ꧀.\n2꧉ ꦩꦶꦂꦱꦤꦶ ꦥꦿꦧꦺꦢꦤ꧀ ꦏꦺꦴꦢꦼ ꦱ꧀ꦠꦠꦸꦱ꧀ ꦭꦤ꧀ ꦫꦼꦱ꧀ꦥꦺꦴꦤ꧀ JSON ꦏꦁꦒꦺꦴ ꦮ꦳ꦼꦫꦶꦥ꦳ꦶꦏꦱꦶ ꦢꦠ ꦮꦂꦒ꧉", "impact": "ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦢꦠ ꦏꦼꦥꦼꦤ꧀ꦢꦸꦢꦸꦏꦤ꧀ (~ꦥꦶꦪꦶ) ꦱꦶꦁ ꦧꦶꦱ ꦢꦶꦱꦭꦃꦒꦸꦤꦏꦏꦼ ꦏꦁꦒꦺꦴ ꦥꦤꦶꦥꦸꦮꦤ꧀ ꦆꦢꦼꦤ꧀ꦠꦶꦠꦱ꧀꧉", "fix": "ꦮꦺꦤꦺꦲꦶ ꦮꦠꦼꦱꦤ꧀ ꦥꦤ꧀ꦗꦭꦸꦏ꧀ (~ꦫꦠꦼ limit), CAPTCHA, ꦭꦤ꧀ ꦫꦼꦱ꧀ꦥꦺꦴꦤ꧀ ꦱꦼꦫꦒꦩ꧀ ꦏꦁꦒꦺꦴ ꦏꦧꦼꦃ ꦥꦤ꧀ꦗꦭꦸꦏ꧀꧉"}, {"id": "FND-04", "title": "ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ ꦆꦁ ꦭꦪꦤꦤ꧀ ꦥꦩꦫꦺꦤ꧀ꦠꦃ", "target": "Diskominfo Kota Tangerang Selatan · Gerobug", "sev": "Medium", "sev_cat": "gov", "proof": "ꦥꦶꦪꦒꦩ꧀ ꦥꦁꦲꦂꦒꦲꦤ꧀ ꦫꦼꦱ꧀ꦩꦶ 7C0B36916030", "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N (5.3 Medium)", "cwe": "CWE-538: File and Directory Information Exposure", "root_cause": "ꦢꦶꦫꦼꦏ꧀ꦠꦺꦴꦫꦶ ꦫꦼꦥꦺꦴꦱꦶꦠꦺꦴꦫꦶ ꦭꦤ꧀ ꦧꦼꦂꦏꦱ꧀ ꦏꦺꦴꦤ꧀ꦥ꦳ꦶꦒꦸꦫꦱꦶ ꦕꦢꦔꦤ꧀ ꦧꦶꦱ ꦢꦶꦪꦏ꧀ꦱꦼꦱ꧀ ꦏꦤ꧀ꦛꦶ ꦭꦁꦱꦸꦁ ꦭꦶꦮꦠ꧀ ꦮꦼꦧ꧀ ꦱꦼꦂꦮ꦳ꦼꦂ ꦄꦩꦂꦒ ꦱꦼꦠꦼꦭꦤ꧀ ꦱꦶꦁ ꦏꦸꦫꦁ ꦧꦼꦤꦼꦂ꧉", "poc": "1꧉ ꦒꦸꦤꦏꦏꦼ ꦥꦤ꧀ꦭꦸꦱꦸꦂ URL ꦏꦁꦒꦺꦴ ꦤꦼꦩꦺꦴꦏꦏꦼ ꦧꦼꦂꦏꦱ꧀ ꦏꦺꦴꦤ꧀ꦥ꦳ꦶꦒꦸꦫꦱꦶ ꦱꦶꦁ ꦩ꧀ꦧꦸꦏꦏ꧀.\n2꧉ ꦈꦤ꧀ꦝꦸꦃ ꦧꦼꦂꦏꦱ꧀ ꦏꦁꦒꦺꦴ ꦩ꧀ꦧꦸꦏ꧀ꦠꦼꦏꦏꦼ ꦄꦤꦤꦼ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ꧉", "impact": "ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦄꦂꦱꦶꦠꦺꦏ꧀ꦠꦸꦂ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦭꦤ꧀ ꦏꦸꦤ꧀ꦕꦶ ꦫꦲꦱꦶꦪ ꦱꦶꦁ ꦧꦶꦱ ꦢꦢꦶ ꦝꦱꦂ ꦱꦼꦫꦔꦤ꧀ ꦭꦤ꧀ꦗꦸꦠꦤ꧀꧉", "fix": "ꦠꦸꦠꦸꦥ꧀ ꦄꦏ꧀ꦱꦼꦱ꧀ ꦭꦁꦱꦸꦁ ꦩꦼꦚꦁ ꦢꦶꦫꦼꦏ꧀ꦠꦺꦴꦫꦶ ꦫꦲꦱꦶꦪ ꦭꦤ꧀ ꦧꦸꦱꦏ꧀ ꦏꦧꦼꦃ ꦧꦼꦂꦏꦱ꧀ ꦕꦢꦔꦤ꧀ ꦱꦏ ꦮꦼꦧ꧀ ꦱꦼꦂꦮ꦳ꦼꦂ꧉"}, {"id": "FND-05", "title": "SSRF, ꦏꦭꦼꦧꦸ SSRF ꦧꦸꦠ꧈ ꦆꦁ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center", "target": "ꦫꦺꦴꦁ ꦮ꦳ꦼꦤ꧀ꦢꦺꦴꦂ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀ ꦏꦥꦶꦱꦃ", "sev": "P2 / P3", "sev_cat": "high", "proof": "ꦭꦺꦴꦫꦺꦴ-ꦭꦺꦴꦫꦺꦴꦤꦺ ꦭꦺꦴꦭꦺꦴꦱ꧀ ꦠꦿꦶꦪꦱꦼ & ꦢꦶꦠꦩ꧀ꦥ", "cvss": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N (7.7 High)", "cwe": "CWE-918: Server-Side Request Forgery (SSRF)", "root_cause": "ꦥ꧀ꦭꦸꦒꦶꦤ꧀ ꦔꦶꦢꦶꦤꦶ ꦥꦁꦒꦸꦤ ꦔꦶꦱꦶ URL webhook ꦈꦠꦮ ꦒꦩ꧀ꦧꦂ ꦠꦤ꧀ꦥ ꦮ꦳ꦼꦫꦶꦥ꦳ꦶꦏꦱꦶ ꦄꦭꦩꦠ꧀ IP ꦆꦤ꧀ꦠꦼꦂꦤꦭ꧀ (~ꦫ꧀ꦥ꦳꧀ꦕ꧀ 1918 ꦈꦠꦮ ꦭꦪꦤꦤ꧀ ꦩꦼꦠꦢꦠ AWS/GCP).", "poc": "1꧉ ꦥꦱꦁ URL ꦥꦤ꧀ꦗꦭꦸꦏ꧀ ꦩꦼꦚꦁ 169.254.169.254 ꦆꦁ ꦱꦼꦠꦼꦭꦤ꧀ ꦆꦤ꧀ꦠꦼꦒꦿꦱꦶ ꦥ꧀ꦭꦸꦒꦶꦤ꧀.\n2꧉ ꦩ꧀ꦧꦭꦺꦏꦏꦺ ꦢꦠ ꦩꦼꦠꦢꦠ ꦏꦺꦴꦩ꧀ꦥꦸꦠꦱꦶ ꦄꦮꦤ꧀ ꦱꦏ ꦱꦼꦂꦮ꦳ꦼꦂ ꦆꦤ꧀ꦠꦼꦂꦤꦭ꧀꧉", "impact": "ꦧꦶꦱ ꦢꦶꦪꦼꦁꦒꦺꦴ ꦩꦕ ꦩꦼꦠꦢꦠ ꦏꦺꦴꦩ꧀ꦥꦸꦠꦱꦶ ꦄꦮꦤ꧀꧈ ꦚꦺꦴꦭꦺꦴꦁ ꦠꦺꦴꦏꦼꦤ꧀ IAM, ꦱꦂꦠ ꦩꦶꦤ꧀ꦝꦲꦶ ꦗꦫꦶꦔꦤ꧀ ꦆꦤ꧀ꦠꦼꦂꦤꦭ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧉", "fix": "ꦮꦺꦤꦺꦲꦶ ꦥꦚꦫꦶꦁ URL ꦏꦼꦠꦠ꧀꧈ ꦠꦺꦴꦭꦏ꧀ ꦏꦧꦼꦃ ꦄꦭꦩꦠ꧀ IP ꦥꦿꦶꦧꦢꦶ ꦭꦤ꧀ ꦩꦼꦠꦢꦠ ꦏꦺꦴꦩ꧀ꦥꦸꦠꦱꦶ ꦄꦮꦤ꧀꧉"}, {"id": "FND-06", "title": "ꦭꦪꦤꦤ꧀ MCP ꦩ꧀ꦧꦸꦏꦏ꧀ ꦭꦶꦮꦠ꧀ HTTP ꦠꦤ꧀ꦥ ꦄꦲꦸꦠꦼꦤ꧀ꦠꦶꦏꦱꦶ", "target": "ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦢꦼꦱ꧀ꦏ꧀ꦠꦺꦴꦥ꧀ AI / ꦥꦔꦼꦩ꧀ꦧꦁ", "sev": "CVSS 7.3", "sev_cat": "high", "proof": "ꦢꦶꦭꦥꦸꦫꦏꦼ ꦭꦶꦮꦠ꧀ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦫꦼꦱ꧀ꦩꦶ", "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N (7.3 High)", "cwe": "CWE-306: Missing Authentication for Critical Function", "root_cause": "ꦱꦼꦂꦮ꦳ꦼꦂ ꦭꦺꦴꦏꦭ꧀ MCP ꦩ꧀ꦧꦸꦏꦏ꧀ ꦥꦺꦴꦂꦠ꧀ HTTP ꦆꦁ ꦏꦺꦴꦩ꧀ꦥꦸꦠꦼꦂ ꦠꦤ꧀ꦥ ꦱꦤ꧀ꦝꦶ ꦈꦠꦮ ꦠꦺꦴꦏꦼꦤ꧀ ꦥꦚꦼꦏꦼꦭ꧀ ꦮꦼꦮꦼꦤꦁ꧈ ꦔꦶꦢꦶꦤꦶ ꦱꦶꦠꦸꦱ꧀ ꦮꦼꦧ꧀ ꦭꦶꦪ ꦔꦶꦫꦶꦩ꧀ ꦥꦤ꧀ꦗꦭꦸꦏ꧀꧉", "poc": "1꧉ ꦔ꧀ꦒꦮꦼ ꦏꦕ ꦮꦼꦧ꧀ ꦥꦤ꧀ꦕꦶꦔꦤ꧀ ꦱꦶꦁ ꦔꦶꦫꦶꦩ꧀ ꦥꦤ꧀ꦗꦭꦸꦏ꧀ fetch ꦩꦼꦚꦁ ꦥꦺꦴꦂꦠ꧀ ꦭꦺꦴꦏꦭ꧀ MCP.\n2. ꦤ꧀ꦗꦭꦸꦏ꧀ ꦱꦼꦂꦮ꦳ꦼꦂ ꦭꦺꦴꦏꦭ꧀ ꦤꦶꦤ꧀ꦢꦏꦏꦼ ꦥꦏꦂꦪꦤ꧀ ꦥꦶꦫꦤ꧀ꦠꦶ AI ꦏꦤ꧀ꦛꦶ ꦎꦠꦺꦴꦩꦠꦶꦱ꧀꧉", "impact": "ꦱꦶꦠꦸꦱ꧀ ꦮꦼꦧ꧀ ꦄꦭ ꦧꦶꦱ ꦩꦕ ꦧꦼꦂꦏꦱ꧀ ꦭꦺꦴꦏꦭ꧀ ꦈꦠꦮ ꦔ꧀ꦭꦏꦺꦴꦏꦏꦼ ꦥꦿꦶꦤ꧀ꦠꦃ ꦆꦁ ꦏꦺꦴꦩ꧀ꦥꦸꦠꦼꦂ ꦥꦁꦒꦸꦤ꧉", "fix": "ꦮꦺꦤꦺꦲꦶ ꦠꦺꦴꦏꦼꦤ꧀ ꦄꦲꦸꦠꦼꦤ꧀ꦠꦶꦏꦱꦶ ꦫꦲꦱꦶꦪ ꦏꦁꦒꦺꦴ ꦏꦧꦼꦃ ꦏꦺꦴꦩꦸꦤꦶꦏꦱꦶ MCP ꦭꦤ꧀ ꦮꦠꦼꦱꦶ ꦩꦸꦁ ꦏꦁꦒꦺꦴ ꦱꦩ꧀ꦧꦸꦔꦤ꧀ ꦭꦺꦴꦏꦭ꧀ ꦱꦶꦁ ꦱꦃ꧉"}, {"id": "FND-07", "title": "ꦤꦿꦧꦱ꧀ ꦄꦭꦸꦂ ꦥꦼꦂꦱꦼꦠꦸꦗꦸꦮꦤ꧀ ꦭꦤ꧀ ꦫꦼꦒꦶꦱ꧀ꦠꦿꦱꦶ ꦏ꧀ꦭꦶꦪꦼꦤ꧀ OAuth ꦱꦶꦁ ꦩ꧀ꦧꦸꦏꦏ꧀", "target": "ꦫꦺꦴꦁ ꦥꦿꦺꦴꦒꦿꦩ꧀ ꦥꦿꦺꦴꦢꦸꦏ꧀ꦱꦶ ꦏꦥꦶꦱꦃ", "sev": "In Triage", "sev_cat": "high", "proof": "ꦢꦶꦭꦥꦸꦫꦏꦼ꧈ ꦆꦱꦶꦃ ꦆꦁ ꦥꦿꦺꦴꦱꦼꦱ꧀ ꦠꦿꦶꦪꦱꦼ", "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N (8.1 High)", "cwe": "CWE-285: Improper Authorization / OAuth Flow Flaws", "root_cause": "ꦱꦼꦠꦼꦭꦤ꧀ OAuth ꦔꦶꦢꦶꦤꦶ ꦫꦼꦒꦶꦱ꧀ꦠꦿꦱꦶ ꦏ꧀ꦭꦶꦪꦼꦤ꧀ ꦄꦚꦂ ꦏꦤ꧀ꦛꦶ redirect_uri ꦱꦶꦁ ꦄꦩ꧀ꦧ ꦠꦤ꧀ꦥ ꦮ꦳ꦼꦫꦶꦥ꦳ꦶꦏꦱꦶ ꦮꦼꦮꦼꦤꦁ ꦥꦩꦶꦭꦶꦏ꧀꧉", "poc": "1꧉ ꦝꦥ꦳꧀ꦠꦫꦏꦼ ꦏ꧀ꦭꦶꦪꦼꦤ꧀ OAuth ꦄꦚꦂ ꦔꦁꦒꦺꦴ redirect_uri ꦩꦼꦚꦁ ꦱꦼꦂꦮ꦳ꦼꦂ ꦥꦔꦸꦗꦶ.\n2꧉ ꦥꦤ꧀ꦕꦶꦁ ꦥꦁꦒꦸꦤ ꦏꦁꦒꦺꦴ ꦩ꧀ꦭꦼꦧꦸ ꦭꦺꦴꦒ꧀ ꦧꦤ꧀ꦗꦸꦂ ꦗꦸꦥꦸꦏ꧀ ꦏꦺꦴꦢꦼ ꦎꦠꦺꦴꦫꦶꦱꦱꦶ꧉", "impact": "ꦥꦼꦚꦼꦫꦁ ꦧꦶꦱ ꦩ꧀ꦧꦗꦏ꧀ ꦱꦼꦱꦶ ꦄꦏꦸꦤ꧀ ꦥꦁꦒꦸꦤ ꦭꦤ꧀ ꦤ꧀ꦗꦸꦥꦸꦏ꧀ ꦢꦠ ꦄꦏꦸꦤ꧀ ꦠꦤ꧀ꦥ ꦆꦢꦶꦤ꧀꧉", "fix": "ꦠꦸꦠꦸꦥ꧀ ꦫꦼꦒꦶꦱ꧀ꦠꦿꦱꦶ ꦏ꧀ꦭꦶꦪꦼꦤ꧀ ꦈꦩꦸꦩ꧀ ꦭꦤ꧀ ꦮꦠꦼꦱꦶ redirect_uri ꦩꦸꦁ ꦏꦁꦒꦺꦴ ꦢꦺꦴꦩꦲꦶꦤ꧀ ꦱꦶꦁ ꦮꦶꦱ꧀ ꦢꦶꦮ꦳ꦼꦫꦶꦥ꦳ꦶꦏꦱꦶ꧉"}];
+
+// Web Audio API Sound Synthesizer
+var audioCtx = null;
+var soundEnabled = false;
+
+function initAudio() {
+  if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+    var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContextClass();
+  }
+}
+
+function playCyberSound(type) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    var now = audioCtx.currentTime;
+    if (type === 'click') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    } else if (type === 'open') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(350, now);
+      osc.frequency.exponentialRampToValueAtTime(950, now + 0.08);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'error') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.setValueAtTime(160, now + 0.06);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      osc.start(now);
+      osc.stop(now + 0.12);
+    }
+  } catch(e) {}
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  var icon = document.getElementById('soundIcon');
+  var btn = document.getElementById('soundBtn');
+  if (soundEnabled) {
+    icon.textContent = '🔊';
+    btn.classList.add('active');
+    playCyberSound('open');
+  } else {
+    icon.textContent = '🔇';
+    btn.classList.remove('active');
+  }
+}
+
+// Digital Rain Background Matrix Effect
+var matrixRunning = false;
+var matrixCanvas = document.getElementById('matrixCanvas');
+var mCtx = matrixCanvas ? matrixCanvas.getContext('2d') : null;
+var matrixDrops = [];
+var matrixInterval = null;
+
+function initMatrix() {
+  if (!matrixCanvas || !mCtx) return;
+  matrixCanvas.width = window.innerWidth;
+  matrixCanvas.height = window.innerHeight;
+  var cols = Math.floor(matrixCanvas.width / 18);
+  matrixDrops = [];
+  for (var i = 0; i < cols; i++) {
+    matrixDrops[i] = Math.floor(Math.random() * -50);
+  }
+}
+
+function drawMatrix() {
+  if (!matrixRunning || !mCtx) return;
+  mCtx.fillStyle = 'rgba(6, 8, 13, 0.08)';
+  mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+  mCtx.fillStyle = '#00dc82';
+  mCtx.font = '13px monospace';
+  
+  var chars = '0123456789ABCDEFSEC_AUDIT_EXPLOIT_POC_CVSS_VRT_JAR_AST';
+  for (var i = 0; i < matrixDrops.length; i++) {
+    var text = chars.charAt(Math.floor(Math.random() * chars.length));
+    mCtx.fillText(text, i * 18, matrixDrops[i] * 18);
+    if (matrixDrops[i] * 18 > matrixCanvas.height && Math.random() > 0.975) {
+      matrixDrops[i] = 0;
+    }
+    matrixDrops[i]++;
+  }
+}
+
+function toggleMatrix() {
+  matrixRunning = !matrixRunning;
+  document.body.classList.toggle('matrix-active', matrixRunning);
+  var btn = document.getElementById('matrixBtn');
+  if (btn) btn.classList.toggle('active', matrixRunning);
+  
+  if (matrixRunning) {
+    initMatrix();
+    if (!matrixInterval) matrixInterval = setInterval(drawMatrix, 45);
+    playCyberSound('open');
+  } else {
+    if (matrixInterval) { clearInterval(matrixInterval); matrixInterval = null; }
+    if (mCtx) mCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+    playCyberSound('click');
+  }
+}
+
+window.addEventListener('resize', function() {
+  if (matrixRunning) initMatrix();
+});
+
+// Theme Switcher
+function changeTheme(themeName) {
+  document.body.setAttribute('data-theme', themeName);
+  localStorage.setItem('cv_theme', themeName);
+  var sel = document.getElementById('themeSelect');
+  if (sel) sel.value = themeName;
+  playCyberSound('click');
+}
+
+// Load stored theme
+try {
+  var savedTheme = localStorage.getItem('cv_theme') || 'emerald';
+  changeTheme(savedTheme);
+} catch(e) {}
+
+// Live Clock (UTC & WIB)
+function updateClock() {
+  var now = new Date();
+  var utc = now.toUTCString().split(' ')[4];
+  var el = document.getElementById('cyberClock');
+  if (el) {
+    el.textContent = 'UTC ' + utc + ' (WIB ' + String((now.getUTCHours() + 7) % 24).padStart(2,'0') + ':' + String(now.getUTCMinutes()).padStart(2,'0') + ')';
+  }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Copy to Clipboard
 function copyText(el, text, msg) {
+  playCyberSound('click');
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(function() {
       showToast(el, msg);
@@ -1202,6 +2082,7 @@ function copyText(el, text, msg) {
     showToast(el, msg);
   }
 }
+
 function fallbackCopy(text) {
   var ta = document.createElement('textarea');
   ta.value = text;
@@ -1212,6 +2093,7 @@ function fallbackCopy(text) {
   try { document.execCommand('copy'); } catch(e) {}
   document.body.removeChild(ta);
 }
+
 function showToast(el, msg) {
   var toast = el.querySelector('.toast');
   if (toast) {
@@ -1220,6 +2102,313 @@ function showToast(el, msg) {
     setTimeout(function() { toast.classList.remove('show'); }, 1800);
   }
 }
+
+// Filter Findings
+function filterFindings(cat, btn) {
+  playCyberSound('click');
+  var chips = document.querySelectorAll('.filter-chip');
+  chips.forEach(function(c) { c.classList.remove('active'); });
+  btn.classList.add('active');
+
+  var cards = document.querySelectorAll('.finding-card');
+  cards.forEach(function(card) {
+    var cCat = card.getAttribute('data-cat');
+    if (cat === 'all' || cCat === cat) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Vulnerability PoC Modal
+function openPoCModal(findId) {
+  playCyberSound('open');
+  var item = FINDINGS_DB.find(function(f) { return f.id === findId; });
+  if (!item) return;
+
+  document.getElementById('mId').textContent = item.id;
+  document.getElementById('mTitle').textContent = item.title;
+  document.getElementById('mTarget').textContent = item.target;
+  document.getElementById('mCvss').textContent = item.cvss;
+  document.getElementById('mCwe').textContent = item.cwe;
+  document.getElementById('mRootCause').textContent = item.root_cause;
+  document.getElementById('mPoc').textContent = item.poc;
+  document.getElementById('mImpact').textContent = item.impact;
+  document.getElementById('mFix').textContent = item.fix;
+
+  var sevEl = document.getElementById('mSev');
+  sevEl.textContent = item.sev;
+  sevEl.className = 'sev-chip ' + (item.sev.includes('P1') ? 'sev-p1' : item.sev.includes('P2') || item.sev.includes('High') ? 'sev-p2' : item.sev.includes('Medium') || item.sev.includes('P3') ? 'sev-p3' : 'sev-p4');
+
+  document.getElementById('pocModal').classList.add('open');
+}
+
+function closeModal() {
+  playCyberSound('click');
+  document.getElementById('pocModal').classList.remove('open');
+}
+
+function closeModalOnBg(e) {
+  if (e.target.id === 'pocModal') closeModal();
+}
+
+// Interactive Cyber Toolbox
+function toggleToolbox() {
+  playCyberSound('open');
+  var tb = document.getElementById('cyberToolbox');
+  var btn = document.getElementById('toolboxBtn');
+  tb.classList.toggle('open');
+  btn.classList.toggle('active', tb.classList.contains('open'));
+  if (tb.classList.contains('open')) {
+    tb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function switchToolTab(tab) {
+  playCyberSound('click');
+  document.querySelectorAll('.tb-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tool-pane').forEach(function(p) { p.classList.remove('active'); });
+  
+  if (tab === 'jwt') {
+    document.querySelectorAll('.tb-tab-btn')[0].classList.add('active');
+    document.getElementById('pane-jwt').classList.add('active');
+  } else if (tab === 'hash') {
+    document.querySelectorAll('.tb-tab-btn')[1].classList.add('active');
+    document.getElementById('pane-hash').classList.add('active');
+  } else if (tab === 'nik') {
+    document.querySelectorAll('.tb-tab-btn')[2].classList.add('active');
+    document.getElementById('pane-nik').classList.add('active');
+  }
+}
+
+function decodeJWT() {
+  var token = document.getElementById('jwtInput').value.trim();
+  var out = document.getElementById('jwtOutput');
+  if (!token) {
+    out.textContent = '// Paste JWT token above to analyze...';
+    return;
+  }
+  try {
+    var parts = token.split('.');
+    if (parts.length < 2) throw new Error('Invalid JWT format (expected 3 dot-separated parts)');
+    var header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
+    var payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+    
+    var res = '[JWT HEADER]\n' + JSON.stringify(header, null, 2) + '\n\n[JWT CLAIMS / PAYLOAD]\n' + JSON.stringify(payload, null, 2);
+    if (header.alg === 'none') res += '\n\n⚠️ SECURITY WARNING: Token uses vulnerable alg: "none" (Signature Bypass)';
+    if (payload.exp) {
+      var expDate = new Date(payload.exp * 1000);
+      var isExp = expDate < new Date();
+      res += '\n\nℹ️ Expiration: ' + expDate.toISOString() + (isExp ? ' (EXPIRED)' : ' (VALID)');
+    }
+    out.textContent = res;
+  } catch(e) {
+    out.textContent = '❌ JWT Decode Error: ' + e.message;
+  }
+}
+
+function loadSampleJWT(type) {
+  playCyberSound('click');
+  var token = type === 'admin' 
+    ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1hcmNvIFNlbHZhIE9rbmFtIiwicm9sZSI6IlNZU1RFTV9BRE1JTiIsImlhdCI6MTczOTYwMDAwMCwiZXhwIjoyMDgwMDAwMDAwfQ.signature_hash_preview'
+    : 'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJhZG1pbi1hYnVzZSIsInJvbGUiOiJzdXBlcmFkbWluIiwiYXVkaXQiOiJ2dWxuZXJhYmxlX2J5cGFzcyJ9.';
+  document.getElementById('jwtInput').value = token;
+  decodeJWT();
+}
+
+function calcCrypto() {
+  var txt = document.getElementById('hashInput').value;
+  var out = document.getElementById('hashOutput');
+  if (!txt) {
+    out.textContent = '// Enter string above to compute encodings and hash...';
+    return;
+  }
+  try {
+    var b64 = btoa(unescape(encodeURIComponent(txt)));
+    var hex = Array.from(new TextEncoder().encode(txt)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join(' ');
+    var urlEnc = encodeURIComponent(txt);
+    var rot13 = txt.replace(/[a-zA-Z]/g, function(c) {
+      return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+    });
+    
+    out.textContent = 'Plaintext    : ' + txt +
+                      '\nBase64       : ' + b64 +
+                      '\nHex Dump     : ' + hex +
+                      '\nURL Encoded  : ' + urlEnc +
+                      '\nROT13 Cipher : ' + rot13;
+  } catch(e) {
+    out.textContent = 'Error computing: ' + e.message;
+  }
+}
+
+function inspectNIK() {
+  var nik = document.getElementById('nikInput').value.trim();
+  var out = document.getElementById('nikOutput');
+  if (nik.length < 16) {
+    out.textContent = '// Type 16-digit NIK to parse (Length: ' + nik.length + '/16)...';
+    return;
+  }
+  var prov = nik.substring(0, 2);
+  var kab = nik.substring(2, 4);
+  var kec = nik.substring(4, 6);
+  var rawDay = parseInt(nik.substring(6, 8), 10);
+  var isFemale = rawDay > 40;
+  var day = isFemale ? rawDay - 40 : rawDay;
+  var month = nik.substring(8, 10);
+  var year = nik.substring(10, 12);
+  var seq = nik.substring(12, 16);
+
+  out.textContent = '--- SINIK-PRO CLIENT-SIDE DECODER ---\n' +
+                    'NIK String   : ' + nik + '\n' +
+                    'Province ID  : ' + prov + ' (' + (prov === '35' ? 'Jawa Timur' : prov === '31' ? 'DKI Jakarta' : prov === '32' ? 'Jawa Barat' : 'Region Code') + ')\n' +
+                    'City/Reg ID  : ' + kab + ' (' + (prov === '35' && kab === '07' ? 'Kabupaten Malang' : 'Sub-district') + ')\n' +
+                    'District ID  : ' + kec + '\n' +
+                    'Gender       : ' + (isFemale ? 'Perempuan (Female)' : 'Laki-Laki (Male)') + '\n' +
+                    'Date of Birth: ' + String(day).padStart(2, '0') + '-' + month + '-19' + year + ' / 20' + year + '\n' +
+                    'Sequence UID : ' + seq + '\n' +
+                    'Privacy Check: Sanitized locally, 0 server calls made.';
+}
+
+// Interactive Terminal CLI Drawer
+function toggleCLI() {
+  playCyberSound('open');
+  var drawer = document.getElementById('cliDrawer');
+  var btn = document.getElementById('cliBtn');
+  drawer.classList.toggle('open');
+  btn.classList.toggle('active', drawer.classList.contains('open'));
+  if (drawer.classList.contains('open')) {
+    setTimeout(function() { document.getElementById('cliInput').focus(); }, 100);
+  }
+}
+
+function runCLICommand(cmd) {
+  var input = document.getElementById('cliInput');
+  input.value = cmd;
+  executeCLI(cmd);
+}
+
+function handleCLIKeyDown(e) {
+  if (e.key === 'Enter') {
+    var val = e.target.value.trim();
+    if (val) executeCLI(val);
+    e.target.value = '';
+  }
+}
+
+function appendCLILog(html) {
+  var logs = document.getElementById('cliLogs');
+  var div = document.createElement('div');
+  div.className = 'cli-log-line';
+  div.innerHTML = html;
+  logs.appendChild(div);
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function executeCLI(cmd) {
+  playCyberSound('click');
+  appendCLILog('<span style="color:var(--text-dim);">$ ' + cmd + '</span>');
+  var clean = cmd.toLowerCase().trim();
+  
+  if (clean === 'help' || clean === '?') {
+    appendCLILog('Available commands:<br>' +
+      '  <span style="color:var(--cyan);">whoami</span>        - Print identity profile<br>' +
+      '  <span style="color:var(--cyan);">cat bio</span>       - Print full executive bio<br>' +
+      '  <span style="color:var(--cyan);">skills</span>        - Technical skills matrix &amp; tools<br>' +
+      '  <span style="color:var(--cyan);">vulns</span>         - List selected security findings<br>' +
+      '  <span style="color:var(--cyan);">poc &lt;id&gt;</span>      - Inspect finding PoC (e.g. poc FND-01)<br>' +
+      '  <span style="color:var(--cyan);">cve</span>           - Show CVE &amp; zero-day research<br>' +
+      '  <span style="color:var(--cyan);">certs</span>         - Show certifications &amp; credential IDs<br>' +
+      '  <span style="color:var(--cyan);">contact</span>       - Display contact channels<br>' +
+      '  <span style="color:var(--cyan);">tools</span>         - Open interactive AppSec toolbox<br>' +
+      '  <span style="color:var(--cyan);">matrix</span>        - Toggle digital rain background<br>' +
+      '  <span style="color:var(--cyan);">sound</span>         - Toggle audio effects<br>' +
+      '  <span style="color:var(--cyan);">theme &lt;name&gt;</span>  - emerald | cyberpunk | stealth | amber | paper<br>' +
+      '  <span style="color:var(--cyan);">pdf / print</span>   - Export CV to PDF / Print<br>' +
+      '  <span style="color:var(--cyan);">neofetch</span>      - System &amp; profile information<br>' +
+      '  <span style="color:var(--cyan);">clear</span>        - Clear terminal screen'
+    );
+  } else if (clean === 'whoami' || clean === 'id') {
+    appendCLILog('uid=1000(marco) gid=1000(secops) groups=1000(secops),27(sudo),44(pentest),1337(researcher)');
+  } else if (clean === 'cat bio') {
+    appendCLILog('ꦥꦤꦭꦶꦠꦶ ꦏꦲꦩꦤꦤ꧀ ꦱꦶꦁ ꦔ꧀ꦒꦫꦥ꧀ ꦈꦗꦶ ꦥꦼꦤꦺꦠꦿꦱꦶ ꦄꦥ꧀ꦭꦶꦏꦱꦶ ꦮꦼꦧ꧀ ꦥꦼꦫꦸꦱꦲꦲꦤ꧀꧈ ꦄꦂꦱꦶꦠꦺꦏ꧀ꦠꦸꦂ API (~ꦫꦼꦱ꧀ꦠ꧀ / GraphQL), ꦱꦂꦠ ꦥ꧀ꦭꦸꦒꦶꦤ꧀ Atlassian Data Center. ꦤꦼꦩꦺꦴꦏꦏꦼ ꦭꦤ꧀ ꦔ꧀ꦭꦥꦺꦴꦫꦏꦼ ꦕꦼꦭꦃ ꦏꦲꦩꦤꦤ꧀ ꦏꦤ꧀ꦛꦶ ꦠꦁꦒꦸꦁ ꦗꦮꦧ꧀꧇ ꦩꦸꦁꦒꦃ ꦢꦿꦗꦠ꧀ ꦮꦼꦮꦼꦤꦁ ꦠꦼꦏꦤ꧀ ꦄꦢ꧀ꦩꦶꦤꦶꦱ꧀ꦠꦿꦠꦺꦴꦂ꧈ SSRF, ꦤꦿꦧꦱ꧀ ꦮꦠꦼꦱ꧀ ꦮꦼꦮꦼꦤꦁ (~ꦆꦢꦺꦴꦂ / BOLA), ꦭꦤ꧀ ꦧꦺꦴꦕꦺꦴꦫꦤ꧀ ꦏꦽꦢꦼꦤ꧀ꦱꦶꦪꦭ꧀꧉ ꦏꦸꦭꦶꦤ ꦩꦕ ꦱꦂꦠ ꦤ꧀ꦢꦺꦏꦺꦴꦩ꧀ꦥꦶꦭꦱꦶ ꦏꦺꦴꦝꦼ ꦱꦸꦩ꧀ꦧꦼꦂ Java / JAR, ꦧꦤ꧀ꦗꦸꦂ ꦩ꧀ꦧꦸꦏ꧀ꦠꦺꦏꦏꦼ ꦠꦼꦩꦸꦮꦤ꧀ ꦔꦁꦒꦺꦴ ꦧꦸꦏ꧀ꦠꦶ ꦏꦺꦴꦤ꧀ꦱꦺꦥ꧀ ꦱꦶꦁ ꦏꦲꦸꦗꦶ ꦭꦁꦱꦸꦁ ꦆꦁ ꦭꦶꦁꦏꦸꦔꦤ꧀ ꦈꦫꦶꦥ꧀꧉');
+  } else if (clean === 'skills') {
+    appendCLILog('<b>[TECHNICAL SKILLS MATRIX]</b><br>' +
+      '• Web AppSec    : OWASP Top 10, REST, GraphQL, WebSocket, OAuth 2.0, SAML, IDOR, SSRF<br>' +
+      '• Bytecode Audit: Java JAR (JADX, Procyon), Node.js, Python AST, Android APK (Frida)<br>' +
+      '• Offensive     : Burp Suite Pro, Caido, Nuclei, Katana, Ffuf, Nmap, Wireshark<br>' +
+      '• SIEM &amp; Defense: Wazuh SIEM, Sysmon, Kali Linux, Docker, MITRE ATT&amp;CK'
+    );
+  } else if (clean === 'vulns' || clean === 'findings') {
+    var res = '<b>[DISCLOSED VULNERABILITIES]</b><br>';
+    FINDINGS_DB.forEach(function(f) {
+      res += '• <a href="javascript:openPoCModal(\'' + f.id + '\')" style="color:var(--cyan);text-decoration:underline;">' + f.id + '</a> [' + f.sev + '] ' + f.title.substring(0, 55) + '...<br>';
+    });
+    appendCLILog(res);
+  } else if (clean.startsWith('poc ')) {
+    var id = cmd.split(' ')[1].toUpperCase();
+    openPoCModal(id);
+    appendCLILog('Opening dossier for ' + id + '...');
+  } else if (clean === 'cve') {
+    appendCLILog('<b>[CVE / COORDINATED RESEARCH]</b><br>• <b>Cleartext DB Credentials over TLS (Node.js Connector)</b>: CVE Assigned, advisory coordinated.');
+  } else if (clean === 'certs') {
+    appendCLILog('<b>[VERIFIED CREDENTIALS]</b><br>' +
+      '• Web Penetration Testing (Cyber Academy ID: BWH01110254258)<br>' +
+      '• Cyber Security 101 (TryHackMe ID: THM-0G7VUW6K0M)<br>' +
+      '• Pre Security (TryHackMe ID: THM-R4E0NX6WTU)<br>' +
+      '• Introduction to Cybersecurity (Cisco Networking Academy)'
+    );
+  } else if (clean === 'contact') {
+    appendCLILog('Phone : +62 812-3160-2472<br>Email : houseofmartynix@gmail.com<br>GitHub: github.com/houseofmartynix-debug<br>LinkedIn: linkedin.com/in/mrcslvknm');
+  } else if (clean === 'tools') {
+    toggleToolbox();
+    appendCLILog('Toggled AppSec toolbox sandbox.');
+  } else if (clean === 'matrix') {
+    toggleMatrix();
+    appendCLILog('Matrix rain toggled: ' + (matrixRunning ? 'ENABLED' : 'DISABLED'));
+  } else if (clean === 'sound') {
+    toggleSound();
+    appendCLILog('Audio FX toggled: ' + (soundEnabled ? 'ENABLED' : 'DISABLED'));
+  } else if (clean.startsWith('theme ')) {
+    var t = clean.split(' ')[1];
+    changeTheme(t);
+    appendCLILog('Theme switched to: ' + t);
+  } else if (clean === 'clear') {
+    document.getElementById('cliLogs').innerHTML = '';
+  } else if (clean === 'pdf' || clean === 'print') {
+    window.print();
+  } else if (clean === 'neofetch') {
+    appendCLILog(
+      '<pre style="color:var(--accent);font-family:monospace;font-size:10.5px;line-height:1.2;">' +
+      '  ██████╗ ███████╗ ██████╗  marco@secops<br>' +
+      '  ██╔══██╗██╔════╝██╔════╝  ------------<br>' +
+      '  ██████╔╝███████╗██║       OS      : Kali GNU/Linux x86_64<br>' +
+      '  ██╔═══╝ ╚════██║██║       Host    : Marco Selva Oknam [SecOps]<br>' +
+      '  ██║     ███████║╚██████╗  Kernel  : 6.12.0-secops-hardened<br>' +
+      '  ╚═╝     ╚══════╝ ╚═════╝  Uptime  : Continuous Research<br>' +
+      '                            Shell   : zsh 5.9 (x86_64-debian-linux)<br>' +
+      '                            Terminal: SecOps Interactive Shell v2.4<br>' +
+      '                            Language: Python · Bash · Java · Aksara Jawa<br>' +
+      '                            Bounties: Bugcrowd, HackerOne, YesWeHack, Gerobug<br>' +
+      '</pre>'
+    );
+  } else {
+    playCyberSound('error');
+    appendCLILog('<span style="color:var(--rose);">Command not found: ' + cmd + '. Type "help" for commands.</span>');
+  }
+}
+
+// Global Hotkeys
+window.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey && e.key === 'k') || (e.key === '`' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+    e.preventDefault();
+    toggleCLI();
+  } else if (e.key === 'Escape') {
+    if (document.getElementById('pocModal').classList.contains('open')) closeModal();
+    else if (document.getElementById('cliDrawer').classList.contains('open')) toggleCLI();
+    else if (document.getElementById('cyberToolbox').classList.contains('open')) toggleToolbox();
+  }
+});
 </script>
 </body>
 </html>
