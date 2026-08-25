@@ -23,6 +23,7 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 * **Bug Bounty Platforms:** Bugcrowd, HackerOne, YesWeHack, Gerobug.
 * **Enterprise Risk Mitigation:**
   * **50+ High-Impact Security Findings** triaged and verified across public and private bug bounty programmes.
+  * **$1,600 in bounty rewards** and **45 Bugcrowd researcher points** earned on the Acexia Marketplace Bug Bounty engagement.
   * **100% Coordinated Responsible Disclosure Compliance** under ISO/IEC 29147 standards.
   * Multi-million dollar critical infrastructure data breaches and tenant workspace takeovers prevented.
 
@@ -30,13 +31,15 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 
 | ID | Title & Vulnerability Mechanism | Target Classification | Severity / Score | Status & Proof |
 | :--- | :--- | :--- | :--- | :--- |
-| `FND-01` | **Privilege Escalation to SYSTEM_ADMIN via Predictable Impersonation Token** | Enterprise Jira/Confluence DC Plugin | **P2 High** (CVSS 8.8) | Validated live in production; Full workspace takeover prevented. |
-| `FND-02` | **Cleartext Database Credentials over Encrypted TLS Connections** | Popular Node.js Database Connector | **CVE Pending** (CVSS 5.9) | Triaged & CVE assigned; Coordinated disclosure in progress. |
-| `FND-03` | **User Enumeration & PII Disclosure via National ID (NIK) Endpoint** | Diskominfo Kota Tangerang Selatan (Gerobug) | **Medium** (CVSS 5.3) | Official Certificate of Appreciation `7C0B38027836`. |
-| `FND-04` | **Source Code & Sensitive Configuration Disclosure** | Diskominfo Kota Tangerang Selatan (Gerobug) | **Medium** (CVSS 5.3) | Official Certificate of Appreciation `7C0B36916030`. |
-| `FND-05` | **SSRF & Blind SSRF via Webhook & Attachment Handlers** | Multiple Enterprise Atlassian DC Plugins | **P2 / P3 High** (CVSS 7.7) | Triaged & accepted; Blocked cloud metadata (169.254.169.254) extraction. |
-| `FND-06` | **Model Context Protocol (MCP) Unauthenticated Localhost HTTP Exposure** | Desktop AI & Dev Application | **CVSS 7.3 High** | Reported via official programme; Patched cross-origin tool execution. |
-| `FND-07` | **Approval Flow Bypass & Open OAuth 2.0 Dynamic Client Registration** | Production Enterprise SaaS Platforms | **High** (CVSS 8.1) | Under active triage; Intercepted authorization code leakage. |
+| `FND-01` | **Admin-Page Resolver Routes Execute for Any Licensed User (No Authorisation Check)** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$1,500 / 40 points** — Acexia Marketplace Bug Bounty. |
+| `FND-02` | **Arbitrary File Write & Overwrite in `JIRA_HOME` by Any Logged-In Non-Administrator** | Intelligent User Manager (IUM) for Jira Data Center 5.4.5 | **P4** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$100 / 5 points** — Acexia Marketplace Bug Bounty. |
+| `FND-03` | **Privilege Escalation to SYSTEM_ADMIN via Predictable Impersonation Token** | Enterprise Jira/Confluence DC Plugin | **P2 High** (CVSS 8.8) | Validated live in production; Full workspace takeover prevented. |
+| `FND-04` | **Cleartext Database Credentials over Encrypted TLS Connections** | Popular Node.js Database Connector | **CVE Pending** (CVSS 5.9) | Triaged & CVE assigned; Coordinated disclosure in progress. |
+| `FND-05` | **User Enumeration & PII Disclosure via National ID (NIK) Endpoint** | Diskominfo Kota Tangerang Selatan (Gerobug) | **Medium** (CVSS 5.3) | Official Certificate of Appreciation `7C0B38027836`. |
+| `FND-06` | **Source Code & Sensitive Configuration Disclosure** | Diskominfo Kota Tangerang Selatan (Gerobug) | **Medium** (CVSS 5.3) | Official Certificate of Appreciation `7C0B36916030`. |
+| `FND-07` | **SSRF & Blind SSRF via Webhook & Attachment Handlers** | Multiple Enterprise Atlassian DC Plugins | **P2 / P3 High** (CVSS 7.7) | Triaged & accepted; Blocked cloud metadata (169.254.169.254) extraction. |
+| `FND-08` | **Model Context Protocol (MCP) Unauthenticated Localhost HTTP Exposure** | Desktop AI & Dev Application | **CVSS 7.3 High** | Reported via official programme; Patched cross-origin tool execution. |
+| `FND-09` | **Approval Flow Bypass & Open OAuth 2.0 Dynamic Client Registration** | Production Enterprise SaaS Platforms | **High** (CVSS 8.1) | Under active triage; Intercepted authorization code leakage. |
 
 ---
 
@@ -56,7 +59,13 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
    * 🌌 **Neon Synth:** Cyberpunk cyan & magenta palette.
    * 🛡️ **Midnight Stealth:** Titanium slate & graphite dark mode.
    * 🖥️ **Amber CRT:** Vintage 1980s phosphor terminal.
+   * 🩸 **Crimson Root:** Red-team crimson & rose palette.
    * 📄 **Clean Paper:** Recruiter high-contrast executive mode.
+   * Every surface — shell chrome, telemetry bars, input wells, modal chrome — is driven by theme tokens, so the light theme is genuinely light rather than a dark chassis with light text.
+
+8. **Layered Ambient Backdrop:**
+   * Drifting multi-stop aurora field, a slow diagonal light beam, an engineering grid, CRT scanlines, a vignette and a film-grain pass — all theme-aware, all pure CSS, and all disabled under `prefers-reduced-motion` and in print.
+   * Reading-progress rail and `IntersectionObserver` scroll reveals (applied from JS, so a no-JS visitor still sees the full document).
 5. **Programmatic Web Audio API Sound FX:**
    * Pure synthesized cyber mechanical keyclicks and modal chimes (zero external audio asset latency), toggleable via header switch.
 6. **Canvas Matrix Digital Rain:**
@@ -72,13 +81,15 @@ The entire dual-language suite is compiled from a single unified Python compiler
 
 ```
 curriculum-vitae/
-├── build.py          # Single-source compiler (renders index.html & en/index.html)
-├── jawa.py           # Bidirectional Javanese transliterator + round-trip verifier
-├── style.css         # Comprehensive SecOps design system & print stylesheet
-├── photo.b64         # Embedded Base64 profile portrait (zero network lag)
-├── index.html        # Rendered Aksara Jawa canonical edition (root)
+├── build.py            # Single-source compiler (renders index.html & en/index.html)
+├── jawa.py             # Bidirectional Javanese transliterator + round-trip verifier
+├── style.css           # Comprehensive SecOps design system & print stylesheet
+├── tools-portrait.py   # Portrait pipeline: crop → depth-of-field → tone → Base64
+├── photo.b64           # Embedded Base64 profile portrait (zero network lag)
+├── photo-formal.b64    # Alternate formal studio headshot (swap in over photo.b64)
+├── index.html          # Rendered Aksara Jawa canonical edition (root)
 └── en/
-    └── index.html    # Rendered English edition (/en/)
+    └── index.html      # Rendered English edition (/en/)
 ```
 
 ### 100% Round-Trip Transliteration Guarantee
@@ -97,12 +108,12 @@ Every single Javanese string is verified upon build; builds will fail if a singl
    ```
    *Expected Output:*
    ```text
-   strings transliterated : 145
-   exact round-trip       : 145
+   strings transliterated : 161
+   exact round-trip       : 161
    needs eyeball          : 0
 
-   index.html    : ~122 KB
-   en/index.html : ~124 KB
+   index.html    : ~180 KB
+   en/index.html : ~183 KB
    ```
 3. **Preview Locally:**
    ```bash

@@ -33,7 +33,7 @@ PANGKON = '꧀'   # virama / pasangan trigger
 TELU    = '꦳'   # cecak telu -> rekan
 
 # --- aksara swara (word-initial vowels) ------------------------------------
-SW = {'a': 'ꦄ', 'i': 'ꦆ', 'u': 'ꦈ', 'é': 'ꦌ', 'o': 'ꦎ',
+SW = {'a': 'ꦄ', 'i': 'ꦆ', 'u': 'ꦈ', 'é': 'ꦌ', 'è': 'ꦌ', 'o': 'ꦎ',
       'e': 'ꦄ' + PEPET}
 
 # --- punctuation & digits --------------------------------------------------
@@ -198,7 +198,7 @@ for k in CKEYS:
 R_CONS[KA + TELU] = 'kh'; R_CONS[GA + TELU] = 'gh'; R_CONS[SA + TELU] = 'sy'
 R_CONS[PA + TELU] = 'f';  R_CONS[WA + TELU] = 'v';  R_CONS[JA + TELU] = 'z'
 R_CONS[DA + TELU] = 'dz'
-R_SW = {v: k for k, v in SW.items() if k != 'e'}
+R_SW = {v: k for k, v in SW.items() if k not in ('e', 'è')}
 R_SW[SW['e']] = 'e'
 R_DIG = {v: k for k, v in DIGITS.items()}
 

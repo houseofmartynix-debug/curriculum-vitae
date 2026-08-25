@@ -13,8 +13,8 @@ import pathlib
 import jawa
 
 HERE = pathlib.Path(__file__).parent
-PHOTO = (HERE / 'photo.b64').read_text().strip()
-CSS = (HERE / 'style.css').read_text()
+PHOTO = (HERE / 'photo.b64').read_text(encoding='utf-8').strip()
+CSS = (HERE / 'style.css').read_text(encoding='utf-8')
 
 AUDIT = []
 
@@ -84,6 +84,7 @@ def render(lang):
     # ---------------------------------------------------------------- stats ---
     STATS = [
         ('50+', T('Temuan Kaamanan', 'Vulnerabilities Reported'), T('Lolos triase & ditampa', 'Triaged & Verified Across Bounty Platforms')),
+        ('$1.6K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~45 ~poin panaliti', 'Bugcrowd · 45 researcher points')),
         ('100%', T('Kepatuhan Lapuran', 'Responsible Disclosure'), T('Manut pranatan ~ISO/IEC ~29147', 'Zero uncoordinated leaks / Strict SLA')),
         ('4+', T('Platform Kaamanan', 'Bounty Ecosystems'), 'Bugcrowd · HackerOne · YesWeHack · Gerobug'),
         ('30+', T('Kelas Serangan', 'Documented Attack Classes'), T('Cathetan proyèk riset', 'Offensive security payload knowledgebase')),
@@ -180,6 +181,95 @@ def render(lang):
     FIND_DATA = [
         {
             'id': 'FND-01',
+            'title': T('Rute ~resolver kaca administrator bisa dijalanake déning saben pangguna berlisensi',
+                       'Admin-page resolver routes execute for any licensed user — no authorisation check'),
+            'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Cloud ~6.4.0 · ~Atlassian ~Forge',
+                        'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
+            'sev': 'P3 · $1,500',
+            'sev_cat': 'paid',
+            'proof': T('ditampa lan diganjar ~$1,500 (~40 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $1,500 (40 points) — Acexia Marketplace Bug Bounty'),
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · rated P3',
+            'cwe': 'CWE-862 / CWE-285: Missing Authorization on Forge resolver routes',
+            'root_cause': T(
+                'Modul kadhaptar minangka kaca administrator, nanging ~Forge mung njaga dalan kacané, ora njaga ~resolver-é. '
+                'Wewenang ~resolver diserahake marang aplikasi, mangka aplikasi ora mriksa apa-apa, satemah saben akun berlisensi '
+                'bisa nekani rute administrator kanthi langsung.',
+                'The module is declared as a jiraAdminPage, and Forge enforces administrator access only on the page route — never on '
+                'the resolver behind it. Forge leaves resolver authorisation to the app, and resolver-admin performs none, so any licensed '
+                'account reaches getConfig, getAdminUsers, getOrgApiSettings, getManagement and getInstalledProducts directly.'),
+            'poc': T(
+                '1. Mlebu log ing situs ~Jira ~Cloud sing masang aplikasi iki minangka pangguna berlisensi lumrah.\n'
+                '2. Bukak kaca aplikasi, banjur waca konteks aplikasi saka konsol panjelajah.\n'
+                '3. Undang rute ~resolver administrator nganggo token konteks ~Forge duwèké akun non-administrator mau.\n'
+                '4. Wewenang ~ADMINISTER pancèn ~false, nanging rute administrator isih mbalèkaké ~success:true.',
+                '1. Log in to a Jira Cloud site with the app installed, as a licensed non-administrator.\n'
+                '2. Open the app page and read the app context (localId, extension, installationId, version) from the browser console.\n'
+                '3. Invoke the admin resolver routes with a legitimately minted Forge context token issued to that non-admin account.\n'
+                '4. The actor asserts ADMINISTER = false, yet every admin route still returns success:true.'),
+            'impact': T(
+                'Administrator ~Jira kélangan kendhali tunggal marang permukaan aplikasi sing ngurus pangguna lan wewenang. '
+                'Saben pangguna berlisensi bisa maca konfigurasi aplikasi, cathetan lisénsi, setelan ~API organisasi, '
+                'sarta ndhaptar pangguna sing diurus aplikasi.',
+                'A Jira administrator loses exclusive control of the app surface that manages users and permissions on their instance. '
+                'Any licensed user can read the app configuration and licence records, the organisation API settings (including whether '
+                'an org API key is configured), and enumerate the users the app manages — a complete authorisation bypass of the '
+                'administrative surface.'),
+            'fix': T(
+                'Priksa wewenang sing ngundang ing njero saben ~resolver, aja mung ing dalan kaca. ~Forge wis mènèhi '
+                '~accountId sing ngundang, dadi wewenang ~ADMINISTER kudu dipriksa ing sisih server lan panjaluk ditolak yèn ora cocog.',
+                'Check the caller permission inside every resolver, not only on the page route. Forge supplies the caller accountId in the '
+                'resolver context: resolve that account ADMINISTER permission server-side and reject the call otherwise.')
+        },
+        {
+            'id': 'FND-02',
+            'title': T('Pangguna dudu administrator bisa nulis lan nimpa berkas sawenang-wenang ing ~JIRA_HOME',
+                       'Any logged-in non-administrator can write and overwrite arbitrary files in JIRA_HOME'),
+            'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Data ~Center ~5.4.5 · ~Atlassian ~Marketplace',
+                        'Intelligent User Manager (IUM) for Jira Data Center 5.4.5 · Atlassian Marketplace'),
+            'sev': 'P4 · $100',
+            'sev_cat': 'paid',
+            'proof': T('ditampa lan diganjar ~$100 (~5 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $100 (5 points) — Acexia Marketplace Bug Bounty'),
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · rated P4',
+            'cwe': 'CWE-862 / CWE-434: Missing Authorization & Unrestricted File Upload',
+            'root_cause': T(
+                'Panyaring ~servlet gambar mung nglakokake pamriksan autentikasi ing njero cabang sing mligi kanggo métodhe ~GET, '
+                'satemah kabèh métodhe liyané tumiba langsung menyang ~servlet. Métodhe ~doPost banjur ngunggahake berkas tanpa '
+                'autentikasi, tanpa pamriksan administrator, tanpa token ~XSRF, lan tanpa dhaptar ijin èkstènsi utawa ~MIME.',
+                'IUMImageServletFilter.doFilter() runs its authentication check only inside a branch guarded by '
+                'request.getMethod().equalsIgnoreCase("GET"); every non-GET method falls straight through to the servlet. '
+                'ImageServlet.doPost() then calls doUploadPicture() with no authentication, no administrator check, no XSRF token '
+                'validation and no extension or MIME allowlist, writing into the uploads directory and calling DAO.updateUrlLog().'),
+            'poc': T(
+                '1. Bukti manawa palaku dudu administrator: ~API wewenang mbalèkaké ~havePermission ~false.\n'
+                '2. Kontrol — panjaluk ~POST tanpa mlebu log ditolak kanthi ~401.\n'
+                '3. Panjaluk sing padha nganggo akun berlisensi lumrah mbalèkaké ~200 lan berkasé kasimpen.\n'
+                '4. Baléni nganggo jeneng berkas sing padha nanging isi béda — ~200, lan berkas ing cakram nyimpen isi anyar.\n'
+                '5. Baléni nganggo èkstènsi ~.html — ~200, kasimpen apa anané, tanpa validasi èkstènsi utawa ~MIME.',
+                '1. Confirm the actor is not an administrator: /rest/api/2/mypermissions?permissions=ADMINISTER returns havePermission = false.\n'
+                '2. Control — an anonymous POST to /plugins/servlet/ium-image is rejected with 401.\n'
+                '3. The same request as a plain licensed user returns 200 and the file is stored.\n'
+                '4. Repeat with the same filename and different content — 200, and the file on disk holds the new content.\n'
+                '5. Repeat with a .html filename — 200, stored as-is; no extension or MIME validation is performed.'),
+            'impact': T(
+                'Administrator kélangan kendhali marang isi direktori unggahan lan logo aplikasi: saben pangguna berlisensi bisa '
+                'nulis berkas, nimpa berkas sing mauné diunggahake administrator, sarta ngowahi cathetan ~URL sing katon déning '
+                'kabèh pangguna. Saben panjaluk bisa nggawa ~3 ~MiB tanpa wates tambahan, dadi cakram ~JIRA_HOME bisa dientèkake.',
+                'A Jira administrator loses control over the contents of JIRA_HOME/uploads and over the application logo: any licensed user '
+                'with no administrative rights can write files there, replace files an administrator previously uploaded, and trigger '
+                'DAO.updateUrlLog() on every successful upload — a state change visible to every user of the instance. Each request may '
+                'carry up to 3 MiB with no additional throttling, so any user can consume JIRA_HOME disk at will.'),
+            'fix': T(
+                'Pindhahake pamriksan wewenang metu saka cabang ~GET, banjur trapake ing ~servlet-é dhéwé — kaya sing wis ditindakake '
+                'déning versi ~Confluence: wajibake administrator kanggo ~doPost, validasi token ~XSRF, lan wènèhi dhaptar ijin èkstènsi '
+                'sarta ~MIME kanggo unggahan.',
+                'Move the authorisation check out of the GET branch and apply it to the servlet itself, matching what the Confluence build '
+                'of the app already does: require an administrator for doPost(), validate the XSRF token, and add an extension/MIME '
+                'allowlist for the upload. Rejecting non-GET methods in the filter would also close it.')
+        },
+        {
+            'id': 'FND-03',
             'title': T('Munggah drajat wewenang tekan administrator liwat token panyamaran sing kena ditebak',
                        'Privilege escalation to administrator via predictable impersonation token'),
             'target': T('Plugin Jira/Confluence perusahaan', 'Enterprise Jira/Confluence Data Center Plugin'),
@@ -202,7 +292,7 @@ def render(lang):
                 'Implement cryptographically secure pseudorandom number generator (CSPRNG, java.security.SecureRandom) and enforce strict cryptographic HMAC signing.')
         },
         {
-            'id': 'FND-02',
+            'id': 'FND-04',
             'title': T('Sandhi database kekirim tanpa enkripsi senajan ~TLS diuripake',
                        'Database credential sent in cleartext despite TLS being enabled'),
             'target': T('Konektor database ~Node.js sing akèh dienggo', 'Widely-used Node.js Database Connector Ecosystem'),
@@ -225,7 +315,7 @@ def render(lang):
                 'Queue authentication frame dispatch until the TLS secureConnect event has fully resolved and cipher negotiation is verified.')
         },
         {
-            'id': 'FND-03',
+            'id': 'FND-05',
             'title': T('Enumerasi pangguna liwat ~NIK ing layanan pamaréntah',
                        'User enumeration & PII disclosure via national ID (NIK) endpoint'),
             'target': 'Diskominfo Kota Tangerang Selatan · Gerobug',
@@ -248,7 +338,7 @@ def render(lang):
                 'Implemented rate limiting, CAPTCHA verification on public forms, and standardized opaque response messaging.')
         },
         {
-            'id': 'FND-04',
+            'id': 'FND-06',
             'title': T('Bocoran kodhe sumber ing layanan pamaréntah',
                        'Source code & sensitive config disclosure in government service'),
             'target': 'Diskominfo Kota Tangerang Selatan · Gerobug',
@@ -271,7 +361,7 @@ def render(lang):
                 'Restricted web server file access rules, sanitized web root, and integrated pre-deployment artifact scanning in CI pipeline.')
         },
         {
-            'id': 'FND-05',
+            'id': 'FND-07',
             'title': T('~SSRF, kalebu ~SSRF buta, ing plugin ~Atlassian ~Data ~Center',
                        'SSRF and blind SSRF in commercial Atlassian Data Center plugins'),
             'target': T('Rong vendor plugin perusahaan kapisah', 'Two Separate Enterprise Plugin Vendors'),
@@ -294,7 +384,7 @@ def render(lang):
                 'Implemented strict IP address denylist, DNS re-resolution validation, and isolated outbound egress proxying.')
         },
         {
-            'id': 'FND-06',
+            'id': 'FND-08',
             'title': T('Layanan ~MCP mbukak liwat ~HTTP tanpa autentikasi',
                        'Model Context Protocol (MCP) exposed over HTTP without auth'),
             'target': T('Aplikasi desktop ~AI / pangembang', 'Desktop AI & Developer Workstation Application'),
@@ -317,7 +407,7 @@ def render(lang):
                 'Added cryptographic per-session token validation and restricted CORS origins to trusted application domains.')
         },
         {
-            'id': 'FND-07',
+            'id': 'FND-09',
             'title': T('Nrabas alur persetujuan lan registrasi klien ~OAuth sing mbukak',
                        'Approval-flow bypass & open OAuth 2.0 dynamic client registration'),
             'target': T('Rong program produksi kapisah', 'Two Separate Production Enterprise SaaS Platforms'),
@@ -498,7 +588,7 @@ def render(lang):
     # Filter chips
     f_all = T('Kabeh', 'All')
     f_high = T('Dhuwur', 'P1 / P2 High')
-    f_med = T('Sedhengan', 'P3 / P4 Medium')
+    f_paid = T('Diganjar Hadiah', 'Rewarded Bounty')
     f_cve = T('Riset ~CVE', 'CVE / Research')
     f_gov = T('Pamaréntah', 'Government')
 
@@ -519,6 +609,13 @@ def render(lang):
 {EN_OVERRIDE if not jv else ''}
 </head>
 <body data-theme="emerald">
+
+<!-- Ambient backdrop layers (aurora + beam + film grain live behind everything) -->
+<div class="ambient-beam" aria-hidden="true"></div>
+<div class="ambient-grain" aria-hidden="true"></div>
+
+<!-- Reading progress rail -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- Background Digital Rain Canvas -->
 <canvas id="matrixCanvas"></canvas>
@@ -563,6 +660,7 @@ def render(lang):
           <option value="cyberpunk">🌌 Neon Synth</option>
           <option value="stealth">🛡️ Midnight Stealth</option>
           <option value="amber">🖥️ Amber CRT</option>
+          <option value="crimson">🩸 Crimson Root</option>
           <option value="paper">📄 Clean Paper</option>
         </select>
         <button class="action-btn" onclick="window.print()" title="Print CV or Save as PDF">
@@ -714,6 +812,7 @@ def render(lang):
             <!-- Filter Bar -->
             <div class="filter-bar">
               <button class="filter-chip active" onclick="filterFindings('all', this)">{f_all}</button>
+              <button class="filter-chip" onclick="filterFindings('paid', this)">{f_paid}</button>
               <button class="filter-chip" onclick="filterFindings('high', this)">{f_high}</button>
               <button class="filter-chip" onclick="filterFindings('cve', this)">{f_cve}</button>
               <button class="filter-chip" onclick="filterFindings('gov', this)">{f_gov}</button>
@@ -968,11 +1067,22 @@ function initMatrix() {{
   }}
 }}
 
+// Rain colours follow the active theme rather than the emerald hard-code.
+function matrixPalette() {{
+  var cs = getComputedStyle(document.body);
+  var accent = (cs.getPropertyValue('--accent') || '#00dc82').trim();
+  var bg = (cs.getPropertyValue('--bg') || '#06080d').trim();
+  var r = parseInt(bg.slice(1, 3), 16), g = parseInt(bg.slice(3, 5), 16), b = parseInt(bg.slice(5, 7), 16);
+  if (isNaN(r)) {{ r = 6; g = 8; b = 13; }}
+  return {{ head: accent, trail: 'rgba(' + r + ',' + g + ',' + b + ',0.08)' }};
+}}
+
 function drawMatrix() {{
   if (!matrixRunning || !mCtx) return;
-  mCtx.fillStyle = 'rgba(6, 8, 13, 0.08)';
+  var pal = matrixPalette();
+  mCtx.fillStyle = pal.trail;
   mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-  mCtx.fillStyle = '#00dc82';
+  mCtx.fillStyle = pal.head;
   mCtx.font = '13px monospace';
   
   var chars = '0123456789ABCDEFSEC_AUDIT_EXPLOIT_POC_CVSS_VRT_JAR_AST';
@@ -1006,6 +1116,41 @@ function toggleMatrix() {{
 window.addEventListener('resize', function() {{
   if (matrixRunning) initMatrix();
 }});
+
+// Reading progress rail
+(function() {{
+  var rail = document.getElementById('scrollProgress');
+  if (!rail) return;
+  function update() {{
+    var doc = document.documentElement;
+    var max = (doc.scrollHeight - doc.clientHeight) || 1;
+    var pct = Math.min(100, Math.max(0, (doc.scrollTop || window.pageYOffset) / max * 100));
+    rail.style.width = pct + '%';
+  }}
+  window.addEventListener('scroll', update, {{ passive: true }});
+  window.addEventListener('resize', update);
+  update();
+}})();
+
+// Scroll reveal — the class is applied here so a no-JS visitor still sees everything
+(function() {{
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.section, .stat-card, .telem-cell');
+  var io = new IntersectionObserver(function(entries) {{
+    entries.forEach(function(e) {{
+      if (e.isIntersecting) {{
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }}
+    }});
+  }}, {{ rootMargin: '0px 0px -8% 0px', threshold: 0.06 }});
+  Array.prototype.forEach.call(targets, function(el, i) {{
+    el.classList.add('reveal-item');
+    el.style.transitionDelay = Math.min(i, 6) * 45 + 'ms';
+    io.observe(el);
+  }});
+}})();
 
 // Theme Switcher
 function changeTheme(themeName) {{
@@ -1290,7 +1435,7 @@ function executeCLI(cmd) {{
       '  <span style="color:var(--cyan);">tools</span>         - Open interactive AppSec toolbox<br>' +
       '  <span style="color:var(--cyan);">matrix</span>        - Toggle digital rain background<br>' +
       '  <span style="color:var(--cyan);">sound</span>         - Toggle audio effects<br>' +
-      '  <span style="color:var(--cyan);">theme &lt;name&gt;</span>  - emerald | cyberpunk | stealth | amber | paper<br>' +
+      '  <span style="color:var(--cyan);">theme &lt;name&gt;</span>  - emerald | cyberpunk | stealth | amber | crimson | paper<br>' +
       '  <span style="color:var(--cyan);">pdf / print</span>   - Export CV to PDF / Print<br>' +
       '  <span style="color:var(--cyan);">neofetch</span>      - System &amp; profile information<br>' +
       '  <span style="color:var(--cyan);">clear</span>        - Clear terminal screen'
