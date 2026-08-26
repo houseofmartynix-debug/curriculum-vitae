@@ -68,7 +68,13 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
    * Above it: a drifting multi-stop aurora field, a slow diagonal light beam, an engineering grid, CRT scanlines, a vignette and a film-grain pass — all theme-aware, all pure CSS, and all disabled under `prefers-reduced-motion` and in print.
    * The `paper` theme drops the backdrop to `0.13` opacity and print hides it entirely, so recruiter mode stays clean.
    * Reading-progress rail and `IntersectionObserver` scroll reveals (applied from JS, so a no-JS visitor still sees the full document).
-5. **Programmatic Web Audio API Sound FX:**
+5. **Opt-In Soundtrack (`▶ Music`):**
+   * Two-track playlist in `music/`, wired through a single `<audio>` element with `preload="none"` — the ~10 MB is never fetched unless a visitor actually presses play.
+   * Never autoplays. Click to play, click again to pause, shift-click to skip; `music` and `next` also work from the terminal shell. Tracks advance automatically on `ended`.
+   * The button flips state optimistically and shows a `buffering…` chip, then confirms on the `playing` event — otherwise a 5 MB track leaves the control looking dead on a slow connection.
+   * Animated equaliser bars in the button while playing; the now-playing chip is hidden in print.
+
+6. **Programmatic Web Audio API Sound FX:**
    * Pure synthesized cyber mechanical keyclicks and modal chimes (zero external audio asset latency), toggleable via header switch.
 6. **Canvas Matrix Digital Rain:**
    * 60 FPS hardware-accelerated digital rain animation toggleable on demand.
@@ -91,6 +97,7 @@ curriculum-vitae/
 ├── photo.b64           # Embedded Base64 profile portrait (zero network lag)
 ├── photo-formal.b64    # Alternate formal studio headshot (swap in over photo.b64)
 ├── bg.b64              # Embedded Base64 page backdrop portrait
+├── music/              # Soundtrack, served as files (never inlined)
 ├── index.html          # Rendered Aksara Jawa canonical edition (root)
 └── en/
     └── index.html      # Rendered English edition (/en/)

@@ -330,6 +330,7 @@
 @keyframes ringSpin{to{transform:rotate(1turn)}}
 @keyframes haloPulse{0%,100%{opacity:0.55}50%{opacity:1}}
 @keyframes scanDown{from{transform:translateY(-100%)}to{transform:translateY(400%)}}
+@keyframes eqBounce{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}
 
 /* ==========================================================================
    3. BASE + AMBIENT BACKGROUND STACK
@@ -643,6 +644,55 @@ body.matrix-active #matrixCanvas{display:block}
   transform:translateY(-1px);
 }
 .action-btn .btn-icon{font-size:12px}
+
+/* SOUNDTRACK BUTTON + NOW-PLAYING CHIP */
+.music-btn.playing{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:var(--accent-dim);
+}
+.music-eq{
+  display:none;
+  align-items:flex-end;
+  gap:2px;
+  height:11px;
+  margin-left:2px;
+}
+.music-btn.playing .music-eq{display:inline-flex}
+.music-eq i{
+  width:2px;
+  background:var(--accent);
+  border-radius:1px;
+  animation:eqBounce 0.9s ease-in-out infinite;
+}
+.music-eq i:nth-child(1){height:40%;animation-delay:-0.2s}
+.music-eq i:nth-child(2){height:100%;animation-delay:-0.55s}
+.music-eq i:nth-child(3){height:65%;animation-delay:-0.85s}
+
+.now-playing{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translate(-50%,14px);
+  z-index:9997;
+  background:var(--bar);
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-family:var(--mono);
+  font-size:11.5px;
+  font-weight:600;
+  padding:7px 15px;
+  border-radius:999px;
+  box-shadow:0 10px 30px -10px var(--accent-glow),0 0 0 1px var(--accent-dim);
+  opacity:0;
+  pointer-events:none;
+  white-space:nowrap;
+  max-width:calc(100vw - 32px);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transition:opacity 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.now-playing.show{opacity:1;transform:translate(-50%,0)}
 
 /* Theme Dropdown / Selector */
 .theme-select{
@@ -1809,7 +1859,7 @@ body.matrix-active #matrixCanvas{display:block}
     line-height:1.45;
   }
   body::before,body::after{display:none!important}
-  .ambient-grain,.ambient-beam,.ambient-photo,.scroll-progress{display:none!important}
+  .ambient-grain,.ambient-beam,.ambient-photo,.scroll-progress,.now-playing{display:none!important}
   .shell-bar,.telemetry-strip,.stats-banner,.toast,.repo-arrow,.cursor,.hero-tag::before,#matrixCanvas,.cyber-toolbox,.filter-bar,.f-poc-link,.cli-drawer,.cyber-modal-overlay{display:none!important}
   .terminal-shell::before,.hero-header::before,.hero-tag::after,.avatar-frame::after,.avatar-wrapper::before,.avatar-wrapper::after{display:none!important}
   .finding-card::after,.cert-item::after,.edu-box::after,.repo-card::after{display:none!important}

@@ -80,6 +80,7 @@ def render(lang):
     btn_tools  = T('Piranti Kaamanan', 'Security Toolbox')
     btn_snd    = T('Swara', 'Audio FX')
     btn_matrix = T('~Matrix', 'Matrix Rain')
+    btn_music  = T('Gendhing', 'Music')
     copied_txt = T('Tersalin!', 'Copied!')
 
     # ---------------------------------------------------------------- stats ---
@@ -596,6 +597,16 @@ def render(lang):
     # Serialize finding data for JS modal
     finding_data_json = json.dumps(FIND_DATA, ensure_ascii=False)
 
+    # Soundtrack. The Javanese edition renders at the repo root, the English one
+    # a directory deeper, so the media path differs per edition.
+    music_base = 'music/' if jv else '../music/'
+    TRACKS = [
+        ('hicko-funk.mp3', 'HICKO FUNK!'),
+        ('slava-funk-slowed.mp3', 'SLAVA FUNK! (Slowed)'),
+    ]
+    tracks_json = json.dumps([{'src': music_base + f, 'title': t} for f, t in TRACKS],
+                             ensure_ascii=False)
+
     return f'''<!DOCTYPE html>
 <html lang="{'jv' if jv else 'en'}">
 <head>
@@ -621,6 +632,10 @@ def render(lang):
 
 <!-- Background Digital Rain Canvas -->
 <canvas id="matrixCanvas"></canvas>
+
+<!-- Soundtrack. preload="none" so the ~10 MB never loads unless asked for. -->
+<audio id="cvAudio" preload="none" aria-hidden="true"></audio>
+<div class="now-playing" id="nowPlaying" aria-live="polite"></div>
 
 <div class="cv-container">
   <div class="terminal-shell">
@@ -656,6 +671,11 @@ def render(lang):
         <button class="action-btn" id="soundBtn" onclick="toggleSound()" title="Toggle Audio FX">
           <span class="btn-icon" id="soundIcon">🔇</span>
           <span class="{C.strip()}">{btn_snd}</span>
+        </button>
+        <button class="action-btn music-btn" id="musicBtn" onclick="toggleMusic(event)" title="Play soundtrack — click again to pause, shift-click to skip track">
+          <span class="btn-icon" id="musicIcon">▶</span>
+          <span class="{C.strip()}">{btn_music}</span>
+          <span class="music-eq" id="musicEq" aria-hidden="true"><i></i><i></i><i></i></span>
         </button>
         <select class="theme-select" id="themeSelect" onchange="changeTheme(this.value)" title="Choose Theme">
           <option value="emerald">⚡ Cyber Emerald</option>
@@ -1119,6 +1139,84 @@ window.addEventListener('resize', function() {{
   if (matrixRunning) initMatrix();
 }});
 
+// Soundtrack — opt-in only. Browsers block autoplay and an unrequested
+// track playing over a CV is worse than no track at all.
+var MUSIC_TRACKS = {tracks_json};
+var musicIndex = 0;
+var audioEl = document.getElementById('cvAudio');
+
+function showNowPlaying(text) {{
+  var el = document.getElementById('nowPlaying');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(function() {{ el.classList.remove('show'); }}, 3200);
+}}
+
+function loadTrack(i) {{
+  if (!audioEl || !MUSIC_TRACKS.length) return;
+  musicIndex = (i + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
+  audioEl.src = MUSIC_TRACKS[musicIndex].src;
+  audioEl.load();
+}}
+
+function setMusicUI(playing) {{
+  var btn = document.getElementById('musicBtn');
+  var icon = document.getElementById('musicIcon');
+  if (icon) icon.textContent = playing ? '⏸' : '▶';
+  if (btn) btn.classList.toggle('playing', playing);
+}}
+
+function toggleMusic(e) {{
+  if (!audioEl || !MUSIC_TRACKS.length) return;
+  // Shift-click skips to the next track instead of pausing.
+  if (e && e.shiftKey && !audioEl.paused) {{ nextTrack(); return; }}
+  if (audioEl.paused) {{
+    if (!audioEl.src) loadTrack(musicIndex);
+    audioEl.volume = 0.55;
+    // Flip the UI immediately. The track is ~5 MB, so waiting for play() to
+    // resolve would leave the button looking dead for seconds on a slow line.
+    setMusicUI(true);
+    showNowPlaying('♪ ' + MUSIC_TRACKS[musicIndex].title + ' — buffering…');
+    audioEl.play().catch(function() {{
+      setMusicUI(false);
+      showNowPlaying('Playback blocked by the browser — click again.');
+    }});
+  }} else {{
+    audioEl.pause();
+    setMusicUI(false);
+    showNowPlaying('⏸ paused');
+  }}
+}}
+
+function nextTrack() {{
+  if (!audioEl || !MUSIC_TRACKS.length) return;
+  var wasPlaying = !audioEl.paused;
+  loadTrack(musicIndex + 1);
+  if (wasPlaying) {{
+    audioEl.volume = 0.55;
+    setMusicUI(true);
+    showNowPlaying('♪ ' + MUSIC_TRACKS[musicIndex].title);
+    audioEl.play().catch(function() {{ setMusicUI(false); }});
+  }} else {{
+    showNowPlaying('♪ ' + MUSIC_TRACKS[musicIndex].title);
+  }}
+}}
+
+if (audioEl) {{
+  audioEl.addEventListener('ended', nextTrack);
+  // Confirm the buffering label once sound is genuinely coming out.
+  audioEl.addEventListener('playing', function() {{
+    setMusicUI(true);
+    showNowPlaying('♪ ' + MUSIC_TRACKS[musicIndex].title);
+  }});
+  audioEl.addEventListener('error', function() {{
+    setMusicUI(false);
+    showNowPlaying('Track failed to load.');
+  }});
+}}
+
 // Reading progress rail
 (function() {{
   var rail = document.getElementById('scrollProgress');
@@ -1436,6 +1534,8 @@ function executeCLI(cmd) {{
       '  <span style="color:var(--cyan);">contact</span>       - Display contact channels<br>' +
       '  <span style="color:var(--cyan);">tools</span>         - Open interactive AppSec toolbox<br>' +
       '  <span style="color:var(--cyan);">matrix</span>        - Toggle digital rain background<br>' +
+      '  <span style="color:var(--cyan);">music</span>         - Play / pause the soundtrack<br>' +
+      '  <span style="color:var(--cyan);">next</span>          - Skip to the next track<br>' +
       '  <span style="color:var(--cyan);">sound</span>         - Toggle audio effects<br>' +
       '  <span style="color:var(--cyan);">theme &lt;name&gt;</span>  - emerald | cyberpunk | stealth | amber | crimson | paper<br>' +
       '  <span style="color:var(--cyan);">pdf / print</span>   - Export CV to PDF / Print<br>' +
@@ -1483,6 +1583,14 @@ function executeCLI(cmd) {{
   }} else if (clean === 'sound') {{
     toggleSound();
     appendCLILog('Audio FX toggled: ' + (soundEnabled ? 'ENABLED' : 'DISABLED'));
+  }} else if (clean === 'music') {{
+    toggleMusic();
+    appendCLILog(audioEl && !audioEl.paused
+      ? 'Now playing: ' + MUSIC_TRACKS[musicIndex].title
+      : 'Soundtrack paused.');
+  }} else if (clean === 'next') {{
+    nextTrack();
+    appendCLILog('Track: ' + MUSIC_TRACKS[musicIndex].title);
   }} else if (clean.startsWith('theme ')) {{
     var t = clean.split(' ')[1];
     changeTheme(t);
