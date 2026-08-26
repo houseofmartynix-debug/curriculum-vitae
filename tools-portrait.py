@@ -1,35 +1,52 @@
 # -*- coding: utf-8 -*-
-"""Turn the raw cafe selfie into a CV-grade portrait.
+"""Turn a raw photo into the CV portrait and write photo.b64.
 
-Steps: EXIF-normalise -> head-and-shoulders crop -> depth-of-field blur on the
-background -> vignette -> tone/sharpen -> resize -> JPEG -> base64.
+    python tools-portrait.py <image>
+
+Pipeline: EXIF-normalise -> head-and-shoulders crop -> depth-of-field falloff
+over the background -> vignette -> tone -> resize -> JPEG -> Base64.
+
+The crop box is expressed as fractions of the source so it survives a
+different resolution; the values are tuned for a square, centred portrait.
 """
 import base64
 import pathlib
-from PIL import Image, ImageOps, ImageFilter, ImageEnhance, ImageDraw, ImageChops
+import sys
 
-SRC = pathlib.Path('source.jpg')
-OUT = pathlib.Path('.')
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 
-im = ImageOps.exif_transpose(Image.open(SRC)).convert('RGB')
+HERE = pathlib.Path(__file__).parent
+OUT_B64 = HERE / 'photo.b64'
+
+# left, top, right, bottom as fractions of the source: eyes land ~37% down the
+# frame, the hair keeps ~16% headroom, and the aspect matches the 142x158 avatar.
+CROP = (0.2914, 0.2809, 0.6768, 0.7098)
+TARGET_W = 600
+QUALITY = 84
+
+if len(sys.argv) < 2:
+    sys.exit(f'usage: python {pathlib.Path(__file__).name} <image>')
+src = pathlib.Path(sys.argv[1])
+if not src.is_file():
+    sys.exit(f'not a file: {src}')
+
+im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
 W, H = im.size
 print('source', W, H)
 
-# Head-and-shoulders box in source pixels: eyes land ~37% down, hair keeps
-# ~16% headroom, aspect matches the 142x158 avatar frame (0.899).
-box = (951, 917, 2209, 2317)
-im = im.crop(box)
+im = im.crop((round(CROP[0] * W), round(CROP[1] * H),
+              round(CROP[2] * W), round(CROP[3] * H)))
+cw, ch = im.size
 print('cropped', im.size)
 
 # ---- depth of field: sharp subject, softened surroundings ------------------
-cw, ch = im.size
 blurred = im.filter(ImageFilter.GaussianBlur(radius=max(cw, ch) * 0.055))
-# Knock the cafe signage back so no stray text competes with the face.
+# Knock any background signage back so no stray text competes with the face.
 blurred = ImageEnhance.Brightness(blurred).enhance(0.70)
 blurred = ImageEnhance.Color(blurred).enhance(0.40)
 blurred = ImageEnhance.Contrast(blurred).enhance(0.80)
 
-# Focus mask = vertical ramp (kills the menu boards above the head) combined
+# Focus mask = vertical ramp (kills whatever sits above the head) combined
 # with an ellipse hugging the head and torso.
 ramp = Image.new('L', (1, ch), 0)
 top_end, ramp_end = 0.08 * ch, 0.36 * ch
@@ -44,10 +61,8 @@ for y in range(ch):
 mask_v = ramp.resize((cw, ch), Image.BILINEAR)
 
 mask_e = Image.new('L', (cw, ch), 0)
-d = ImageDraw.Draw(mask_e)
-fx, fy = cw * 0.50, ch * 0.60
-rx, ry = cw * 0.40, ch * 0.48
-d.ellipse((fx - rx, fy - ry, fx + rx, fy + ry), fill=255)
+ImageDraw.Draw(mask_e).ellipse(
+    (cw * 0.10, ch * 0.12, cw * 0.90, ch * 1.08), fill=255)
 
 mask = ImageChops.darker(mask_v, mask_e)
 mask = mask.filter(ImageFilter.GaussianBlur(radius=max(cw, ch) * 0.045))
@@ -55,11 +70,10 @@ im = Image.composite(im, blurred, mask)
 
 # ---- vignette --------------------------------------------------------------
 vig = Image.new('L', (cw, ch), 0)
-dv = ImageDraw.Draw(vig)
-dv.ellipse((-cw * 0.16, -ch * 0.16, cw * 1.16, ch * 1.16), fill=255)
+ImageDraw.Draw(vig).ellipse(
+    (-cw * 0.16, -ch * 0.16, cw * 1.16, ch * 1.16), fill=255)
 vig = vig.filter(ImageFilter.GaussianBlur(radius=max(cw, ch) * 0.13))
-dark = ImageEnhance.Brightness(im).enhance(0.55)
-im = Image.composite(im, dark, vig)
+im = Image.composite(im, ImageEnhance.Brightness(im).enhance(0.55), vig)
 
 # ---- tone ------------------------------------------------------------------
 im = ImageEnhance.Color(im).enhance(0.97)
@@ -67,12 +81,15 @@ im = ImageEnhance.Contrast(im).enhance(1.12)
 im = ImageEnhance.Brightness(im).enhance(1.05)
 
 # ---- final size + sharpen --------------------------------------------------
-TARGET_W = 600
 im = im.resize((TARGET_W, round(TARGET_W * ch / cw)), Image.LANCZOS)
 im = im.filter(ImageFilter.UnsharpMask(radius=1.6, percent=95, threshold=3))
 print('final', im.size)
 
-im.save(OUT / 'portrait_preview.jpg', 'JPEG', quality=84, optimize=True, progressive=True)
-raw = (OUT / 'portrait_preview.jpg').read_bytes()
-print('jpeg bytes', len(raw), '-> base64', len(base64.b64encode(raw)))
-(OUT / 'portrait.b64').write_text(base64.b64encode(raw).decode('ascii'))
+tmp = HERE / '.portrait.tmp.jpg'
+im.save(tmp, 'JPEG', quality=QUALITY, optimize=True, progressive=True)
+raw = tmp.read_bytes()
+tmp.unlink()
+
+OUT_B64.write_text(base64.b64encode(raw).decode('ascii'), encoding='utf-8')
+print(f'jpeg {len(raw)} bytes -> {OUT_B64.name} ({OUT_B64.stat().st_size} bytes)')
+print('now run: python build.py')
