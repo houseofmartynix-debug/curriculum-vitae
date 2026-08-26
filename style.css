@@ -22,7 +22,7 @@
   --bg:#05070b;
   --bg-deep:#020306;
   --shell:#0b0f17;
-  --glass:rgba(11,15,23,0.86);
+  --glass:rgba(11,15,23,0.64);
   --bar:#080c13;
   --well:#080c12;
   --well-deep:#05080c;
@@ -68,6 +68,10 @@
   --sheen:rgba(255,255,255,0.055);
   --halo:rgba(0,220,130,0.22);
 
+  /* Portrait backdrop. --bg-deep is per-theme, so the veil re-tints itself. */
+  --photo-opacity:1;
+  --photo-veil:color-mix(in srgb, var(--bg-deep) 82%, transparent);
+
   --mono:'JetBrains Mono','Space Mono','Noto Sans Javanese',SFMono-Regular,Consolas,monospace;
   --sans:'Plus Jakarta Sans','DM Sans','Noto Sans Javanese',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --jv:'Noto Sans Javanese','Plus Jakarta Sans',sans-serif;
@@ -83,7 +87,7 @@
   --bg:#06060f;
   --bg-deep:#030308;
   --shell:#0d0d1a;
-  --glass:rgba(13,13,26,0.85);
+  --glass:rgba(13,13,26,0.64);
   --bar:#0a0a16;
   --well:#0b0b18;
   --well-deep:#07070f;
@@ -127,7 +131,7 @@
   --bg:#070a10;
   --bg-deep:#04060a;
   --shell:#0e131d;
-  --glass:rgba(14,19,29,0.88);
+  --glass:rgba(14,19,29,0.67);
   --bar:#0a0e16;
   --well:#0b1019;
   --well-deep:#070a10;
@@ -171,7 +175,7 @@
   --bg:#090703;
   --bg-deep:#050301;
   --shell:#120e06;
-  --glass:rgba(18,14,6,0.88);
+  --glass:rgba(18,14,6,0.67);
   --bar:#0e0b04;
   --well:#100c05;
   --well-deep:#0a0703;
@@ -215,7 +219,7 @@
   --bg:#0a0407;
   --bg-deep:#050103;
   --shell:#150810;
-  --glass:rgba(21,8,16,0.86);
+  --glass:rgba(21,8,16,0.64);
   --bar:#0f050b;
   --well:#11060c;
   --well-deep:#090207;
@@ -299,6 +303,8 @@
   --grain:0.018;
   --sheen:rgba(15,23,42,0.045);
   --halo:rgba(4,120,87,0.18);
+  /* Recruiter mode: the backdrop drops back to a whisper. */
+  --photo-opacity:0.13;
   --shadow-shell:0 24px 50px -14px rgba(15,23,42,0.18),0 0 0 1px var(--border);
 }
 
@@ -352,6 +358,28 @@ body{
       var(--bg-deep) 100%);
   background-attachment:fixed;
   transition:background-color 0.4s ease;
+}
+
+/* Layer 0 — portrait backdrop (the image itself is injected by build.py).
+   Sits under every other ambient layer; the veil keeps the centre, where the
+   shell and its text live, dark enough to read against. */
+.ambient-photo{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  background-size:cover;
+  background-position:50% 6%;
+  background-repeat:no-repeat;
+  opacity:var(--photo-opacity);
+}
+.ambient-photo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(95% 75% at 50% 14%, transparent 0%, transparent 34%, var(--photo-veil) 100%),
+    linear-gradient(180deg, transparent 0%, transparent 42%, var(--photo-veil) 96%);
 }
 
 /* Layer A — drifting aurora field */
@@ -489,8 +517,10 @@ body.matrix-active #matrixCanvas{display:block}
 
 .terminal-shell{
   background:var(--glass);
-  -webkit-backdrop-filter:blur(22px) saturate(1.25);
-  backdrop-filter:blur(22px) saturate(1.25);
+  /* Light blur on purpose: a heavy one smears the backdrop portrait into mush
+     and the figure stops reading through the glass. */
+  -webkit-backdrop-filter:blur(7px) saturate(1.5);
+  backdrop-filter:blur(7px) saturate(1.5);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-shell),0 0 90px -30px var(--halo);
   border:1px solid var(--border);
@@ -1779,7 +1809,7 @@ body.matrix-active #matrixCanvas{display:block}
     line-height:1.45;
   }
   body::before,body::after{display:none!important}
-  .ambient-grain,.ambient-beam,.scroll-progress{display:none!important}
+  .ambient-grain,.ambient-beam,.ambient-photo,.scroll-progress{display:none!important}
   .shell-bar,.telemetry-strip,.stats-banner,.toast,.repo-arrow,.cursor,.hero-tag::before,#matrixCanvas,.cyber-toolbox,.filter-bar,.f-poc-link,.cli-drawer,.cyber-modal-overlay{display:none!important}
   .terminal-shell::before,.hero-header::before,.hero-tag::after,.avatar-frame::after,.avatar-wrapper::before,.avatar-wrapper::after{display:none!important}
   .finding-card::after,.cert-item::after,.edu-box::after,.repo-card::after{display:none!important}

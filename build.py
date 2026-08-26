@@ -14,6 +14,7 @@ import jawa
 
 HERE = pathlib.Path(__file__).parent
 PHOTO = (HERE / 'photo.b64').read_text(encoding='utf-8').strip()
+BACKDROP = (HERE / 'bg.b64').read_text(encoding='utf-8').strip()
 CSS = (HERE / 'style.css').read_text(encoding='utf-8')
 
 AUDIT = []
@@ -185,11 +186,11 @@ def render(lang):
                        'Admin-page resolver routes execute for any licensed user — no authorisation check'),
             'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Cloud ~6.4.0 · ~Atlassian ~Forge',
                         'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
-            'sev': 'P3 · $1,500',
+            'sev': 'P1 · $1,500',
             'sev_cat': 'paid',
             'proof': T('ditampa lan diganjar ~$1,500 (~40 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
                        'accepted & rewarded $1,500 (40 points) — Acexia Marketplace Bug Bounty'),
-            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · rated P3',
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P1 Critical',
             'cwe': 'CWE-862 / CWE-285: Missing Authorization on Forge resolver routes',
             'root_cause': T(
                 'Modul kadhaptar minangka kaca administrator, nanging ~Forge mung njaga dalan kacané, ora njaga ~resolver-é. '
@@ -231,7 +232,7 @@ def render(lang):
             'sev_cat': 'paid',
             'proof': T('ditampa lan diganjar ~$100 (~5 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
                        'accepted & rewarded $100 (5 points) — Acexia Marketplace Bug Bounty'),
-            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · rated P4',
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P4',
             'cwe': 'CWE-862 / CWE-434: Missing Authorization & Unrestricted File Upload',
             'root_cause': T(
                 'Panyaring ~servlet gambar mung nglakokake pamriksan autentikasi ing njero cabang sing mligi kanggo métodhe ~GET, '
@@ -610,7 +611,8 @@ def render(lang):
 </head>
 <body data-theme="emerald">
 
-<!-- Ambient backdrop layers (aurora + beam + film grain live behind everything) -->
+<!-- Ambient backdrop layers (portrait + aurora + beam + film grain live behind everything) -->
+<div class="ambient-photo" aria-hidden="true" style="background-image:url(data:image/jpeg;base64,{BACKDROP})"></div>
 <div class="ambient-beam" aria-hidden="true"></div>
 <div class="ambient-grain" aria-hidden="true"></div>
 

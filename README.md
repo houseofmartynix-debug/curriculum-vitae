@@ -23,7 +23,7 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 * **Bug Bounty Platforms:** Bugcrowd, HackerOne, YesWeHack, Gerobug.
 * **Enterprise Risk Mitigation:**
   * **50+ High-Impact Security Findings** triaged and verified across public and private bug bounty programmes.
-  * **$1,600 in bounty rewards** and **45 Bugcrowd researcher points** earned on the Acexia Marketplace Bug Bounty engagement.
+  * **$1,600 in bounty rewards** and **45 Bugcrowd researcher points** earned on the Acexia Marketplace Bug Bounty engagement, headlined by a **P1 Critical** authorisation bypass.
   * **100% Coordinated Responsible Disclosure Compliance** under ISO/IEC 29147 standards.
   * Multi-million dollar critical infrastructure data breaches and tenant workspace takeovers prevented.
 
@@ -31,7 +31,7 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 
 | ID | Title & Vulnerability Mechanism | Target Classification | Severity / Score | Status & Proof |
 | :--- | :--- | :--- | :--- | :--- |
-| `FND-01` | **Admin-Page Resolver Routes Execute for Any Licensed User (No Authorisation Check)** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$1,500 / 40 points** — Acexia Marketplace Bug Bounty. |
+| `FND-01` | **Admin-Page Resolver Routes Execute for Any Licensed User (No Authorisation Check)** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P1 Critical** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$1,500 / 40 points** — Acexia Marketplace Bug Bounty. |
 | `FND-02` | **Arbitrary File Write & Overwrite in `JIRA_HOME` by Any Logged-In Non-Administrator** | Intelligent User Manager (IUM) for Jira Data Center 5.4.5 | **P4** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$100 / 5 points** — Acexia Marketplace Bug Bounty. |
 | `FND-03` | **Privilege Escalation to SYSTEM_ADMIN via Predictable Impersonation Token** | Enterprise Jira/Confluence DC Plugin | **P2 High** (CVSS 8.8) | Validated live in production; Full workspace takeover prevented. |
 | `FND-04` | **Cleartext Database Credentials over Encrypted TLS Connections** | Popular Node.js Database Connector | **CVE Pending** (CVSS 5.9) | Triaged & CVE assigned; Coordinated disclosure in progress. |
@@ -64,7 +64,9 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
    * Every surface — shell chrome, telemetry bars, input wells, modal chrome — is driven by theme tokens, so the light theme is genuinely light rather than a dark chassis with light text.
 
 8. **Layered Ambient Backdrop:**
-   * Drifting multi-stop aurora field, a slow diagonal light beam, an engineering grid, CRT scanlines, a vignette and a film-grain pass — all theme-aware, all pure CSS, and all disabled under `prefers-reduced-motion` and in print.
+   * A masked-portrait backdrop sits at the base of the stack, veiled by a radial/linear falloff so the centre — where the shell and its body text live — stays dark enough to read against. The shell is deliberately light-blurred glass (`blur(7px)`), because a heavy blur smears the figure into mush and it stops reading through.
+   * Above it: a drifting multi-stop aurora field, a slow diagonal light beam, an engineering grid, CRT scanlines, a vignette and a film-grain pass — all theme-aware, all pure CSS, and all disabled under `prefers-reduced-motion` and in print.
+   * The `paper` theme drops the backdrop to `0.13` opacity and print hides it entirely, so recruiter mode stays clean.
    * Reading-progress rail and `IntersectionObserver` scroll reveals (applied from JS, so a no-JS visitor still sees the full document).
 5. **Programmatic Web Audio API Sound FX:**
    * Pure synthesized cyber mechanical keyclicks and modal chimes (zero external audio asset latency), toggleable via header switch.
@@ -85,8 +87,10 @@ curriculum-vitae/
 ├── jawa.py             # Bidirectional Javanese transliterator + round-trip verifier
 ├── style.css           # Comprehensive SecOps design system & print stylesheet
 ├── tools-portrait.py   # Portrait pipeline: crop → depth-of-field → tone → Base64
+├── tools-backdrop.py   # Backdrop pipeline: resize → blur → tone → Base64
 ├── photo.b64           # Embedded Base64 profile portrait (zero network lag)
 ├── photo-formal.b64    # Alternate formal studio headshot (swap in over photo.b64)
+├── bg.b64              # Embedded Base64 page backdrop portrait
 ├── index.html          # Rendered Aksara Jawa canonical edition (root)
 └── en/
     └── index.html      # Rendered English edition (/en/)
