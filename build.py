@@ -86,7 +86,7 @@ def render(lang):
     # ---------------------------------------------------------------- stats ---
     STATS = [
         ('50+', T('Temuan Kaamanan', 'Vulnerabilities Reported'), T('Lolos triase & ditampa', 'Triaged & Verified Across Bounty Platforms')),
-        ('$1.6K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~45 ~poin panaliti', 'Bugcrowd · 45 researcher points')),
+        ('$2.5K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~75 ~poin panaliti', 'Bugcrowd · 75 researcher points')),
         ('100%', T('Kepatuhan Lapuran', 'Responsible Disclosure'), T('Manut pranatan ~ISO/IEC ~29147', 'Zero uncoordinated leaks / Strict SLA')),
         ('4+', T('Platform Kaamanan', 'Bounty Ecosystems'), 'Bugcrowd · HackerOne · YesWeHack · Gerobug'),
         ('30+', T('Kelas Serangan', 'Documented Attack Classes'), T('Cathetan proyèk riset', 'Offensive security payload knowledgebase')),
@@ -225,6 +225,122 @@ def render(lang):
         },
         {
             'id': 'FND-02',
+            'title': T('Pangguna dudu administrator bisa mènèhi kursi agèn ~JSM sing mbayar marang saben akun liwat ~startAssignment',
+                       'Non-administrator grants a paid JSM agent seat to any account via startAssignment — no authorisation check'),
+            'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Cloud ~6.4.0 · ~Atlassian ~Forge',
+                        'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
+            'sev': 'P3 · $300',
+            'sev_cat': 'paid',
+            'proof': T('ditampa, wis didandani lan diganjar ~$300 (~10 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
+                       'accepted, resolved & rewarded $300 (10 points) — Acexia Marketplace Bug Bounty'),
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P3 · resolved',
+            'cwe': 'CWE-862 / CWE-269: Missing Authorization & Improper Privilege Management',
+            'root_cause': T(
+                'Rute ~resolver ~startAssignment ngowahi kursi agèn ~Jira ~Service ~Management sing mbayar, nanging ora tau mriksa wewenang '
+                'sing ngundang. ~Forge mung njaga dalan kaca administrator, ora njaga ~resolver ing burinè, satemah saben akun berlisensi '
+                'bisa mènèhi kursi mbayar sing mesthiné mung dadi wewenangé administrator situs.',
+                'The startAssignment resolver mutates paid Jira Service Management agent seats but never resolves the caller permission. '
+                'Forge guards the admin page route only; the resolver behind it accepts any licensed caller, so a seat grant — a billable, '
+                'licence-consuming action reserved for site administrators — executes on behalf of an ordinary user.'),
+            'poc': T(
+                '1. Mlebu log ing situs ~Jira ~Cloud sing masang aplikasi iki minangka pangguna berlisensi lumrah.\n'
+                '2. Bukti manawa palaku dudu administrator: wewenang ~ADMINISTER pancèn ~false.\n'
+                '3. Undang rute ~startAssignment nganggo token konteks ~Forge duwèké akun non-administrator mau, kanthi sasaran akun liya.\n'
+                '4. Panjaluk kasil, lan akun sasaran nampa kursi agèn ~JSM sing mbayar.',
+                '1. Log in to a Jira Cloud site with the app installed, as a licensed non-administrator.\n'
+                '2. Confirm the actor holds no admin rights: the Forge actor context asserts ADMINISTER = false.\n'
+                '3. Invoke startAssignment with a legitimately minted Forge context token issued to that non-admin account, targeting a second account.\n'
+                '4. The call returns success and the target account is granted a paid JSM agent seat — a licence-billable state change made by a user with no administrative rights.'),
+            'impact': T(
+                'Saben pangguna berlisensi bisa ngentèkake lisénsi agèn ~JSM sing mbayar sasenengé — mènèhi kursi sing ora tau disarujuki '
+                'administrator situs, nambahi tagihan langganan, sarta mènèhi kabisan agèn layanan marang akun sing mesthiné ora oleh.',
+                'Any licensed user can consume the customer paid JSM agent licences at will — assigning seats the site administrator never approved, '
+                'inflating the subscription bill, and handing service-desk agent capabilities to accounts that were never meant to hold them.'),
+            'fix': T(
+                'Priksa wewenang administrator sing ngundang ing njero ~startAssignment dhéwé sadurungé ngowahi kursi, banjur tolak panjaluk yèn ora cocog. '
+                'Njaga dalan kaca thok ora cukup kanggo ngreksa ~resolver.',
+                'Resolve the caller ADMINISTER permission inside startAssignment itself before mutating any seat, and reject the call otherwise. '
+                'A route-level admin guard on the page does not protect the resolver behind it.')
+        },
+        {
+            'id': 'FND-03',
+            'title': T('Saben pangguna berlisensi bisa maca lan ngosongaké pemegang tugas ing proyèk sing ora kena dideleng',
+                       'Any licensed user can read — and clear — the assignee of issues in projects they cannot see'),
+            'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Cloud ~6.4.0 · ~Atlassian ~Forge',
+                        'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
+            'sev': 'P3 · $300',
+            'sev_cat': 'paid',
+            'proof': T('ditampa lan diganjar ~$300 (~10 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $300 (10 points) — Acexia Marketplace Bug Bounty'),
+            'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > idor · triaged P3',
+            'cwe': 'CWE-639 / CWE-862: Authorization Bypass Through User-Controlled Key & Missing Authorization',
+            'root_cause': T(
+                'Rute ~resolver ~ium-assignee-field nampa kunci prakara langsung saka sing ngundang, banjur takon marang ~API ~Jira nganggo '
+                'wewenang aplikasi dhéwé, dudu wewenangé sing ngundang. Ora ana pamriksan manèh apa sing ngundang oleh mirsani proyèk kasebut, '
+                'satemah wates wewenang proyèk ilang nalika panjaluk mlebu ~resolver.',
+                'The ium-assignee-field resolvers take an issue key straight from the caller and query the Jira REST API with the app own credentials '
+                'rather than the caller. Nothing re-checks the caller Browse Projects permission against that issue, so project-level permission '
+                'scoping is lost the moment the request crosses into the resolver.'),
+            'poc': T(
+                '1. Minangka pangguna berlisensi, bukti manawa proyèk sasaran ora katon: digolèki ora ketemu lan prakarané ora ana ing pangupadi.\n'
+                '2. Waca konteks aplikasi saka konsol panjelajah ing kaca ngendi waé aplikasi iki katon.\n'
+                '3. Undang rute ~resolver pemegang tugas nganggo kunci prakara saka proyèk sing ora katon mau.\n'
+                '4. ~Resolver mbalèkaké jeneng pemegang tugas, lan rute pambusak bisa ngosongaké — kabèh ing prakara sing sejatiné ora oleh dideleng.',
+                '1. As a licensed user, confirm a target project is not visible: it is absent from the project list and its issues are absent from search.\n'
+                '2. Read the app context from the browser console on any page where the app renders.\n'
+                '3. Invoke the assignee-field resolver with an issue key from that invisible project.\n'
+                '4. The resolver returns the current assignee, and the unassign route clears it — both against an issue the caller has no permission to browse.'),
+            'impact': T(
+                'Wewadi ing tataran proyèk bubrah: saben pangguna berlisensi bisa ngerteni sapa sing nggarap prakara ing proyèk tinutup, '
+                'sarta bisa ngosongaké pemegang tugasé, satemah ngrusak lakuning pagawéan ing proyèk sing sejatiné ora oleh diakses.',
+                'Project-level confidentiality collapses: any licensed user can learn who works on issues inside private or restricted projects — '
+                'an information leak in itself — and can strip assignees from that work, disrupting delivery in projects they were never granted access to.'),
+            'fix': T(
+                'Priksa wewenang mirsani proyèk sing ngundang marang prakara sasaran sadurungé diwaca utawa diowahi, sarta undang ~API ~Jira '
+                'nganggo wewenangé pangguna, dudu wewenangé aplikasi.',
+                'Resolve the caller Browse Projects permission on the target issue before reading or mutating it, and call the Jira API as the user '
+                'rather than as the app wherever the caller permission is what should govern the result.')
+        },
+        {
+            'id': 'FND-04',
+            'title': T('~SSRF buta ing rute impor ~diagram ~Gliffy bisa tekan layanan jaringan njero',
+                       'Blind SSRF in the Gliffy diagram import route reaches internal network services'),
+            'target': T('~Gliffy kanggo ~Confluence · ~Bugcrowd', 'Gliffy for Confluence · Bugcrowd'),
+            'sev': 'P3 · $300',
+            'sev_cat': 'paid',
+            'proof': T('ditampa lan diganjar ~$300 (~10 ~poin) — ~Gliffy',
+                       'accepted & rewarded $300 (10 points) — Gliffy'),
+            'cvss': 'CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N (5.8 Medium) · Bugcrowd VRT server_side_injection > ssrf · triaged P3',
+            'cwe': 'CWE-918: Server-Side Request Forgery (SSRF), blind variant',
+            'root_cause': T(
+                'Rute impor ~diagram njupuk ~URL sing diwènèhaké déning sing ngundang saka sisih server. ~URL kasebut dianggep sumber impor '
+                'sing kena dipercaya, dudu isian sing kudu diwaspadai, satemah ora ana dhaptar ijin utawa panyaring alamat lokal sadurungé '
+                'server ngirim panjaluk saka njero jaringan ~Confluence.',
+                'The diagram import route fetches a caller-supplied URL server-side. The URL is treated as a trusted import source rather than as '
+                'untrusted input, so no allowlist, loopback filter or link-local filter is applied before the server issues the request from inside '
+                'the Confluence network.'),
+            'poc': T(
+                '1. Mlebu log ing ~Confluence minangka pangguna lumrah tanpa wewenang administrator.\n'
+                '2. Tujokaké impor ~diagram menyang panyimak duwèké panguji, banjur bukti manawa panjaluk teka saka alamat server ~Confluence, dudu saka klièn.\n'
+                '3. Baléni marang inang sing mung bisa digayuh saka njero, banjur mirsani bédané wektu wangsulan antarané port sing mbukak lan sing tinutup.\n'
+                '4. Isi wangsulan ora tau dibalèkaké marang sing ngundang — mula diarani buta — nanging kena orané inang lan kahanan port isih bisa disimpulaké saka wektu.',
+                '1. Log in to Confluence as an ordinary user with no administrative rights.\n'
+                '2. Point the diagram import at a listener the tester controls and confirm the callback arrives from the Confluence server address, not the client.\n'
+                '3. Repeat against internal-only hosts and observe the response-timing difference between a closed port and an open one.\n'
+                '4. The response body is never returned to the caller — the channel is blind — but host reachability and port state are recoverable from timing.'),
+            'impact': T(
+                'Pangguna ~Confluence sing wis mlebu log bisa nganggo server minangka piranti pandulu jaringan: mèta inang lan port sing mbukak '
+                'ing jaringan njero, sarta nggayuh layanan sing pancèn percaya marang panjaluk saka inang ~Confluence.',
+                'A logged-in Confluence user can use the server as a network probe: mapping hosts and open ports on the internal network behind the '
+                'perimeter, and reaching services that trust requests originating from the Confluence host.'),
+            'fix': T(
+                'Uculaké ~URL sing diwènèhaké banjur priksa alamat asilé, dudu mung tulisané — tolak alamat lokal, ~RFC ~1918 lan metadata '
+                'komputasi awan, priksa manèh saben ana pangalihan, sarta liwataké panjaluk metu ing proksi sing ora bisa nyawang jaringan njero.',
+                'Resolve the supplied URL and validate the resolved address rather than the string — reject loopback, link-local, RFC 1918 and cloud '
+                'metadata ranges, re-validate after every redirect, and route the fetch through an egress proxy that cannot see internal networks.')
+        },
+        {
+            'id': 'FND-05',
             'title': T('Pangguna dudu administrator bisa nulis lan nimpa berkas sawenang-wenang ing ~JIRA_HOME',
                        'Any logged-in non-administrator can write and overwrite arbitrary files in JIRA_HOME'),
             'target': T('~Intelligent ~User ~Manager kanggo ~Jira ~Data ~Center ~5.4.5 · ~Atlassian ~Marketplace',
@@ -271,7 +387,119 @@ def render(lang):
                 'allowlist for the upload. Rejecting non-GET methods in the filter would also close it.')
         },
         {
-            'id': 'FND-03',
+            'id': 'FND-06',
+            'title': T('Ora ana pamriksan wewenang papan, satemah saben pangguna sing wis mlebu log bisa maca statistik papan tinutup',
+                       'Missing space-permission check lets any authenticated user read restricted spaces Q&A statistics'),
+            'target': T('~Questions ~for ~Confluence · ~Atlassian-Built ~Apps',
+                        'Questions for Confluence · Atlassian-Built Apps'),
+            'sev': 'P5 · Accepted',
+            'sev_cat': 'info',
+            'proof': T('ditampa minangka katrangan — program ~Atlassian-Built ~Apps',
+                       'accepted as informational — Atlassian-Built Apps programme'),
+            'cvss': 'CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N (4.3 Medium as reported) · accepted P5 informational',
+            'cwe': 'CWE-862 / CWE-200: Missing Authorization & Exposure of Sensitive Information',
+            'root_cause': T(
+                'Rute statistik njupuk papan miturut kunciné banjur mbalèkaké pétungan pitakon lan wangsulan tanpa mriksa dhisik apa sing ngundang '
+                'oleh mirsani papan kasebut. Wewenang papan mung njaga tampilan, mangka rute ~REST ing burinè bisa digayuh langsung déning sesi '
+                'sing wis mlebu log.',
+                'The statistics route resolves a space by key and returns its Q&A aggregates without first checking that the caller holds view '
+                'permission on that space. Space permissions gate the Questions UI, but the REST route behind it is reachable directly by any '
+                'authenticated session.'),
+            'poc': T(
+                '1. Minangka pangguna sing wis mlebu log nanging ora oleh mirsani papan tinutup, bukti manawa papané ora katon lan isiné ora bisa digolèki.\n'
+                '2. Njaluk rute statistik kanggo kunci papan mau kanthi langsung.\n'
+                '3. Rute kasebut mbalèkaké pétungan pitakon lan wangsulan kanggo papan sing ora bisa dibukak déning sing ngundang.',
+                '1. As an authenticated user with no permission on a restricted space, confirm the space is not listed and its content is not searchable.\n'
+                '2. Request the statistics route for that space key directly.\n'
+                '3. The route returns aggregate Q&A data — question and answer counts, top contributors and activity — for a space the caller cannot open.'),
+            'impact': T(
+                'Anané papan tinutup, sepira ramèné, sarta sapa sing paling akèh nyumbang, bocor marang saben pangguna sing wis mlebu log — '
+                'bisa dienggo mèta pagawéan rahasia lan sapa sing nggarap, déning wong njero.',
+                'The existence, activity level and most active participants of restricted spaces leak to any authenticated user — useful reconnaissance '
+                'for an insider mapping which confidential workstreams exist and who staffs them.'),
+            'fix': T(
+                'Priksa wewenang mirsani sing ngundang marang papan kasebut sadurungé statistik disusun, sarta wènèhi wangsulan sing padha '
+                'kanggo papan sing ora oleh dideleng lan papan sing pancèn ora ana.',
+                'Check the caller view permission on the resolved space before assembling the statistics response, and return the same not-found '
+                'response for a space the caller cannot see as for one that does not exist.')
+        },
+        {
+            'id': 'FND-07',
+            'title': T('~SSRF kanthi mlebu log — panyaring ~URL ora nindakaké pamecahan ~DNS',
+                       'Authenticated SSRF — the fetch action URL filter performs no DNS resolution'),
+            'target': T('~Balsamiq ~Wireframes kanggo ~Jira ~Data ~Center · ~Balsamiq ~for ~Atlassian ~Products',
+                        'Balsamiq Wireframes for Jira (Data Center) · Balsamiq for Atlassian Products'),
+            'sev': 'P5 · Accepted',
+            'sev_cat': 'info',
+            'proof': T('ditampa minangka katrangan — ~Balsamiq ~for ~Atlassian ~Products',
+                       'accepted as informational — Balsamiq for Atlassian Products'),
+            'cvss': 'CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N (3.1 Low as reported) · accepted P5 informational',
+            'cwe': 'CWE-918 / CWE-20: SSRF — host denylist evaluated on the string, never on the resolved address',
+            'root_cause': T(
+                'Tumindak njupuk mung nyaring miturut tulisan jeneng inang. Awit jeneng mau ora tau diuculaké dadi alamat, jeneng duwèké panguji '
+                'sing ngarah alamat lokal utawa metadata bisa lolos saka panyaring, banjur server nyambung menyang alamat njero.',
+                'The fetch action filters the target on the literal hostname string. Because it never resolves the name, a hostname under the '
+                'reporter control that resolves to a loopback or link-local address passes the filter unchanged, and the server then connects to '
+                'the internal address the filter exists to block.'),
+            'poc': T(
+                '1. Gawé jeneng inang ing zona duwèké panguji sing ngarah alamat lokal utawa metadata.\n'
+                '2. Wènèhaké jeneng mau marang tumindak njupuk minangka pangguna sing wis mlebu log.\n'
+                '3. Panyaring tataran tulisan nampa, banjur server ngucul jenengé lan nyambung menyang alamat njero sing mesthiné dialang-alangi.',
+                '1. Publish a hostname on a zone the tester controls that resolves to a loopback or link-local address.\n'
+                '2. Supply that hostname to the fetch action as an authenticated user.\n'
+                '3. The string-level filter accepts it, and the server resolves and connects to the internal address the filter was written to block.'),
+            'impact': T(
+                'Panjaga sing mesthiné ngedohaké server saka alamat njero bisa dilangkahi, satemah jangkauan ~SSRF sing mauné arep ditutup mbalik '
+                'manèh — luwih menyang cacading lapisan pertahanan tinimbang bocoran data langsung, mula program nampa minangka katrangan.',
+                'The control intended to keep the server away from internal addresses is bypassable, restoring the SSRF reach it was added to remove — '
+                'a defence-in-depth gap rather than a directly exploitable data leak, which is why the programme accepted it as informational.'),
+            'fix': T(
+                'Ucul jeneng inang dhisik banjur priksa saben alamat asilé marang dhaptar larangan, priksa manèh sawisé ana pangalihan, '
+                'sarta paku sambungané marang alamat sing wis dipriksa.',
+                'Resolve the hostname first and validate every resolved address against the denylist, re-validating after redirects and pinning the '
+                'connection to the address that was actually checked.')
+        },
+        {
+            'id': 'FND-08',
+            'title': T('Rute uji tanpa mlebu log mbalèkaké ~OTP surel akun sapa waé, satemah gerbang surel bisa dilangkahi',
+                       'Unauthenticated test route returns any account live email OTP, clearing the email gate in recovery and login'),
+            'target': T('Bursa aset digital global (jeneng didhelikaké, isih ing triase)',
+                        'Global digital-asset exchange (target anonymized — report still in triage)'),
+            'sev': 'P5 · Accepted',
+            'sev_cat': 'info',
+            'proof': T('dilapuraké lan ditampa minangka katrangan déning program',
+                       'reported and accepted as informational by the programme'),
+            'cvss': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N (8.1 High as reported) · rated P5 informational by the programme',
+            'cwe': 'CWE-306 / CWE-640: Missing Authentication for Critical Function & Weak Password Recovery Mechanism',
+            'root_cause': T(
+                'Ana klompok rute uji sing isih kena digayuh tanpa mlebu log, lan mbalèkaké sandhi sapisan pakai (~OTP) sing lagi urip kanggo akun '
+                'sing dikarepaké. ~OTP mau dadi tetimbangan kapindho sing diendelaké gerbang surel, mula sapa waé sing bisa macané uga bisa '
+                'ngrusak gerbang kasebut, ing pamulihan akun uga ing mlebu log.',
+                'A test route family was left reachable without authentication and echoed back the live one-time password issued to an arbitrary '
+                'account. That OTP is the second factor the email gate relies on, so anything able to read it collapses the gate for both account '
+                'recovery and login.'),
+            'poc': T(
+                '1. Nganggo rong akun sing loro-loroné duwèké panguji, tangèkaké gerbang surel ing akun kapindho saka sesi sing durung mlebu log.\n'
+                '2. Waca ~OTP akun mau saka rute uji sing tanpa mlebu log.\n'
+                '3. Lebokaké ~OTP kasebut ing gerbang: ditampa, lan lakuné mlaku terus, tanpa tau mbukak kothak surel akun mau.\n'
+                '4. Dilapuraké nganggo nilai sing wis diresiki; ora ana akun wong liya sing disénggol.',
+                '1. Using two accounts both under the tester control, trigger the email gate on the second account from an unauthenticated session.\n'
+                '2. Read that account live OTP back from the unauthenticated test route.\n'
+                '3. Submit the value to the gate: it is accepted and the flow proceeds, with no access to the account inbox at any point.\n'
+                '4. Reported with sanitized values only; no third-party account was ever touched.'),
+            'impact': T(
+                'Pamriksan nduwèni surel ora manèh mbuktèkaké nduwèni. Sapa waé sing bisa maca ~OTP bisa ngliwati gerbang kanggo akun sing dudu '
+                'duwèké, mangka pamriksan iku sing diendelaké pamulihan akun lan mlebu log kanggo mestèkaké yèn wongé pancèn sing nduwé akun.',
+                'The email possession check stops proving possession. Anyone able to read the OTP satisfies the gate for an account they do not '
+                'control — and that gate is the step both account recovery and login lean on to establish that the person is the account owner.'),
+            'fix': T(
+                'Busak klompok rute uji saka lingkungan ngendi waé sing bisa nggawé utawa maca kredensial urip; yèn ora bisa, wajibaké mlebu log '
+                'lan aja pisan-pisan mbalèkaké nilai ~OTP ing isi wangsulan.',
+                'Remove the test route family from any environment able to mint or read live credentials; failing that, require authentication and '
+                'never return an OTP value in a response body under any circumstance.')
+        },
+        {
+            'id': 'FND-09',
             'title': T('Munggah drajat wewenang tekan administrator liwat token panyamaran sing kena ditebak',
                        'Privilege escalation to administrator via predictable impersonation token'),
             'target': T('Plugin Jira/Confluence perusahaan', 'Enterprise Jira/Confluence Data Center Plugin'),
@@ -294,7 +522,7 @@ def render(lang):
                 'Implement cryptographically secure pseudorandom number generator (CSPRNG, java.security.SecureRandom) and enforce strict cryptographic HMAC signing.')
         },
         {
-            'id': 'FND-04',
+            'id': 'FND-10',
             'title': T('Sandhi database kekirim tanpa enkripsi senajan ~TLS diuripake',
                        'Database credential sent in cleartext despite TLS being enabled'),
             'target': T('Konektor database ~Node.js sing akèh dienggo', 'Widely-used Node.js Database Connector Ecosystem'),
@@ -317,7 +545,7 @@ def render(lang):
                 'Queue authentication frame dispatch until the TLS secureConnect event has fully resolved and cipher negotiation is verified.')
         },
         {
-            'id': 'FND-05',
+            'id': 'FND-11',
             'title': T('Enumerasi pangguna liwat ~NIK ing layanan pamaréntah',
                        'User enumeration & PII disclosure via national ID (NIK) endpoint'),
             'target': 'Diskominfo Kota Tangerang Selatan · Gerobug',
@@ -340,7 +568,7 @@ def render(lang):
                 'Implemented rate limiting, CAPTCHA verification on public forms, and standardized opaque response messaging.')
         },
         {
-            'id': 'FND-06',
+            'id': 'FND-12',
             'title': T('Bocoran kodhe sumber ing layanan pamaréntah',
                        'Source code & sensitive config disclosure in government service'),
             'target': 'Diskominfo Kota Tangerang Selatan · Gerobug',
@@ -363,30 +591,7 @@ def render(lang):
                 'Restricted web server file access rules, sanitized web root, and integrated pre-deployment artifact scanning in CI pipeline.')
         },
         {
-            'id': 'FND-07',
-            'title': T('~SSRF, kalebu ~SSRF buta, ing plugin ~Atlassian ~Data ~Center',
-                       'SSRF and blind SSRF in commercial Atlassian Data Center plugins'),
-            'target': T('Rong vendor plugin perusahaan kapisah', 'Two Separate Enterprise Plugin Vendors'),
-            'sev': 'P2 / P3',
-            'sev_cat': 'high',
-            'proof': T('loro-loroné lolos triase & ditampa', 'both triaged, verified & accepted'),
-            'cvss': 'CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N (7.7 High)',
-            'cwe': 'CWE-918: Server-Side Request Forgery (SSRF)',
-            'root_cause': T(
-                'Plugin ngidini pangguna ngisi ~URL ~webhook utawa gambar tanpa verifikasi alamat ~IP internal (~RFC ~1918 utawa layanan metadata ~AWS/GCP).',
-                'Unvalidated user-supplied webhook and thumbnail URLs passed to internal HTTP fetching services without loopback or cloud metadata filtering.'),
-            'poc': T(
-                '1. Pasang ~URL panjaluk menyang ~169.254.169.254 ing setelan integrasi plugin.\n2. Mbalèkaké data metadata komputasi awan saka server internal.',
-                '1. Configure plugin integration webhook target to point to cloud metadata service (http://169.254.169.254/latest/meta-data/).\n2. Trigger webhook event and capture response data verifying internal network reachability.'),
-            'impact': T(
-                'Bisa dienggo maca metadata komputasi awan, nyolong token ~IAM, sarta mindhai jaringan internal perusahaan.',
-                'Internal cloud metadata extraction, cloud IAM credential theft, and unauthorized intranet port scanning.'),
-            'fix': T(
-                'Wènèhi panyaring ~URL ketat, tolak kabeh alamat ~IP pribadi lan metadata komputasi awan.',
-                'Implemented strict IP address denylist, DNS re-resolution validation, and isolated outbound egress proxying.')
-        },
-        {
-            'id': 'FND-08',
+            'id': 'FND-13',
             'title': T('Layanan ~MCP mbukak liwat ~HTTP tanpa autentikasi',
                        'Model Context Protocol (MCP) exposed over HTTP without auth'),
             'target': T('Aplikasi desktop ~AI / pangembang', 'Desktop AI & Developer Workstation Application'),
@@ -409,7 +614,7 @@ def render(lang):
                 'Added cryptographic per-session token validation and restricted CORS origins to trusted application domains.')
         },
         {
-            'id': 'FND-09',
+            'id': 'FND-14',
             'title': T('Nrabas alur persetujuan lan registrasi klien ~OAuth sing mbukak',
                        'Approval-flow bypass & open OAuth 2.0 dynamic client registration'),
             'target': T('Rong program produksi kapisah', 'Two Separate Production Enterprise SaaS Platforms'),
@@ -533,7 +738,7 @@ def render(lang):
             s_cls = 'sev-p2'
         elif 'P3' in sev or 'Medium' in sev:
             s_cls = 'sev-p3'
-        elif 'P4' in sev or 'Triage' in sev or 'CVE' in sev:
+        elif 'P4' in sev or 'P5' in sev or 'Triage' in sev or 'CVE' in sev:
             s_cls = 'sev-p4'
         return f'<span class="sev-chip {s_cls}">{sev}</span>'
 
@@ -591,6 +796,7 @@ def render(lang):
     f_all = T('Kabeh', 'All')
     f_high = T('Dhuwur', 'P1 / P2 High')
     f_paid = T('Diganjar Hadiah', 'Rewarded Bounty')
+    f_info = T('Ditampa · Katrangan', 'Accepted · Informational')
     f_cve = T('Riset ~CVE', 'CVE / Research')
     f_gov = T('Pamaréntah', 'Government')
 
@@ -835,6 +1041,7 @@ def render(lang):
             <div class="filter-bar">
               <button class="filter-chip active" onclick="filterFindings('all', this)">{f_all}</button>
               <button class="filter-chip" onclick="filterFindings('paid', this)">{f_paid}</button>
+              <button class="filter-chip" onclick="filterFindings('info', this)">{f_info}</button>
               <button class="filter-chip" onclick="filterFindings('high', this)">{f_high}</button>
               <button class="filter-chip" onclick="filterFindings('cve', this)">{f_cve}</button>
               <button class="filter-chip" onclick="filterFindings('gov', this)">{f_gov}</button>
