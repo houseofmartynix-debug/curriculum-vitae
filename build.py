@@ -189,8 +189,8 @@ def render(lang):
                         'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
             'sev': 'P1 · $1,500',
             'sev_cat': 'paid',
-            'proof': T('ditampa lan diganjar ~$1,500 (~40 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
-                       'accepted & rewarded $1,500 (40 points) — Acexia Marketplace Bug Bounty'),
+            'proof': T('ditampa lan diganjar ~$1,500 (~40 ~poin) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $1,500 (40 points) — Accxia Marketplace Bug Bounty'),
             'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P1 Critical',
             'cwe': 'CWE-862 / CWE-285: Missing Authorization on Forge resolver routes',
             'root_cause': T(
@@ -231,8 +231,8 @@ def render(lang):
                         'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
             'sev': 'P3 · $300',
             'sev_cat': 'paid',
-            'proof': T('ditampa, wis didandani lan diganjar ~$300 (~10 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
-                       'accepted, resolved & rewarded $300 (10 points) — Acexia Marketplace Bug Bounty'),
+            'proof': T('ditampa, wis didandani lan diganjar ~$300 (~10 ~poin) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                       'accepted, resolved & rewarded $300 (10 points) — Accxia Marketplace Bug Bounty'),
             'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P3 · resolved',
             'cwe': 'CWE-862 / CWE-269: Missing Authorization & Improper Privilege Management',
             'root_cause': T(
@@ -270,8 +270,8 @@ def render(lang):
                         'Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge'),
             'sev': 'P3 · $300',
             'sev_cat': 'paid',
-            'proof': T('ditampa lan diganjar ~$300 (~10 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
-                       'accepted & rewarded $300 (10 points) — Acexia Marketplace Bug Bounty'),
+            'proof': T('ditampa lan diganjar ~$300 (~10 ~poin) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $300 (10 points) — Accxia Marketplace Bug Bounty'),
             'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > idor · triaged P3',
             'cwe': 'CWE-639 / CWE-862: Authorization Bypass Through User-Controlled Key & Missing Authorization',
             'root_cause': T(
@@ -347,8 +347,8 @@ def render(lang):
                         'Intelligent User Manager (IUM) for Jira Data Center 5.4.5 · Atlassian Marketplace'),
             'sev': 'P4 · $100',
             'sev_cat': 'paid',
-            'proof': T('ditampa lan diganjar ~$100 (~5 ~poin) — ~Acexia ~Marketplace ~Bug ~Bounty',
-                       'accepted & rewarded $100 (5 points) — Acexia Marketplace Bug Bounty'),
+            'proof': T('ditampa lan diganjar ~$100 (~5 ~poin) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $100 (5 points) — Accxia Marketplace Bug Bounty'),
             'cvss': 'Bugcrowd VRT 1.19.1 · broken_access_control > privilege_escalation · triaged P4',
             'cwe': 'CWE-862 / CWE-434: Missing Authorization & Unrestricted File Upload',
             'root_cause': T(

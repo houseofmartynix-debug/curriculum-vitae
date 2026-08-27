@@ -23,7 +23,7 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 * **Bug Bounty Platforms:** Bugcrowd, HackerOne, YesWeHack, Gerobug.
 * **Enterprise Risk Mitigation:**
   * **50+ High-Impact Security Findings** triaged and verified across public and private bug bounty programmes.
-  * **$2,500 in bounty rewards** and **75 Bugcrowd researcher points**, all solo — **$2,200 / 65 points** on the Acexia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass) and **$300 / 10 points** from Gliffy.
+  * **$2,500 in bounty rewards** and **75 Bugcrowd researcher points**, all solo — **$2,200 / 65 points** on the Accxia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass) and **$300 / 10 points** from Gliffy.
   * **8 accepted Bugcrowd submissions**, spanning P1 Critical through accepted-informational, across five separate programmes.
   * **100% Coordinated Responsible Disclosure Compliance** under ISO/IEC 29147 standards.
   * Multi-million dollar critical infrastructure data breaches and tenant workspace takeovers prevented.
@@ -32,11 +32,11 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 
 | ID | Title & Vulnerability Mechanism | Target Classification | Severity / Score | Status & Proof |
 | :--- | :--- | :--- | :--- | :--- |
-| `FND-01` | **Admin-Page Resolver Routes Execute for Any Licensed User (No Authorisation Check)** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P1 Critical** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$1,500 / 40 points** — Acexia Marketplace Bug Bounty. |
-| `FND-02` | **Non-Administrator Grants a Paid JSM Agent Seat to Any Account via `startAssignment`** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted, **resolved** & rewarded **$300 / 10 points** — Acexia Marketplace Bug Bounty. |
-| `FND-03` | **Cross-Project Assignee Read & Unassign — `ium-assignee-field` Resolvers Ignore the Caller's Permissions** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > idor`) | Accepted & rewarded **$300 / 10 points** — Acexia Marketplace Bug Bounty. |
+| `FND-01` | **Admin-Page Resolver Routes Execute for Any Licensed User (No Authorisation Check)** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P1 Critical** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted & rewarded **$1,500 / 40 points** — Accxia Marketplace Bug Bounty. |
+| `FND-02` | **Non-Administrator Grants a Paid JSM Agent Seat to Any Account via `startAssignment`** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted, **resolved** & rewarded **$300 / 10 points** — Accxia Marketplace Bug Bounty. |
+| `FND-03` | **Cross-Project Assignee Read & Unassign — `ium-assignee-field` Resolvers Ignore the Caller's Permissions** | Intelligent User Manager (IUM) for Jira Cloud 6.4.0 · Atlassian Forge | **P3** (Bugcrowd VRT `broken_access_control > idor`) | Accepted & rewarded **$300 / 10 points** — Accxia Marketplace Bug Bounty. |
 | `FND-04` | **Blind SSRF in the Diagram Import Route Reaches Internal Network Services** | Gliffy for Confluence | **P3** (CVSS 5.8) | Accepted & rewarded **$300 / 10 points** — Gliffy. |
-| `FND-05` | **Arbitrary File Write & Overwrite in `JIRA_HOME` by Any Logged-In Non-Administrator** | Intelligent User Manager (IUM) for Jira Data Center 5.4.5 | **P4** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted, **resolved** & rewarded **$100 / 5 points** — Acexia Marketplace Bug Bounty. |
+| `FND-05` | **Arbitrary File Write & Overwrite in `JIRA_HOME` by Any Logged-In Non-Administrator** | Intelligent User Manager (IUM) for Jira Data Center 5.4.5 | **P4** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Accepted, **resolved** & rewarded **$100 / 5 points** — Accxia Marketplace Bug Bounty. |
 | `FND-06` | **Missing Space-Permission Check Exposes Restricted Spaces' Q&A Statistics** | Questions for Confluence · Atlassian-Built Apps | **P5 Accepted** (CVSS 4.3 as reported) | Accepted as informational — Atlassian-Built Apps. |
 | `FND-07` | **Authenticated SSRF — Fetch-Action URL Filter Performs No DNS Resolution** | Balsamiq Wireframes for Jira (Data Center) | **P5 Accepted** (CVSS 3.1 as reported) | Accepted as informational — Balsamiq for Atlassian Products. |
 | `FND-08` | **Unauthenticated Test Route Returns Any Account's Live Email OTP, Clearing the Email Gate** | Global digital-asset exchange *(anonymized — in triage)* | **P5 Accepted** (CVSS 8.1 as reported) | Accepted as informational by the programme. |
