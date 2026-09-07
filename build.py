@@ -86,7 +86,7 @@ def render(lang):
     # ---------------------------------------------------------------- stats ---
     STATS = [
         ('50+', T('Temuan Kaamanan', 'Vulnerabilities Reported'), T('Lolos triase & ditampa', 'Triaged & Verified Across Bounty Platforms')),
-        ('$2.5K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~75 ~poin panaliti', 'Bugcrowd · 75 researcher points')),
+        ('$3K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~113 ~poin panaliti', 'Bugcrowd · 113 researcher points')),
         ('100%', T('Kepatuhan Lapuran', 'Responsible Disclosure'), T('Manut pranatan ~ISO/IEC ~29147', 'Zero uncoordinated leaks / Strict SLA')),
         ('4+', T('Platform Kaamanan', 'Bounty Ecosystems'), 'Bugcrowd · HackerOne · YesWeHack · Gerobug'),
         ('30+', T('Kelas Serangan', 'Documented Attack Classes'), T('Cathetan proyèk riset', 'Offensive security payload knowledgebase')),
@@ -635,6 +635,142 @@ def render(lang):
             'fix': T(
                 'Tutup registrasi klien umum lan watesi ~redirect_uri mung kanggo domain sing wis diverifikasi.',
                 'Enforce strict redirect URI exact matching and restrict dynamic client registration to pre-approved developer accounts.')
+        },
+        {
+            'id': 'FND-15',
+            'title': T('Saben pangguna berlisensi bisa maca lan nulis setelan aplikasi kanggo sakabèhing situs',
+                       'Any licensed user can read and overwrite an application-wide configuration store'),
+            'target': T('Aplikasi ~cadangan ~Atlassian ~Cloud (~Forge) — jeneng vèndhor didhelikake',
+                        'Atlassian Cloud backup application (Forge) — vendor withheld under disclosure terms'),
+            'sev': 'P2 · In Triage',
+            'sev_cat': 'high',
+            'proof': T('dilapurake ~2026, isih ing proses triase',
+                       'reported 2026, currently under active triage'),
+            'cvss': 'Bugcrowd VRT · broken_access_control > privilege_escalation',
+            'cwe': 'CWE-862: Missing Authorization',
+            'root_cause': T(
+                'Kabèh modhul aplikasi iki kanggo administrator, nanging pamriksan administrator mung ana ing sarat tampilan '
+                'sisih klièn. Bagéyan ~backend-é ora naté mriksa wewenang sing nimbali.',
+                'Every module the app ships is an administrator surface, but the administrator check exists only as a client-side '
+                'display condition. The back-end never verifies the caller privilege, so any licensed user of the site can invoke it.'),
+            'poc': T(
+                '1. Bukti manawa palaku dudu administrator: ~API wewenang mbalèkaké ~havePermission ~false.\n'
+                '2. Palaku nulis setelan sing dienggo sakabèhing situs — panjaluké ditampa.\n'
+                '3. Administrator njajal nyambung manèh — gagal, amarga nilai sing diowahi palaku dianggo ing sisih ~server.\n'
+                '4. Nilai dibalèkake kaya asalé — sambungan pulih, satemah sebab-akibaté kabukti.',
+                '1. Confirm the actor is not an administrator: the permissions API returns havePermission = false.\n'
+                '2. As that actor, write a value into the application configuration store — the request is accepted.\n'
+                '3. As the administrator, repeat the operation that consumes it — it now fails.\n'
+                '4. Restore the original value — the operation succeeds again, proving the cause and effect.'),
+            'impact': T(
+                'Saben pangguna berlisensi — kalebu sing ora bisa ndeleng aplikasiné — bisa mateni pangayoman ~cadangan '
+                'kanggo sakabèhing situs lan ngganti kredensial sing dienggo aplikasi, tanpa dingertèni administrator.',
+                'Any licensed user — including one who cannot even see the app — can disable the site backup protection and replace '
+                'the credential the product runs with, with no indication to the administrator that another user caused it.'),
+            'fix': T(
+                'Trapake pamriksan administrator ing ~backend, ora mung ing sarat tampilan sisih klièn.',
+                'Enforce the administrator check inside the back-end resolver, not only in the module display conditions.')
+        },
+        {
+            'id': 'FND-16',
+            'title': T('Identitas dijupuk saka kolom kiriman klièn, satemah pangguna lumrah bisa tumindak dadi administrator',
+                       'Back-end derives identity from a client-supplied field, letting an ordinary user act as the administrator'),
+            'target': T('Aplikasi ~cadangan ~Atlassian ~Cloud (~Forge) — jeneng vèndhor didhelikake',
+                        'Atlassian Cloud backup application (Forge) — vendor withheld under disclosure terms'),
+            'sev': 'P1 · In Triage',
+            'sev_cat': 'high',
+            'proof': T('dilapurake ~2026, isih ing proses triase',
+                       'reported 2026, currently under active triage'),
+            'cvss': 'Bugcrowd VRT · broken_authentication_and_session_management > authentication_bypass',
+            'cwe': 'CWE-287 / CWE-639: Improper Authentication & Authorization Bypass Through User-Controlled Key',
+            'root_cause': T(
+                'Sisih ngarep nèmplèkake ~accountId ing saben panjaluk, banjur ~backend-é nganggo nilai kiriman klièn kuwi minangka '
+                'identitas — dudu identitas sing wis ditandhatangani platform ing ~token konteks.',
+                'The front-end attaches an accountId to every back-end call, and the resolver uses that client-supplied value as the '
+                'acting identity instead of the identity the platform signs into the invocation context token.'),
+            'poc': T(
+                '1. Panjaluk nganggo ~accountId duwèké dhéwé — ditolak.\n'
+                '2. Panjaluk sing padha persis, mung ~accountId-é diganti dadi duwèké administrator — kasil.\n'
+                '3. ~Token konteks ing panjaluk sing padha isih nuduhake identitas palaku, satemah platform pancèn wis mènèhi '
+                'identitas sing bener lan aplikasiné sing ngabaikake.\n'
+                '4. Kontrol positif: administrator njaluk barang sing padha lan olèh nilai sing pèrsis padha.',
+                '1. Call the function with the actor own accountId — refused.\n'
+                '2. Repeat the identical call, changing only that field to the administrator account id — it succeeds.\n'
+                '3. The signed context token in the same request still identifies the actor, showing the platform supplied the correct '
+                'identity and the application ignored it.\n'
+                '4. Positive control: the administrator receives the identical value, confirming the data is genuinely the administrator.'),
+            'impact': T(
+                'Pangguna berlisensi lumrah bisa maca bahan kunci enkripsi lan cathetan konfigurasi organisasi, sarta tumindak '
+                'dadi administrator ing njero aplikasi.',
+                'An ordinary licensed user obtains cryptographic key material and the tenant configuration record, and can act as the '
+                'administrator inside the application.'),
+            'fix': T(
+                'Jupuk identitas saka ~token konteks sing ditandhatangani platform, lan aja nganggo ~accountId kiriman klièn '
+                'kanggo kaputusan wewenang.',
+                'Take the acting identity from the platform-signed invocation context and never use a client-supplied account id for '
+                'authorization decisions.')
+        },
+        {
+            'id': 'FND-17',
+            'title': T('Kredensial sing kasimpen dikirim manèh menyang ~host tujuan pangalihan',
+                       'Stored credentials are replayed to the host named by a redirect'),
+            'target': T('~Plugin ~Atlassian ~Data ~Center — jeneng vèndhor didhelikake',
+                        'Atlassian Data Center plugin — vendor withheld under disclosure terms'),
+            'sev': 'P3 · $300',
+            'sev_cat': 'paid',
+            'proof': T('ditampa, dirampungake lan diganjar ~$300 (~10 ~poin) — vèndhor ngrilis tambalan',
+                       'accepted, resolved & rewarded $300 (10 points) — vendor shipped the fix in two releases'),
+            'cvss': 'Bugcrowd VRT · sensitive_data_exposure > disclosure_of_secrets > for_internal_asset · triaged P3',
+            'cwe': 'CWE-522: Insufficiently Protected Credentials',
+            'root_cause': T(
+                'Klièn ~HTTP ing sisih ~server tetep nggawa ~header autentikasi nalika ngetutake pangalihan, senajan ~host tujuané '
+                'wis béda karo ~host wiwitan.',
+                'The server-side HTTP client kept the configured authentication header while following a redirect, even when the '
+                'redirect hop pointed at a different origin from the one the credential was configured for.'),
+            'poc': T(
+                '1. Setel sumber sing mbutuhake autentikasi, nganggo kredensial panguji.\n'
+                '2. Arahake sumber kuwi menyang ~host sing mbalèkake pangalihan menyang ~host panampa.\n'
+                '3. ~Host panampa nampa kredensial kasebut sacara wutuh.',
+                '1. Configure a source that requires authentication, using test credentials.\n'
+                '2. Point it at a host that answers with a redirect to a collector host.\n'
+                '3. The collector receives the configured credentials in full.'),
+            'impact': T(
+                'Sapa waé sing bisa nyetel utawa ngowahi tujuan sumber bisa njupuk kredensial sing disimpen administrator.',
+                'Anyone able to set or influence the source target harvests the credentials an administrator stored in the product.'),
+            'fix': T(
+                'Culake ~header autentikasi nalika ~origin ing pangalihan béda karo ~origin wiwitan.',
+                'Drop the authentication header whenever a redirect hop changes origin.')
+        },
+        {
+            'id': 'FND-18',
+            'title': T('Saluran wektu-nyata global mbocorake konteks pangguna liya',
+                       'A global realtime channel leaks other users session context'),
+            'target': T('Aplikasi ~Atlassian ~Cloud (~Forge) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                        'Atlassian Cloud application (Forge) — Accxia Marketplace Bug Bounty'),
+            'sev': 'P4 · $100',
+            'sev_cat': 'paid',
+            'proof': T('ditampa lan diganjar ~$100 (~5 ~poin) — ~Accxia ~Marketplace ~Bug ~Bounty',
+                       'accepted & rewarded $100 (5 points) — Accxia Marketplace Bug Bounty'),
+            'cvss': 'Bugcrowd VRT · broken_access_control · triaged P4',
+            'cwe': 'CWE-200: Exposure of Sensitive Information to an Unauthorized Actor',
+            'root_cause': T(
+                'Saluran wektu-nyata dienggo bebarengan déning kabèh pangguna tanpa dipisah miturut pangguna, satemah pesen sing '
+                'kudune mung kanggo siji pangguna uga tekan pangguna liyané.',
+                'A realtime channel was shared globally instead of being scoped per user, so messages intended for one session were '
+                'delivered to other users of the same site as well.'),
+            'poc': T(
+                '1. Bukak aplikasi minangka pangguna kapisan lan rungokake saluran wektu-nyata.\n'
+                '2. Bukak aplikasi minangka pangguna kapindho ing sesi kapisah.\n'
+                '3. Pangguna kapisan nampa konteks sesi duwèké pangguna kapindho.',
+                '1. Open the app as the first user and listen on the realtime channel.\n'
+                '2. Open the app as a second user in a separate session.\n'
+                '3. The first user receives context belonging to the second user session.'),
+            'impact': T(
+                'Konteks sesi pangguna liya bocor menyang saben pangguna berlisensi sing mbukak aplikasi kasebut.',
+                'Another user session context leaks to any licensed user who has the application open.'),
+            'fix': T(
+                'Pisahake saluran wektu-nyata miturut pangguna, lan aja nyiarake konteks menyang saluran sing dienggo bebarengan.',
+                'Scope the realtime channel per user and never broadcast per-user context on a shared channel.')
         },
     ]
 

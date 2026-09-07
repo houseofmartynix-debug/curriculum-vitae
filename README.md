@@ -23,8 +23,8 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 * **Bug Bounty Platforms:** Bugcrowd, HackerOne, YesWeHack, Gerobug.
 * **Enterprise Risk Mitigation:**
   * **50+ High-Impact Security Findings** triaged and verified across public and private bug bounty programmes.
-  * **$2,500 in bounty rewards** and **75 Bugcrowd researcher points**, all solo — **$2,200 / 65 points** on the Accxia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass) and **$300 / 10 points** from Gliffy.
-  * **8 accepted Bugcrowd submissions**, spanning P1 Critical through accepted-informational, across five separate programmes.
+  * **$3,000 in bounty rewards** and **113 Bugcrowd researcher points**, all solo — **$2,300 / 70 points** on the Accxia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass), **$300 / 10 points** from Gliffy, and a further **$400** across two Atlassian Data Center vendors withheld here under coordinated-disclosure terms.
+  * **8 paid bounties and 11 accepted Bugcrowd submissions**, spanning P1 Critical through accepted-informational, across seven separate programmes.
   * **100% Coordinated Responsible Disclosure Compliance** under ISO/IEC 29147 standards.
   * Multi-million dollar critical infrastructure data breaches and tenant workspace takeovers prevented.
 
@@ -46,6 +46,10 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 | `FND-12` | **Source Code & Sensitive Configuration Disclosure** | Diskominfo Kota Tangerang Selatan (Gerobug) | **Medium** (CVSS 5.3) | Official Certificate of Appreciation `7C0B36916030`. |
 | `FND-13` | **Model Context Protocol (MCP) Unauthenticated Localhost HTTP Exposure** | Desktop AI & Dev Application | **CVSS 7.3 High** | Reported via official programme; Patched cross-origin tool execution. |
 | `FND-14` | **Approval Flow Bypass & Open OAuth 2.0 Dynamic Client Registration** | Production Enterprise SaaS Platforms | **High** (CVSS 8.1) | Under active triage; Intercepted authorization code leakage. |
+| `FND-15` | **Application-Wide Configuration Store Readable & Writable by Any Licensed User (Back-End Never Checks Privilege)** | Atlassian Cloud backup application (Forge) — vendor withheld | **P2** (Bugcrowd VRT `broken_access_control > privilege_escalation`) | Under active triage; break/restore chain proves server-side consumption. |
+| `FND-16` | **Back-End Derives Identity From a Client-Supplied `accountId` — Ordinary User Acts as Administrator** | Atlassian Cloud backup application (Forge) — vendor withheld | **P1** (Bugcrowd VRT `broken_authentication_and_session_management > authentication_bypass`) | Under active triage; signed platform context ignored in favour of a request-body field. |
+| `FND-17` | **Stored Credentials Replayed to a Redirect Target Host** | Atlassian Data Center plugin — vendor withheld | **P3** (Bugcrowd VRT `sensitive_data_exposure > disclosure_of_secrets`) | Accepted, **resolved** & rewarded **$300 / 10 points**; vendor shipped the fix in two releases. |
+| `FND-18` | **Global Realtime Channel Leaks Another User's Session Context** | Atlassian Cloud application (Forge) | **P4** (Bugcrowd VRT `broken_access_control`) | Accepted & rewarded **$100 / 5 points** — Accxia Marketplace Bug Bounty. |
 
 ---
 
