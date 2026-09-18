@@ -86,7 +86,7 @@ def render(lang):
     # ---------------------------------------------------------------- stats ---
     STATS = [
         ('50+', T('Temuan Kaamanan', 'Vulnerabilities Reported'), T('Lolos triase & ditampa', 'Triaged & Verified Across Bounty Platforms')),
-        ('$5.9K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~223 ~poin panaliti', 'Bugcrowd · 223 researcher points')),
+        ('$5.9K', T('Hadiah Ditampa', 'Bounty Rewards Earned'), T('~Bugcrowd · ~213 ~poin panaliti', 'Bugcrowd · 213 researcher points')),
         ('100%', T('Kepatuhan Lapuran', 'Responsible Disclosure'), T('Manut pranatan ~ISO/IEC ~29147', 'Zero uncoordinated leaks / Strict SLA')),
         ('4+', T('Platform Kaamanan', 'Bounty Ecosystems'), 'Bugcrowd · HackerOne · YesWeHack · Gerobug'),
         ('30+', T('Kelas Serangan', 'Documented Attack Classes'), T('Cathetan proyèk riset', 'Offensive security payload knowledgebase')),
