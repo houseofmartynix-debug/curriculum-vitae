@@ -23,8 +23,8 @@ Interactive, dual-language Curriculum Vitae and security research dossier of **M
 * **Bug Bounty Platforms:** Bugcrowd, HackerOne, YesWeHack, Gerobug.
 * **Enterprise Risk Mitigation:**
   * **50+ High-Impact Security Findings** triaged and verified across public and private bug bounty programmes.
-  * **$3,000 in bounty rewards** and **113 Bugcrowd researcher points**, all solo — **$2,300 / 70 points** on the Accxia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass), **$300 / 10 points** from Gliffy, and a further **$400** across two Atlassian Data Center vendors withheld here under coordinated-disclosure terms.
-  * **8 paid bounties and 11 accepted Bugcrowd submissions**, spanning P1 Critical through accepted-informational, across seven separate programmes.
+  * **$5,900 in bounty rewards** and **223 Bugcrowd researcher points**, all solo — **$2,600 / 80 points** on the Accxia Marketplace Bug Bounty engagement (headlined by a **P1 Critical** authorisation bypass), **$300 / 10 points** from Gliffy, and a further **$3,000** across additional Bugcrowd and Atlassian Data Center programmes withheld here under coordinated-disclosure terms.
+  * **17 paid bounties across nine separate programmes**, spanning P1 Critical through accepted-informational.
   * **100% Coordinated Responsible Disclosure Compliance** under ISO/IEC 29147 standards.
   * Multi-million dollar critical infrastructure data breaches and tenant workspace takeovers prevented.
 
